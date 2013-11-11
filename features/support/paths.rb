@@ -11,39 +11,16 @@ module NavigationHelpers
   # step definition in web_steps.rb
   #
   def path_to(page_name)
-    case page_name
 
-    when /^the home\s?page$/
-      '/'
-    when /^the projects page?/
-      '/projects'
-	when /^the "(.*)" page?/
-	  project_path(Project.find_by_name($1))
-    when /^the sign up page$/
-	'/users/signup'
-
-	when /^the sign in page$/
-	'/users/login' 
-
-    when /^the profile page of "(.*)"$/ 
-		user = User.find_by_username($1)
-		id = user.profilable_id
-		if user.filmmaker?
-			'/filmmakers/' + id.to_s
-        elsif user.nonprofit?
-			'/nonprofits/' + id.to_s
-		end
-
-	when /^the edit page of "(.*)"$/ 
-		user = User.find_by_username($1)
-		id = user.profilable_id
-		if user.filmmaker?
-			'/filmmakers/' + id.to_s + '/edit'
-        elsif user.nonprofit?
-			'/nonprofits/' + id.to_s + '/edit'
-		end
-	  
-
+    if page_name.include?('sign')
+      path_sign_in_out(page_name)
+    elsif page_name.include?('edit')
+      path_edit(page_name)
+    elsif page_name.include?('profile')	
+      path_profile(page_name)
+    elsif page_name.include?('page')
+      page_mis(page_name)
+  
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
@@ -59,6 +36,52 @@ module NavigationHelpers
         raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
           "Now, go and add a mapping in #{__FILE__}"
       end
+    end
+  end
+
+  def path_sign_in_out(page_name)
+    case page_name
+    when /^the sign up page$/
+      '/users/signup'
+    when /^the sign in page$/
+      '/users/login' 
+    end
+  end
+  
+  def path_profile(page_name) 
+    case page_name
+    when /^the profile page of "(.*)"$/ 
+      user = User.find_by_username($1)
+      id = user.profilable_id
+      if user.filmmaker?
+        '/filmmakers/' + id.to_s
+      elsif user.nonprofit?
+	'/nonprofits/' + id.to_s
+      end
+    end
+  end
+ 
+  def path_edit(page_name)
+    case page_name
+    when /^the edit page of "(.*)"$/ 
+      user = User.find_by_username($1)
+      id = user.profilable_id
+      if user.filmmaker?
+        '/filmmakers/' + id.to_s + '/edit'
+      elsif user.nonprofit?
+        '/nonprofits/' + id.to_s + '/edit'
+      end
+    end
+  end
+
+  def page_mis(page_name)
+    case page_name
+    when /^the home\s?page$/
+      '/'
+    when /^the projects page?/
+      '/projects'
+    when /^the "(.*)" page?/
+      project_path(Project.find_by_name($1))
     end
   end
 end

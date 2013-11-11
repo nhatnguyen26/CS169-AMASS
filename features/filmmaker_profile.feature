@@ -56,7 +56,7 @@ Feature: Profile page for filmmakers
             | Contact Information  | info        |
         When I press "Update Filmmaker Info"
         Then I should be on the profile page of "abc123"
-		And I should see "Your profile was successfully updated"
+	And I should see "Your profile was successfully updated"
         And I should see "summary" 
         And I should see "about" 
         And I should see "experience"
