@@ -48,7 +48,9 @@ describe "Signing in" do
 	end
 
 	describe "enter existing username with wrong password" do
-		let(:user) { FactoryGirl.create(:user) } 
+		let(:user) { 
+			FactoryGirl.create(:user) 	
+		} 
 		before do
 			fill_in "Username", with: user.username
 			fill_in "Password", with: "xyz123"
@@ -65,15 +67,19 @@ describe "Signing in" do
   end
 
   describe "with valid information" do
-	let(:user) { FactoryGirl.create(:user) }
+	let(:user) { 
+		FactoryGirl.create(:user) 
+	}
 	before do 
 		fill_in "Username", with: user.username
 		fill_in "Password", with: user.password
+		user.profilable = Filmmaker.create!
+		user.save!
 		click_button "Sign In"
 	end
 	it { should_not have_link('Sign In') }
 	it { should_not have_link('Sign up') }
-	it { should have_content('Welcome, Jane Doe') }
+	it { should have_content('Hi Jane Doe') }
 	it { should_not have_css('input#username') }
 	it { should_not have_css('input#password') }
 	it { should have_link 'Profile' }

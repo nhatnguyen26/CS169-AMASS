@@ -63,7 +63,7 @@ describe "Signing Up" do
 		click_button "Create an account"
 	end
 
-	it { should have_content 'Welcome, mock' }
+	it { should have_content 'Hi mock' }
 	it { should have_link 'Profile' }
 	it { should have_link 'Settings' }
 	it { should have_link 'Logout' }
