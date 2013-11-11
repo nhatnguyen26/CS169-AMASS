@@ -10,8 +10,10 @@ class ProjectsController < ApplicationController
     
     if filter == 'all' or filter == 'New Posts'
       @projects = filter_projects(filter)
-    elsif filter == 'Type' or filter == 'Region' or filter == 'Budget' or filter == 'Popular'
+    elsif filter == 'Type' or filter == 'Region' 
       @projects = filter_projects_by(filter, by)
+    elsif filter == 'Budget' or filter == 'Popular'
+      @projects = filter_projects_by2(filter, by)
     end
    
     respond_to do |format|
@@ -29,14 +31,17 @@ class ProjectsController < ApplicationController
   end
 
   def filter_projects_by(filter, by)
-    case filter
-    when 'Type'
+    if filter == 'Type'
       return Project.select{|x| x.category.to_s.downcase == by.downcase}
-    when 'Region'
+    else
       return Project.select{|x| x.location.to_s.downcase == by.downcase}
-    when 'Budget'
+    end
+  end
+ 
+  def filter_projects_by2(filter, by)
+    if filter ==  'Budget'
       return Project.select{|x| x.budget.to_i.to_s.length == by.length}
-    when 'Popular'
+    else
       return Project.select{|x| x.impressionist_count >= 1}
     end
   end
