@@ -6,7 +6,14 @@ class FilmmakersController < ApplicationController
 	  end
 	
 	def edit
-	    @filmmaker = Filmmaker.find params[:id]
+            temp = Filmmaker.find params[:id]
+            if current_user.id == temp.user.id
+	      @filmmaker = temp
+              render
+            else
+              flash[:error] = "Illegal Command"
+              redirect_to root_path
+            end
 	end
 
         def update
