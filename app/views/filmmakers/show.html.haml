@@ -7,17 +7,20 @@
   = @filmmaker.user.email
 %p
   %b Filmmaker Summary:
-  %a{:id => 'summary'}edit
+  -if logged_in_as_correct_user(@filmmaker.user.id)
+    %a{:id => 'summary'}edit
   %p
     = best_in_place @filmmaker, :summary, inplace_params('summary')
 %p
   %b About Me:
-  %a{:id => 'about'}edit
+  -if logged_in_as_correct_user(@filmmaker.user.id)
+    %a{:id => 'about'}edit
   %p
     = best_in_place @filmmaker, :about, inplace_params('about')
 %p
   %b Experience Summary:
-  %a{:id => 'expSum'}edit
+  -if logged_in_as_correct_user(@filmmaker.user.id)
+    %a{:id => 'expSume'}edit
   %p
     = best_in_place @filmmaker, :experience, inplace_params('expSum')
   %b Skills and Expertise:
@@ -26,14 +29,15 @@
   %b Links to Work Samples:
 %p
   %b Contact Information:
-  %a{:id => 'contact'}edit
+  -if logged_in_as_correct_user(@filmmaker.user.id)
+    %a{:id => 'contact'}edit
   %p
     = best_in_place @filmmaker, :contact, inplace_params('contact')
 %p
   %b Contact Form:
 %p
   %b Client Testimonials:
--if current_user.id == @filmmaker.user.id
+-if logged_in_as_correct_user(@filmmaker.user.id)
   = link_to 'Edit entire profile', edit_filmmaker_path(@filmmaker)
 :javascript
 $(document).ready(function() {
