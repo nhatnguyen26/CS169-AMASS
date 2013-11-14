@@ -48,7 +48,7 @@ end
 
 
 gem 'haml'
-
+gem 'best_in_place'
 # Use unicorn as the web server
 # gem 'unicorn'
 

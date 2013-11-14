@@ -7,24 +7,36 @@
   = @filmmaker.user.email
 %p
   %b Filmmaker Summary:
-  = @filmmaker.summary
+  %a{:id => 'summary'}edit
+  %p
+    = best_in_place @filmmaker, :summary, inplace_params('summary')
 %p
   %b About Me:
-  = @filmmaker.about
+  %a{:id => 'about'}edit
+  %p
+    = best_in_place @filmmaker, :about, inplace_params('about')
 %p
   %b Experience Summary:
-  = @filmmaker.experience
-%p
+  %a{:id => 'expSum'}edit
+  %p
+    = best_in_place @filmmaker, :experience, inplace_params('expSum')
   %b Skills and Expertise:
   = @filmmaker.skills
 %p
   %b Links to Work Samples:
 %p
   %b Contact Information:
-  = @filmmaker.contact
+  %a{:id => 'contact'}edit
+  %p
+    = best_in_place @filmmaker, :contact, inplace_params('contact')
 %p
   %b Contact Form:
 %p
   %b Client Testimonials:
 -if current_user.id == @filmmaker.user.id
-  = link_to 'Edit', edit_filmmaker_path(@filmmaker)
+  = link_to 'Edit entire profile', edit_filmmaker_path(@filmmaker)
+:javascript
+$(document).ready(function() {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
+});
