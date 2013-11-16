@@ -3,9 +3,17 @@ CS169Amass::Application.routes.draw do
 	root :to => 'welcome#index'
   end
   root :to => 'welcome#index'
-  devise_for :users, :controllers => {:registrations => "users/registrations"}, :path => "users", :path_names => {:sign_in => "login", :sign_out => "logout", :sign_up => "signup"}
+  devise_for :users, skip: [:sessions, :registrations]
   devise_scope :user do 
-    post 'users/signup', :to => "users/registrations#create" 
+    # SessionController
+    get    '/sign-in',  to: 'users/sessions#new',     as: :new_user_session
+    post   '/sign-in',  to: 'users/sessions#create',  as: :user_session
+    delete '/sign-out', to: 'users/sessions#destroy', as: :destroy_user_session
+
+	# RegistrationController
+    get    '/sign-up',      to: 'users/registrations#new',    as: :new_user_registration
+    post   '/sign-up',      to: 'users/registrations#create', as: :user_registration
+
   end
   resources :projects #, only: [:show,:index,:create]
   resources :filmmakers

@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :username, :name, :usertype, :password, 
 				  :password_confirmation, :remember_me
 
-  validates_presence_of :name, :username, :usertype
+  validates_presence_of :name, :username
   validates_uniqueness_of :username, :email, :case_sensitive => false
 
   belongs_to :profilable, :polymorphic => true, :dependent => :destroy
