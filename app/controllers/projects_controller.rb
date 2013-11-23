@@ -56,18 +56,23 @@ class ProjectsController < ApplicationController
       format.json { render json: @project }
     end
   end
-=begin
+
   # GET /projects/new
   # GET /projects/new.json
   def new
-    @project = Project.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @project }
+    if !user_signed_in?
+       flash[:error] = "Please take a moment to sign up or log in first."
+       redirect_to new_user_registration_path
     end
+    
+    if current_user.filmmaker?
+       flash[:error] = "Filmmaker cannot create projects"
+       redirect_to root_path
+    end
+    @project = Project.new
   end
 
+=begin  
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])

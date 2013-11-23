@@ -32,6 +32,9 @@
                     = link_to "Profile", filmmaker_path(current_user.profilable.id)
                   - if current_user.nonprofit?
                     = link_to "Profile", nonprofit_path(current_user.profilable.id)
+                %li.drop-items{href: "#", role: "menutiem", tabindex: "-1"}
+                  - if current_user.nonprofit?
+                    = link_to "Create a Project", new_project_path
                 %li
                   %a.drop-items{href: "#", role: "menuitem", tabindex: "-1"}     Settings
                 %li.divider{role: "presentation"}
