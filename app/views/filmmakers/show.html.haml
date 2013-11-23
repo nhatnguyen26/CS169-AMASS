@@ -1,46 +1,30 @@
 %h1 User Profile
 %p
   %b Name:
-  = @filmmaker.user.name
+  %b= @filmmaker.user.name
 %p
   %b Email:
-  = @filmmaker.user.email
+  %b= @filmmaker.user.email
 %p
   %b Filmmaker Summary:
-  -if logged_in_as_correct_user(@filmmaker.user.id)
-    %a{:id => 'summary'}edit
-  %p
-    = best_in_place @filmmaker, :summary, inplace_params('summary')
+  %br= @filmmaker.summary
 %p
   %b About Me:
-  -if logged_in_as_correct_user(@filmmaker.user.id)
-    %a{:id => 'about'}edit
-  %p
-    = best_in_place @filmmaker, :about, inplace_params('about')
+  %br= @filmmaker.about
 %p
   %b Experience Summary:
-  -if logged_in_as_correct_user(@filmmaker.user.id)
-    %a{:id => 'expSume'}edit
-  %p
-    = best_in_place @filmmaker, :experience, inplace_params('expSum')
+  %br= @filmmaker.experience
+%p
   %b Skills and Expertise:
-  = @filmmaker.skills
+  %br= @filmmaker.skills
 %p
   %b Links to Work Samples:
 %p
   %b Contact Information:
-  -if logged_in_as_correct_user(@filmmaker.user.id)
-    %a{:id => 'contact'}edit
-  %p
-    = best_in_place @filmmaker, :contact, inplace_params('contact')
+  %br= @filmmaker.contact
 %p
   %b Contact Form:
 %p
   %b Client Testimonials:
--if logged_in_as_correct_user(@filmmaker.user.id)
-  = link_to 'Edit entire profile', edit_filmmaker_path(@filmmaker)
-:javascript
-$(document).ready(function() {
-  /* Activating Best In Place */
-  jQuery(".best_in_place").best_in_place();
-});
+-if current_user.id == @filmmaker.user.id
+  = link_to 'Edit Profile', edit_filmmaker_path(@filmmaker)
