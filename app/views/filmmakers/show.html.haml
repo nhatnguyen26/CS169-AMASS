@@ -26,5 +26,5 @@
   %b Contact Form:
 %p
   %b Client Testimonials:
--if current_user.id == @filmmaker.user.id
+-if logged_in_as_correct_user @filmmaker.user.id
   = link_to 'Edit Profile', edit_filmmaker_path(@filmmaker)
