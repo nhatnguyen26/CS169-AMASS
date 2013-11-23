@@ -1,4 +1,77 @@
-%h1 New project
+%h1 
+
+.container
+  .row
+    .col-md-12
+      #accordion.panel-group
+        .panel.panel-default
+          .panel-heading
+            %h4.panel-title
+              CREATE NEW PROJECT
+          #collapseOne.panel-collapse.collapse.in
+            .panel-body
+              .row
+                .col-md-12
+                  .form-group
+                    %label Title
+                    %input.form-control{name: "name", placeholder: "Title", required: "", type: "text"}/
+                  .form-group
+                    %label Blurb
+                    %textarea.form-control{name: "blurb", placeholder: "Blurb", required: "", rows: "1"}
+                  .form-group
+                    %label Description
+                    %textarea.form-control{name: "description", placeholder: "Description", required: "", rows: "5"}
+                  .form-group
+                    %label Mission
+                    %textarea.form-control{name: "nonprofit_mission", placeholder: "Mission", required: "", rows: "5"}
+              .row
+                .col-md-6
+                  .form-group
+                    %label{for: "category"}
+                      Category
+                    %select#category.form-control
+                      %option Community
+                      %option Education
+                      %option Housing
+                .col-md-6
+                  .form-group
+                    %label{for: "location"}
+                      Location
+                    %select#location.form-control
+                      %option Alameda
+                      %option San Francisco
+                      %option Santa Clara
+                      %option Mountain View
+              .row
+                .col-md-2
+                  .form-group
+                    %label{for: "budget"} Budget
+                    .input-group
+                      %span.input-group-addon $
+                      %input.form-control{name: "budget", placeholder: "Budget", type: "text"}
+                .col-md-4
+                  .form-group
+                    %label{for: "deadline"} Deadline
+                    .input-group
+                      %link{href: "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css", rel: "stylesheet"}/
+                      %script{src: "http://code.jquery.com/jquery-1.9.1.js"}
+                      %script{src: "http://code.jquery.com/ui/1.10.3/jquery-ui.js"}
+                      %link{href: "/resources/demos/style.css", rel: "stylesheet"}/
+                      :javascript
+                        $(function() {
+                        $( "#datepicker" ).datepicker();
+                        });
+                      %span.input-group-addon MM-DD-YYYY
+                      %input#datepicker.form-control{name: "deadline", placeholder: "Deadline", type: "text"}
+                .col-md-6
+                  %p
+                  .well.well-sm.well-primary
+                    %form.form.form-inline{role: "form"}
+                      .form-group
+                        %button.btn.btn-success.btn-sm{type: "submit"}
+                          Save
+
+        
 
 
 = link_to 'Back', projects_path
