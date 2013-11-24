@@ -48,6 +48,7 @@ end
 
 
 gem 'haml'
+gem 'jquery-ui-rails'
 gem 'best_in_place'
 
 # Use unicorn as the web server
