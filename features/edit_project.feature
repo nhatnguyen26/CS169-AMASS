@@ -12,12 +12,13 @@ Feature: Edit a project
       | Project C   | community	| Alabama	| org B        | sample blurb        | sample mission            | sample description        | 30-Oct-2013            | open          | 2000      |
     Given the following non-profits exist:
       | name	 | username	| password    |      email       | usertype  |
-      | org A | abc123 	| rst456789   | abc123@gmail.com | Nonprofit |
-    Given I am logged in as "abc123" with password "rst456789"
+      | org A | org A 	| rst456789   | abc123@gmail.com | nonprofit |
+    Given I am logged in as "org A" with password "rst456789"
     Then I should be on the home page
     And I should see "Hi org A"
 
   Scenario: Go to edit page as nonprofit
+    When I follow "Hi org A"
     And I should see "My Projects"
     When I follow "My Projects"
     Then I should be on the my projects page
@@ -28,11 +29,15 @@ Feature: Edit a project
   Scenario: Edit the project blurb as nonprofit
     Given I am on the my projects page
     When I follow "Project A"
-    Then I should be on the edit project page for "Project A"
+    Then I should be on the project page for "Project A"
     And I should see "Project A"
-    And I should see "Sample blurb"
-    When I follow "edit_blurb"
-    And I fill in "blurb_input" with "Lisa and Phoebe are cool"
+    And I should see "sample blurb"
+    And I should see "Edit Project"
+    When I follow "Edit Project"
+    Then I should see "edit"
+    When I follow "edit"
+    And I should see "sample blurb"
+    And I fill in "blurb" with "Lisa and Phoebe are cool"
     And I press "Save"
     Then I should see "Lisa and Phoebe are cool"
     And I should not see "Sample blurb"
