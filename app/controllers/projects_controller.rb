@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  require 'time'
   respond_to :html, :json
   impressionist actions: [:show]
   # GET /projects
@@ -73,6 +74,12 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find params[:id]
+    if (params[:project]["deadline"])
+      temp = params[:project]["deadline"]
+      t1,t2,t3 = /(\d+)\/(\d+)\/(\d+)/.match(temp).captures
+      temp = t3 + t1 + t2
+      params[:project]["deadline"] = temp
+    end
     @project.update_attributes!(params[:project])
     respond_with @project
   end

@@ -7,8 +7,5 @@ module ProjectsHelper
     {:type => 'textarea', :ok_button => 'Save', :ok_button_class => 'btn', :cancel_button => 'Cancel', :cancel_button_class => 'btn', :activator => '#'+str}
   end
 
-  def inplace_params1(str)
-    {:type => 'date', :ok_button => 'Save', :ok_button_class => 'btn', :cancel_button => 'Cancel', :cancel_button_class => 'btn', :activator => '#'+str}
-  end
 end
 
