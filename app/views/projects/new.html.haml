@@ -14,40 +14,40 @@
                 .col-md-12
                   .form-group
                     %label Title
-                    %input.form-control{name: "project[name]", placeholder: "Title", required: "", type: "text"}/
+                    %input.form-control{name: "project[name]", placeholder: "Title", type: "text"}/
                   .form-group
                     %label Blurb
-                    %textarea.form-control{name: "project[blurb]", placeholder: "Blurb", required: "", rows: "1"}
+                    %textarea.form-control{name: "project[blurb]", placeholder: "Blurb", rows: "1", type: "text"}
                   .form-group
                     %label Description
-                    %textarea.form-control{name: "project[description]", placeholder: "Description", required: "", rows: "5"}
+                    %textarea.form-control{name: "project[description]", placeholder: "Description",  rows: "5", type: "text"}
                   .form-group
                     %label Mission
-                    %textarea.form-control{name: "project[nonprofit_mission]", placeholder: "Mission", required: "", rows: "5"}
+                    %textarea.form-control{name: "project[nonprofit_mission]", placeholder: "Mission", rows: "5", type: "text"}
               .row
                 .col-md-6
                   .form-group
                     %label Category
-                    %select#category.form-control{name: "project[category]"}
+                    %select#category.form-control{name: "project[category]", placeholder: "Category", type: "text"}
                       %option Community
                       %option Education
                       %option Housing
                 .col-md-6
                   .form-group
                     %label Location
-                    %select#location.form-control{name: "project[location]"}
+                    %select#location.form-control{name: "project[location]", placeholder: "Location", type: "text"}
                       %option Alameda
                       %option San Francisco
                       %option Santa Clara
                       %option Mountain View
               .row
-                .col-md-2
+                .col-md-6
                   .form-group
                     %label Budget
                     .input-group
                       %span.input-group-addon $
                       %input.form-control{name: "project[budget]", placeholder: "Budget", type: "text"}
-                .col-md-4
+                .col-md-6
                   .form-group
                     %label Deadline
                     .input-group
@@ -61,9 +61,7 @@
                         });
                       %span.input-group-addon DD-MM-YYYY
                       %input#datepicker.form-control{name: "project[deadline]", placeholder: "Deadline", type: "text"}
-                .col-md-6
-                  %p
-                  .well.well-sm.well-primary
-                    %form.form.form-inline{role: "form"}
-                      .form-group
-                        %input.btn.btn-success.btn-sm{type: "submit", value: "Save"}
+              .row
+                .col-md-12
+                  %input.btn.btn-success.btn-block{type: "submit", value: "Save"}
+                        

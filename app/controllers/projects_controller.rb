@@ -88,7 +88,7 @@ class ProjectsController < ApplicationController
       flash[:notice] = "Project was successfully created."
       redirect_to project_path(@project.id)
     else
-      flash[:error] = "Something was wrong"
+      flash[:error] = "Something went wrong."
       redirect_to new_project_path
     end
     
