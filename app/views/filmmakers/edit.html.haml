@@ -1,48 +1,42 @@
-%div.col-md-5.col-md-offset-1#filmmaker-div
+%div.col-md-8.col-md-offset-2#filmmaker-div
   %div.row.header-block#pic-n-info
-    %div.col-md-3#image-div
+    %div.col-md-3.col-sm-2.col-xs-2#image-div
       =image_tag "lorem-ipsum.jpg", :id => "ourimage"
-    %div.col-md-8#user-info
+    %div.col-md-6
       %h1#name
         = @filmmaker.user.name
       %h4#email
         = @filmmaker.user.email
   
-  %b Filmmaker Summary:
-  %a{:id => 'summary'}edit
-  %div.row#info-box
-    %p     
-      %p
-        = best_in_place @filmmaker, :summary, inplace_params('summary')
+  %div.row.header-block.profile-block
+    %h3.topic
+      %b Filmmaker Summary
+      %a{:id => 'summary', :class => 'edit-butt'}edit
+    %h4.one-margin
+      = best_in_place @filmmaker, :summary, inplace_params('summary')
+    %h3.topic
+      %b About Me
+      %a{:id => 'about', :class => 'edit-butt'}edit
+    %h4.one-margin
+      = best_in_place @filmmaker, :about, inplace_params('about')
   
-  %b About Me:
-  %a{:id => 'about'}edit
-  %div.row#info-box
-    %p  
-      %p
-        = best_in_place @filmmaker, :about, inplace_params('about')
-  
-  %b Experience Summary:
-  %a{:id => 'expSume'}edit
-  %div.row#info-box  
-    %p    
-      %p
-        = best_in_place @filmmaker, :experience, inplace_params('expSum')
-  
-  %b Skills and Expertise:
-  %a{:id => 'skills'}edit
-  %div.row#info-box
-    %p
-      %p
-        = best_in_place @filmmaker, :skills, inplace_params('skills')
-  
-  %b Links to Work Samples:
-  %div.row#info-box
-    %p
+  %div.row.header-block.profile-block
+    %h3.topic
+      %b Experience Summary
+      %a{:id => 'expSum', :class => 'edit-butt'}edit
+    %h4.one-margin
+      = best_in_place @filmmaker, :experience, inplace_params('expSum')
+    %h3.topic
+      %b Skills and Expertise
+      %a{:id => 'skills', :class => 'edit-butt'}edit
+    %h4.one-margin
+      = best_in_place @filmmaker, :skills, inplace_params('skills')
+    %h3.topic
+      %b Links to Work Samples
       
-  %b Contact Information:
-  %a{:id => 'contact'}edit
-  %div.row#info-box
-    %p    
-      %p
-        = best_in_place @filmmaker, :contact, inplace_params('contact')
+  %div.row.header-block.profile-block   
+    %h3.topic
+      %b Contact Information
+      %a{:id => 'contact', :class => 'edit-butt'}edit
+    %h4.one-margin
+      = best_in_place @filmmaker, :contact, inplace_params('contact')

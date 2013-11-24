@@ -21,6 +21,15 @@
   margin-top:2.5%;
 }
 
+.edit-butt {
+  font-size: 75%;
+  margin-left:1%;
+}
+
+.topic input[type="submit"]{
+  background-color:#2980b9; !important
+}
+
 .topic {
   border-bottom: 1px solid #bdc3c7;
 }
