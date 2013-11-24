@@ -6,12 +6,12 @@
     %div.col-md-6
       %a{:id => 'name'}edit
       %h1#name
-        = best_in_place @project, :name, inplace_params('name')
+        = best_in_place @project, :name, inplace_params('input','name')
       %h3#organization
         = link_to @project.organization, project_path(@project.id)
       %a{:id => 'blurb'}edit
       %h4.one-margin
-        = best_in_place @project, :blurb, inplace_params('blurb')
+        = best_in_place @project, :blurb, inplace_params('textarea','blurb')
 
   %div.row#pic-n-info2
 
@@ -21,36 +21,36 @@
           Mission
       %a{:id => 'mission'}edit
       %h4.one-margin
-        = best_in_place @project, :nonprofit_mission, inplace_params('mission')
+        = best_in_place @project, :nonprofit_mission, inplace_params('textarea','mission')
       %h3
         %b
           Description
       %a{:id => 'description'}edit
       %h4.one-margin
-        = best_in_place @project, :description, inplace_params('description')
+        = best_in_place @project, :description, inplace_params('textarea','description')
 
     %div.col-md-4.info-block#right-block
       %h5.info-title
         Category
       %a{:id => 'category'}edit
       %h2.info-detail
-        = best_in_place @project, :category, inplace_params('category')
+        = best_in_place @project, :category, inplace_params('input','category')
       %h5.info-title
         Location
       %a{:id => 'location'}edit
       %h2.info-detail
-        = best_in_place @project, :location, inplace_params('location')
+        = best_in_place @project, :location, inplace_params('input','location')
       %h5.info-title
         Status
       %a{:id => 'status'}edit
       %h2.info-detail
-        = best_in_place @project, :status, inplace_params('status')
+        = best_in_place @project, :status, inplace_params('input','status')
       %h5.info-title
         Budget
       %a{:id => 'budget'}edit
       %h2.info-detail
         $
-        =  best_in_place @project, :budget, inplace_params('budget')
+        =  best_in_place @project, :budget, inplace_params('input','budget')
       %h5.info-title
         Followers
       %h2.info-detail
@@ -63,7 +63,7 @@
         Deadline
       %a{:id => 'deadline'}edit
       %h2.info-detail
-        = best_in_place @project, :deadline, :type => 'date'
+        = best_in_place @project, :deadline, inplace_params('date','deadline')
       %div#join
         = button_to "Join This Project", project_path(@project.id), :class => "btn btn-lg", :id => "join-button", :method => 'get'
 
