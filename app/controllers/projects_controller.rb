@@ -6,6 +6,9 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    if params[:myprojects] == "true"
+      @projects = Project.find(:all, :conditions => ["organization IN (?)", current_user.username])
+    end
 
     filter = params[:filter]
     by = params[:by]
