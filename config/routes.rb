@@ -6,13 +6,13 @@ CS169Amass::Application.routes.draw do
   devise_for :users, skip: [:sessions, :registrations]
   devise_scope :user do 
     # SessionController
-    get    '/sign-in',  to: 'users/sessions#new',     as: :new_user_session
-    post   '/sign-in',  to: 'users/sessions#create',  as: :user_session
-    delete '/sign-out', to: 'users/sessions#destroy', as: :destroy_user_session
+    get    '/sign_in',  to: 'users/sessions#new',     as: :new_user_session
+    post   '/sign_in',  to: 'users/sessions#create',  as: :user_session
+    delete '/sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
 
 	# RegistrationController
-    get    '/sign-up',      to: 'users/registrations#new',    as: :new_user_registration
-    post   '/sign-up',      to: 'users/registrations#create', as: :user_registration
+    get    '/sign_up',      to: 'users/registrations#new',    as: :new_user_registration
+    post   '/sign_up',      to: 'users/registrations#create', as: :user_registration
 
   end
   resources :projects #, only: [:show,:index,:create]

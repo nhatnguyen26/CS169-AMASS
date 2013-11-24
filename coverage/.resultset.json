@@ -45,6 +45,10 @@
         null,
         null
       ],
+      "/home/akhoa/CS169-AMASS/app/helpers/users/sessions_helper.rb": [
+        1,
+        null
+      ],
       "/home/akhoa/CS169-AMASS/app/helpers/welcome_helper.rb": [
         1,
         null
@@ -228,6 +232,27 @@
       "/home/akhoa/CS169-AMASS/app/controllers/users/registrations_controller.rb": [
         1,
         1,
+        14,
+        null,
+        14,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        null,
+        0,
+        0,
+        0,
+        null,
+        null,
+        12,
+        12,
+        null,
+        null,
+        null,
+        1,
         null,
         1,
         2,
@@ -241,6 +266,10 @@
         null,
         null
       ],
+      "/home/akhoa/CS169-AMASS/app/controllers/users/sessions_controller.rb": [
+        1,
+        null
+      ],
       "/home/akhoa/CS169-AMASS/app/controllers/welcome_controller.rb": [
         1,
         1,
@@ -248,7 +277,7 @@
         null
       ]
     },
-    "timestamp": 1384153379
+    "timestamp": 1385263096
   },
   "RSpec": {
     "coverage": {
