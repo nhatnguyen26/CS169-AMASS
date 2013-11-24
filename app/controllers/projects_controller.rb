@@ -60,19 +60,18 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
+    print user_signed_in?
     if !user_signed_in?
        flash[:error] = "Please take a moment to sign up or log in first."
        redirect_to new_user_registration_path
-    end
-    
-    if current_user.filmmaker?
+    elsif current_user.filmmaker?
        flash[:error] = "Filmmaker cannot create projects"
        redirect_to root_path
     end
     @project = Project.new
   end
 
-=begin  
+  
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
@@ -82,18 +81,17 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
-
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render json: @project, status: :created, location: @project }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+    if @project.save
+      flash[:notice] = "Project was successfully created."
+      redirect_to project_path(@project.id)
+    else
+      flash[:error] = "Something was wrong"
+      redirect_to new_project_path
     end
+    
   end
 
+=begin
   # PUT /projects/1
   # PUT /projects/1.json
   def update
