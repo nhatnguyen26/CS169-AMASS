@@ -26,8 +26,12 @@
   margin-left:1%;
 }
 
-.topic input[type="submit"]{
-  background-color:#2980b9; !important
+.filmmaker-button input[type="submit"]{
+  background-color:#9b59b6;
+}
+
+.filmmaker-button input[type="button"]{
+  background-color:#9b59b6;
 }
 
 .topic {

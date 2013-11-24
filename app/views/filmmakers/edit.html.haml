@@ -12,24 +12,24 @@
     %h3.topic
       %b Filmmaker Summary
       %a{:id => 'summary', :class => 'edit-butt'}edit
-    %h4.one-margin
+    %h4.one-margin.filmmaker-button
       = best_in_place @filmmaker, :summary, inplace_params('summary')
     %h3.topic
       %b About Me
       %a{:id => 'about', :class => 'edit-butt'}edit
-    %h4.one-margin
+    %h4.one-margin.filmmaker-button
       = best_in_place @filmmaker, :about, inplace_params('about')
   
   %div.row.header-block.profile-block
     %h3.topic
       %b Experience Summary
       %a{:id => 'expSum', :class => 'edit-butt'}edit
-    %h4.one-margin
+    %h4.one-margin.filmmaker-button
       = best_in_place @filmmaker, :experience, inplace_params('expSum')
     %h3.topic
       %b Skills and Expertise
       %a{:id => 'skills', :class => 'edit-butt'}edit
-    %h4.one-margin
+    %h4.one-margin.filmmaker-button
       = best_in_place @filmmaker, :skills, inplace_params('skills')
     %h3.topic
       %b Links to Work Samples
@@ -38,5 +38,5 @@
     %h3.topic
       %b Contact Information
       %a{:id => 'contact', :class => 'edit-butt'}edit
-    %h4.one-margin
+    %h4.one-margin.filmmaker-button
       = best_in_place @filmmaker, :contact, inplace_params('contact')
