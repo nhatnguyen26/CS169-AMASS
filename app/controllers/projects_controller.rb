@@ -81,6 +81,8 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
+    @project.organization = current_user.name
+    @project.status = "pending"
     if @project.save
       flash[:notice] = "Project was successfully created."
       redirect_to project_path(@project.id)
