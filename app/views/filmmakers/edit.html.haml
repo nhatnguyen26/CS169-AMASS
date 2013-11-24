@@ -7,34 +7,42 @@
         = @filmmaker.user.name
       %h4#email
         = @filmmaker.user.email
+  
+  %b Filmmaker Summary:
+  %a{:id => 'summary'}edit
   %div.row#info-box
-    %p
-      %b Filmmaker Summary:
-      %a{:id => 'summary'}edit
+    %p     
       %p
         = best_in_place @filmmaker, :summary, inplace_params('summary')
+  
+  %b About Me:
+  %a{:id => 'about'}edit
   %div.row#info-box
-    %p
-      %b About Me:
-      %a{:id => 'about'}edit
+    %p  
       %p
         = best_in_place @filmmaker, :about, inplace_params('about')
+  
+  %b Experience Summary:
+  %a{:id => 'expSume'}edit
   %div.row#info-box  
-    %p
-      %b Experience Summary:
-      %a{:id => 'expSume'}edit
+    %p    
       %p
         = best_in_place @filmmaker, :experience, inplace_params('expSum')
+  
+  %b Skills and Expertise:
+  %a{:id => 'skills'}edit
   %div.row#info-box
     %p
-      %b Skills and Expertise:
-      %br= @filmmaker.skills
+      %p
+        = best_in_place @filmmaker, :skills, inplace_params('skills')
+  
+  %b Links to Work Samples:
   %div.row#info-box
     %p
-      %b Links to Work Samples:
+      
+  %b Contact Information:
+  %a{:id => 'contact'}edit
   %div.row#info-box
-    %p
-      %b Contact Information:
-      %a{:id => 'contact'}edit
+    %p    
       %p
         = best_in_place @filmmaker, :contact, inplace_params('contact')

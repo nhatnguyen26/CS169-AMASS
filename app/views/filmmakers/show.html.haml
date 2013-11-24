@@ -9,28 +9,34 @@
         = @filmmaker.user.email
       -if logged_in_as_correct_user @filmmaker.user.id
         = link_to 'Edit Profile', edit_filmmaker_path(@filmmaker),{:class => 'btn btn-info btn-large'}
+  
+  %b Filmmaker Summary:
   %div.row#info-box
     %p
-      %b Filmmaker Summary:
       %br= @filmmaker.summary
+  
+  %b About Me:
   %div.row#info-box
     %p
-      %b About Me:
       %br= @filmmaker.about
+  
+  %b Experience Summary:
   %div.row#info-box  
     %p
-      %b Experience Summary:
       %br= @filmmaker.experience
+  
+  %b Skills and Expertise:
   %div.row#info-box
     %p
-      %b Skills and Expertise:
       %br= @filmmaker.skills
+
+  %b Links to Work Samples:
   %div.row#info-box
     %p
-      %b Links to Work Samples:
+  
+  %b Contact Information:
   %div.row#info-box
     %p
-      %b Contact Information:
       %br= @filmmaker.contact
 
 %div.col-md-5#contact-div
