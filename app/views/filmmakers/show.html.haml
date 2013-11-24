@@ -5,8 +5,10 @@
     %div.col-md-8#user-info
       %h1#name
         = @filmmaker.user.name
-      %h4#organization
+      %h4#email
         = @filmmaker.user.email
+      -if logged_in_as_correct_user @filmmaker.user.id
+        = link_to 'Edit Profile', edit_filmmaker_path(@filmmaker),{:class => 'btn btn-info btn-large'}
   %div.row#info-box
     %p
       %b Filmmaker Summary:
@@ -36,5 +38,3 @@
     %b Contact Form:
   %p
     %b Client Testimonials:
--if logged_in_as_correct_user @filmmaker.user.id
-  = link_to 'Edit Profile', edit_filmmaker_path(@filmmaker)
