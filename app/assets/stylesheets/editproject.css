@@ -1,3 +1,26 @@
-.btn span {
-  font-size: 10px;
+input[type="submit"] {
+  background-color:#e74c3c;
+  border-radius:2px;
+  color:#f7f7f9;
+  border:none;
+  margin-right:1%;
+}
+
+input[type="button"] {
+  background-color:#e74c3c;
+  border-radius:2px;
+  color:#f7f7f9;
+  border:none;
+}
+
+#name input[type="submit"]{
+  font-size: 45%;
+} 
+
+#name input[type="button"]{
+  font-size: 45%;
+}
+
+.one-margin input[type="submit"]{
+  margin-left: 1%;
 }

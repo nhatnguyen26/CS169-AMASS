@@ -9,8 +9,9 @@
         = best_in_place @project, :name, inplace_params('name')
       %h3#organization
         = link_to @project.organization, project_path(@project.id)
-      %h4#blurb
-        = @project.blurb
+      %a{:id => 'blurb'}edit
+      %h4.one-margin
+        = best_in_place @project, :blurb, inplace_params('blurb')
 
   %div.row#pic-n-info2
 
@@ -18,31 +19,38 @@
       %h3
         %b
           Mission
-      %h4
-        = @project.nonprofit_mission
+      %a{:id => 'mission'}edit
+      %h4.one-margin
+        = best_in_place @project, :nonprofit_mission, inplace_params('mission')
       %h3
         %b
           Description
-      %h4
-        = @project.description
+      %a{:id => 'description'}edit
+      %h4.one-margin
+        = best_in_place @project, :description, inplace_params('description')
 
     %div.col-md-4.info-block#right-block
       %h5.info-title
         Category
+      %a{:id => 'category'}edit
       %h2.info-detail
-        = @project.category
+        = best_in_place @project, :category, inplace_params('category')
       %h5.info-title
         Location
+      %a{:id => 'location'}edit
       %h2.info-detail
-        = @project.location
+        = best_in_place @project, :location, inplace_params('location')
       %h5.info-title
         Status
+      %a{:id => 'status'}edit
       %h2.info-detail
-        = @project.status
+        = best_in_place @project, :status, inplace_params('status')
       %h5.info-title
         Budget
+      %a{:id => 'budget'}edit
       %h2.info-detail
-        = "$ #{@project.budget}"
+        $
+        =  best_in_place @project, :budget, inplace_params('budget')
       %h5.info-title
         Followers
       %h2.info-detail
@@ -53,8 +61,9 @@
         = @project.created_at.strftime('%m/%d/%Y')
       %h5.info-title
         Deadline
+      %a{:id => 'deadline'}edit
       %h2.info-detail
-        = @project.deadline.strftime('%m/%d/%Y')
+        = best_in_place @project, :deadline, inplace_params('deadline')
       %div#join
         = button_to "Join This Project", project_path(@project.id), :class => "btn btn-lg", :id => "join-button", :method => 'get'
 
