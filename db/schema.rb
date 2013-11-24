@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131117185824) do
+ActiveRecord::Schema.define(:version => 20131124111745) do
 
   create_table "filmmakers", :force => true do |t|
     t.text     "about"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(:version => 20131117185824) do
     t.text     "blurb"
     t.text     "nonprofit_mission"
     t.text     "description"
-    t.datetime "deadline"
+    t.date     "deadline"
     t.string   "status"
     t.integer  "budget"
     t.datetime "created_at",        :null => false
