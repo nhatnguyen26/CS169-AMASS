@@ -1,7 +1,7 @@
 %div.col-md-8.col-md-offset-2#project-div
 
   %div.row.header-block#pic-n-info
-    %div.col-md-3#image-div
+    %div.col-md-3.col-sm-2.col-xs-2#image-div
       =image_tag "lorem-ipsum.jpg", :id => "ourimage"
     %div.col-md-6
       %h1#name1
@@ -10,6 +10,9 @@
         = link_to @project.organization, project_path(@project.id)
       %h4#blurb
         = @project.blurb
+    %div.col-md-1
+      -if logged_in_as_project_owner @project
+        = link_to 'Edit Project', edit_project_path(@project), {:id => 'back-button', :class => 'btn btn-large'}
 
   %div.row#pic-n-info2
 
