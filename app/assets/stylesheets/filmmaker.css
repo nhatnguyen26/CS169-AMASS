@@ -1,0 +1,50 @@
+#filmmaker-div {
+  background-color:#1abc9c;
+  border-radius: 10px;
+  margin-top:2.5%;
+  padding-bottom: 1%;
+}
+
+#info-box {
+  background-color:white;
+  border-radius: 10px;
+  margin-top:1%;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+  padding-top: 1%;
+  padding-left: 1%;
+}
+
+#user-info {
+  background-color:white;
+  border-radius: 10px;
+  padding-top:2.5%;
+  padding-bottom:5%;
+}
+
+#contact-div {
+  border-radius: 10px;
+  margin-top:2.5%;
+}
+
+#pic-n-info {
+  padding-top:1.5%;
+  margin-bottom:1.5%;
+  padding-left:0;
+}
+
+#name{
+  margin-bottom:0;
+  padding-top: 0;
+  text-align: left;
+  font-size:350%;
+}
+
+#organization{
+  margin-bottom:0;
+  padding-top: 0;
+  text-align: left;
+  font-size:100%;
+}
+
+

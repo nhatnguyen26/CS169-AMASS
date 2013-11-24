@@ -1,35 +1,40 @@
-%h1 User Profile
-%p
-  %b Name:
-  = @filmmaker.user.name
-%p
-  %b Email:
-  = @filmmaker.user.email
-%p
-  %b Filmmaker Summary:  
-  %a{:id => 'summary'}edit
-  %p
-    = best_in_place @filmmaker, :summary, inplace_params('summary')
-%p
-  %b About Me:
-  %a{:id => 'about'}edit
-  %p
-    = best_in_place @filmmaker, :about, inplace_params('about')
-%p
-  %b Experience Summary:
-  %a{:id => 'expSume'}edit
-  %p
-    = best_in_place @filmmaker, :experience, inplace_params('expSum')
-  %b Skills and Expertise:
-  = @filmmaker.skills
-%p
-  %b Links to Work Samples:
-%p
-  %b Contact Information:
-  %a{:id => 'contact'}edit
-  %p
-    = best_in_place @filmmaker, :contact, inplace_params('contact')
-%p
-  %b Contact Form:
-%p
-  %b Client Testimonials:
+%div.col-md-5.col-md-offset-1#filmmaker-div
+  %div.row.header-block#pic-n-info
+    %div.col-md-3#image-div
+      =image_tag "lorem-ipsum.jpg", :id => "ourimage"
+    %div.col-md-8#user-info
+      %h1#name
+        = @filmmaker.user.name
+      %h4#organization
+        = @filmmaker.user.email
+  %div.row#info-box
+    %p
+      %b Filmmaker Summary:
+      %a{:id => 'summary'}edit
+      %p
+        = best_in_place @filmmaker, :summary, inplace_params('summary')
+  %div.row#info-box
+    %p
+      %b About Me:
+      %a{:id => 'about'}edit
+      %p
+        = best_in_place @filmmaker, :about, inplace_params('about')
+  %div.row#info-box  
+    %p
+      %b Experience Summary:
+      %a{:id => 'expSume'}edit
+      %p
+        = best_in_place @filmmaker, :experience, inplace_params('expSum')
+  %div.row#info-box
+    %p
+      %b Skills and Expertise:
+      %br= @filmmaker.skills
+  %div.row#info-box
+    %p
+      %b Links to Work Samples:
+  %div.row#info-box
+    %p
+      %b Contact Information:
+      %a{:id => 'contact'}edit
+      %p
+        = best_in_place @filmmaker, :contact, inplace_params('contact')
