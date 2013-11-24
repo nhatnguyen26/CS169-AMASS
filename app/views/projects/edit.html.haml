@@ -5,7 +5,7 @@
       =image_tag "lorem-ipsum.jpg", :id => "ourimage"
     %div.col-md-6
       %a{:id => 'name'}edit
-      %h1#name1
+      %h1#name
         = best_in_place @project, :name, inplace_params('name')
       %h3#organization
         = link_to @project.organization, project_path(@project.id)

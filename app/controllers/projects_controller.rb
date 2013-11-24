@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  respond_to :html, :json
   impressionist actions: [:show]
   # GET /projects
   # GET /projects.json
@@ -68,6 +69,12 @@ class ProjectsController < ApplicationController
       flash[:error] = "You are not authorized to edit this project"
       redirect_to root_path
     end
+  end
+
+  def update
+    @project = Project.find params[:id]
+    @project.update_attributes!(params[:project])
+    respond_with @project
   end
 =begin
   # GET /projects/new
