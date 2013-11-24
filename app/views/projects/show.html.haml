@@ -1,17 +1,31 @@
-%p#notice= notice
-
-%h1#name
-  = @project.name
-
-%h3#organization
-  = link_to @project.organization, project_path(@project.id)
-
 %div.col-md-8.col-md-offset-2#project-div
 
-  %div.row#pic-n-info
-    %div.col-md-8#image-div
+  %div.row.header-block#pic-n-info
+    %div.col-md-3#image-div
       =image_tag "lorem-ipsum.jpg", :id => "ourimage"
-    %div.col-md-4.info-block#top-block
+    %div.col-md-6
+      %h1#name1
+        = @project.name
+      %h3#organization
+        = link_to @project.organization, project_path(@project.id)
+      %h4#blurb
+        = @project.blurb
+
+  %div.row#pic-n-info2
+
+    %div.col-md-7.info-block#left-block
+      %h3
+        %b
+          Mission
+      %h4
+        = @project.nonprofit_mission
+      %h3
+        %b
+          Description
+      %h4
+        = @project.description
+
+    %div.col-md-4.info-block#right-block
       %h5.info-title
         Category
       %h2.info-detail
@@ -28,29 +42,19 @@
         Budget
       %h2.info-detail
         = "$ #{@project.budget}"
-      %div#join
-        = button_to "Join This Project", project_path(@project.id), :class => "btn btn-primary btn-lg", :method => 'get'
-
-    %div.col-md-4.info-block
-      %h3
-        = @project.organization
-      %h4
-        = @project.nonprofit_mission
-
-      
-  %div.col-md-12.info-block#bottom-block
-    %h2#blurb
-      = @project.blurb
-    %h3
-      %b
+      %h5.info-title
+        Followers
+      %h2.info-detail
+        number of followers
+      %h5.info-title
+        Date Posted
+      %h2.info-detail
+        = @project.created_at.strftime('%m/%d/%Y')
+      %h5.info-title
         Deadline
-    %h4
-      = @project.deadline.strftime('%m/%d/%Y')
-    %h3
-      %b
-        Description
-    %h4
-      = @project.description
-  
+      %h2.info-detail
+        = @project.deadline.strftime('%m/%d/%Y')
+      %div#join
+        = button_to "Join This Project", project_path(@project.id), :class => "btn btn-lg", :id => "join-button", :method => 'get'
 
-  = button_to "<< Back", projects_path, :class => "btn btn-primary btn-md", :method => 'get', :id => "back-button"
+  = button_to "<< Back", projects_path, :class => "btn btn-md", :method => 'get', :id => "back-button"

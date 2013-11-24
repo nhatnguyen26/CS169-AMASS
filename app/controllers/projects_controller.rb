@@ -4,24 +4,24 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-    
+
     filter = params[:filter]
     by = params[:by]
-    
+
     if filter == 'all' or filter == 'New Posts'
       @projects = filter_projects(filter)
-    elsif filter == 'Type' or filter == 'Region' 
+    elsif filter == 'Type' or filter == 'Region'
       @projects = filter_projects_by(filter, by)
     elsif filter == 'Budget' or filter == 'Popular'
       @projects = filter_projects_by2(filter, by)
     end
-   
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
     end
   end
-  
+
   def filter_projects(filter)
     if filter == 'all'
       return Project.all
@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
       return Project.select{|x| x.location.to_s.downcase == by.downcase}
     end
   end
- 
+
   def filter_projects_by2(filter, by)
     if filter ==  'Budget'
       return Project.select{|x| x.budget.to_i.to_s.length == by.length}
@@ -54,6 +54,19 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
+    end
+  end
+
+  def edit
+    temp = Project.find params[:id]
+    temp2 = User.find_by_name(temp.organization)
+
+    if current_user.id == temp2.id
+      @project = temp
+      render
+    else
+      flash[:error] = "You are not authorized to edit this project"
+      redirect_to root_path
     end
   end
 =begin

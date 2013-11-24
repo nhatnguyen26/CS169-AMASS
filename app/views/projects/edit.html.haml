@@ -1,7 +1,61 @@
-%h1 Editing project
+%div.col-md-8.col-md-offset-2#project-div
 
-= render 'form'
+  %div.row.header-block#pic-n-info
+    %div.col-md-3#image-div
+      =image_tag "lorem-ipsum.jpg", :id => "ourimage"
+    %div.col-md-6
+      %a{:id => 'name'}edit
+      %h1#name1
+        = best_in_place @project, :name, inplace_params('name')
+      %h3#organization
+        = link_to @project.organization, project_path(@project.id)
+      %h4#blurb
+        = @project.blurb
 
-= link_to 'Show', @project
-\|
-= link_to 'Back', projects_path
+  %div.row#pic-n-info2
+
+    %div.col-md-7.info-block#left-block
+      %h3
+        %b
+          Mission
+      %h4
+        = @project.nonprofit_mission
+      %h3
+        %b
+          Description
+      %h4
+        = @project.description
+
+    %div.col-md-4.info-block#right-block
+      %h5.info-title
+        Category
+      %h2.info-detail
+        = @project.category
+      %h5.info-title
+        Location
+      %h2.info-detail
+        = @project.location
+      %h5.info-title
+        Status
+      %h2.info-detail
+        = @project.status
+      %h5.info-title
+        Budget
+      %h2.info-detail
+        = "$ #{@project.budget}"
+      %h5.info-title
+        Followers
+      %h2.info-detail
+        number of followers
+      %h5.info-title
+        Date Posted
+      %h2.info-detail
+        = @project.created_at.strftime('%m/%d/%Y')
+      %h5.info-title
+        Deadline
+      %h2.info-detail
+        = @project.deadline.strftime('%m/%d/%Y')
+      %div#join
+        = button_to "Join This Project", project_path(@project.id), :class => "btn btn-lg", :id => "join-button", :method => 'get'
+
+  = button_to "<< Back", projects_path, :class => "btn btn-md", :method => 'get', :id => "back-button"

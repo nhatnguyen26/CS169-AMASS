@@ -20,7 +20,7 @@ end
 projects = Project.all
 i = 0
 days = 24 * 60 * 60
-projects = projects.each{|x| 
+projects = projects.each{|x|
               x.created_at = x.created_at - (i * days)
               i = i + 2
               x.save!}
