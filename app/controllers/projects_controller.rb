@@ -60,7 +60,6 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
-    print user_signed_in?
     if !user_signed_in?
        flash[:error] = "Please take a moment to sign up or log in first."
        redirect_to new_user_registration_path
@@ -84,6 +83,8 @@ class ProjectsController < ApplicationController
     @project.organization = current_user.name
     @project.status = "pending"
     if @project.save
+      current_user.profilable.projects << @project
+      current_user.profilable.save!
       flash[:notice] = "Project was successfully created."
       redirect_to project_path(@project.id)
     else
