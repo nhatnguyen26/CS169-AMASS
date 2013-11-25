@@ -24,9 +24,7 @@ Feature: Profile page for filmmakers
         And I should see "Skills and Expertise"
         And I should see "Links to Work Samples"
         And I should see "Contact Information"
-        And I should see "Contact Form"
-        And I should see "Client Testimonials"
-		And I should see "Edit"
+	And I should see "Edit Profile"
         
 
     Scenario: Filmmakers can't edit other filmmakers' profiles
@@ -45,21 +43,5 @@ Feature: Profile page for filmmakers
         When I follow "Edit"
         Then I should be on the edit page of "abc123"
 
-    Scenario: Filmmakers can make changes to their profiles 
-        Given I am logged in as "abc123" with password "rst45678"
-        And I am on the edit page of "abc123"
-        And I fill in the following:
-            | Filmmaker Summary    | summary     |
-            | About Me             | about       |
-            | Experience Summary   | experience  | 
-            | Skills and Expertise | skills      |
-            | Contact Information  | info        |
-        When I press "Update Filmmaker Info"
-        Then I should be on the profile page of "abc123"
-	And I should see "Your profile was successfully updated"
-        And I should see "summary" 
-        And I should see "about" 
-        And I should see "experience"
-        And I should see "skills" 
-        And I should see "info"
+
 
