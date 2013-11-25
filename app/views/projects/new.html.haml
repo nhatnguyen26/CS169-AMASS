@@ -57,9 +57,9 @@
                       %link{href: "/resources/demos/style.css", rel: "stylesheet"}/
                       :javascript
                         $(function() {
-                        $( "#datepicker" ).datepicker({dateFormat: 'dd-mm-yy'});
+                        $( "#datepicker" ).datepicker({dateFormat: 'mm/dd/yy'});
                         });
-                      %span.input-group-addon DD-MM-YYYY
+                      %span.input-group-addon MM/DD/YYYY
                       %input#datepicker.form-control{name: "project[deadline]", placeholder: "Deadline", type: "text"}
               .row
                 .col-md-12

@@ -11,7 +11,7 @@ module ProjectsHelper
     if current_user == nil
       return false
     end
-    project_owner = User.find_by_username(org)
+    project_owner = User.find_by_name(org)
     current_user.id == project_owner.id
   end
 end
