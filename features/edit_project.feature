@@ -27,7 +27,7 @@ Feature: Edit a project
     And I should see "Project B"
     And I should not see "Project C"
     
-  Scenario: Edit the project blurb as nonprofit
+  Scenario: View edit page as nonprofit
     Given I am on the my projects page
     When I follow "Project A"
     Then I should be on the project page for "Project A"
@@ -37,31 +37,15 @@ Feature: Edit a project
     When I follow "Edit Project"
     Then I should be on the edit project page for "Project A"
     Then I should see "edit"
-    When I follow "edit"
-    And I should see "sample blurb"
-    And I fill in "blurb" with "Lisa and Phoebe are cool"
-    And I press "Save"
-    Then I should see "Lisa and Phoebe are cool"
-    And I should not see "Sample blurb"
- 
-  Scenario: Edit the project name as nonprofit
-    Given I am on the my projects page
-    When I follow "Project A"
-    Then I should be on the project page for "Project A"
     And I should see "Project A"
-    When I follow "Edit Project"
-    And I fill in "name" with "Project D"
-    And I press "Save"
-    Then I should see "Project D"
-    And I should not see "Project A"
-    
-  Scenario: Cancel an edit to project mission as nonprofit
-    Given I am on the edit project page for "Project A"
-    When I follow "edit_mission"
-    And I fill in "mission_input" with "this mission is cool"
-    And I press "Cancel"
-    Then I should see "Sample Mission"
-    And I should not see "this mission is cool"
+    And I should see "education"
+    And I should see "Alabama"
+    And I should see "org A"
+    And I should see "sample blurb"
+    And I should see "sample mission"
+    And I should see "sample description"
+    And I should see "open"
+    And I should see "2000"
 
   Scenario: Cannot edit project if not correct nonprofit
     Given I am on the project page for "Project C"
@@ -69,5 +53,4 @@ Feature: Edit a project
     
   Scenario: Cannot access edit page if not correct nonprofit
     When I am on the edit project page for "Project C"
-    Then I should be on the home page
-    And I should see "You are not authorized to edit this project"
+    Then I should be redirected home and see "You are not authorized to edit this project"
