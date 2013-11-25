@@ -80,11 +80,11 @@ module NavigationHelpers
       '/'
     when /^the projects page?/
       '/projects'
+    when /^the filmmakers page?/
+      '/filmmakers'
     when /^the "(.*)" page?/
       project_path(Project.find_by_name($1))
-    when /^the create project page?/
-      '/projects/new'
-    end 
+    end
   end
 end
 
