@@ -84,7 +84,10 @@ module NavigationHelpers
       '/filmmakers'
     when /^the "(.*)" page?/
       project_path(Project.find_by_name($1))
-    end
+    when /^the create project page?/
+      '/projects/new'
+    end 
+
   end
 end
 

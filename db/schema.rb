@@ -13,16 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20131124111745) do
 
-  create_table "film_makers", :force => true do |t|
-    t.text     "film_maker_summary"
-    t.text     "about_me"
-    t.text     "experience_summary"
-    t.text     "skill_expertise"
-    t.text     "contact"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
-
   create_table "filmmakers", :force => true do |t|
     t.text     "about"
     t.text     "summary"
@@ -97,8 +87,6 @@ ActiveRecord::Schema.define(:version => 20131124111745) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "profile_type"
-    t.integer  "profile_id"
     t.integer  "profilable_id"
     t.string   "profilable_type"
   end
