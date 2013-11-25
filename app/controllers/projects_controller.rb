@@ -7,7 +7,8 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
     if params[:myprojects] == "true"
-      @projects = Project.find(:all, :conditions => ["organization IN (?)", current_user.username])
+      #@projects = Project.find(:all, :conditions => ["organization IN (?)", current_user.username])
+      @projects = current_user.profilable.projects
     end
 
     filter = params[:filter]
