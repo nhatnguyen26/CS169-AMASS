@@ -7,8 +7,11 @@ module ProjectsHelper
     {:type => type, :ok_button => 'Save', :ok_button_class => 'btn', :cancel_button => 'Cancel', :cancel_button_class => 'btn', :activator => '#'+stractive}
   end
 
-  def logged_in_as_project_owner(project)
-    project_owner = User.find_by_name(project.organization)
+  def logged_in_as_project_owner(org)
+    if current_user == nil
+      return false
+    end
+    project_owner = User.find_by_username(org)
     current_user.id == project_owner.id
   end
 end
