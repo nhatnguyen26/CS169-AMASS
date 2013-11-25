@@ -8,7 +8,7 @@ module ProjectsHelper
   end
 
   def logged_in_as_project_owner(org)
-    if current_user == nil
+    if current_user == nil || current_user.profilable_type == "Filmmaker"
       return false
     end
     project_owner = User.find_by_name(org)
