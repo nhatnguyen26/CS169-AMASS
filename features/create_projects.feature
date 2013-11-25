@@ -47,7 +47,7 @@ Scenario: create a project with a non-profit account
 	And I fill in "Description" with "Description Impossible"
 	And I select "Education" from "Category"
 	And I select "Alameda" from "Location"
-	And I fill in "Deadline" with "30-11-2013"
+	And I fill in "Deadline" with "11/30/2013"
 	And I fill in "Budget" with "1000"
 	When I press "Save"
 	Then I should be on the "Project 10" page
