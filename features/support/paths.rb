@@ -16,11 +16,11 @@ module NavigationHelpers
       path_sign_in_out(page_name)
     elsif page_name.include?('edit')
       path_edit(page_name)
-    elsif page_name.include?('profile')	
+    elsif page_name.include?('profile')
       path_profile(page_name)
     elsif page_name.include?('page')
       page_mis(page_name)
-  
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
@@ -44,26 +44,26 @@ module NavigationHelpers
     when /^the sign up page$/
       '/users/signup'
     when /^the sign in page$/
-      '/users/login' 
+      '/users/login'
     end
   end
-  
-  def path_profile(page_name) 
+
+  def path_profile(page_name)
     case page_name
-    when /^the profile page of "(.*)"$/ 
+    when /^the profile page of "(.*)"$/
       user = User.find_by_username($1)
       id = user.profilable_id
       if user.filmmaker?
         '/filmmakers/' + id.to_s
       elsif user.nonprofit?
-	'/nonprofits/' + id.to_s
+  '/nonprofits/' + id.to_s
       end
     end
   end
- 
+
   def path_edit(page_name)
     case page_name
-    when /^the edit page of "(.*)"$/ 
+    when /^the edit page of "(.*)"$/
       user = User.find_by_username($1)
       id = user.profilable_id
       if user.filmmaker?
@@ -71,6 +71,10 @@ module NavigationHelpers
       elsif user.nonprofit?
         '/nonprofits/' + id.to_s + '/edit'
       end
+    when /^the edit project page for "(.*)"$/
+      project = Project.find_by_name($1)
+      id = project.id
+      '/projects/' + id.to_s + '/edit'
     end
   end
 
@@ -82,6 +86,12 @@ module NavigationHelpers
       '/projects'
     when /^the filmmakers page?/
       '/filmmakers'
+    when /^the project page for "(.*)"$/
+      project = Project.find_by_name($1)
+      id = project.id
+      '/projects/' + id.to_s
+    when /^the my projects page?/
+      '/projects'
     when /^the "(.*)" page?/
       project_path(Project.find_by_name($1))
     when /^the create project page?/

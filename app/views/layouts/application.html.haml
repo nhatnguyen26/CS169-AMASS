@@ -39,6 +39,9 @@
                 %li.drop-items{href: "#", role: "menutiem", tabindex: "-1"}
                   - if current_user.nonprofit?
                     = link_to "Create a Project", new_project_path
+                - if current_user.nonprofit?
+                  %li.drop-items{href:"#", role: "menuitem", tabindex:"-1"}
+                    = link_to "My Projects", projects_path(:myprojects => :true)
                 %li
                   %a.drop-items{href: "#", role: "menuitem", tabindex: "-1"}     Settings
                 %li.divider{role: "presentation"}
