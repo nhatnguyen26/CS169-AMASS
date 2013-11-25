@@ -252,8 +252,3 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
-
-Then /^I should be redirected home and see "(.*)"$/ do |content|
-  page.should have_content(content)
-end
-
