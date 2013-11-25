@@ -5,7 +5,7 @@
         .panel-heading
           %h3.panel-title Please Sign Up
         .panel-body
-          = form_for(resource, :as => resource_name, :url => new_user_registration_path) do |f|
+          = form_for(resource, :as => resource_name, :url => new_user_registration_path(:usertype => params[:usertype])) do |f|
             - if resource.errors.any?
               .alert.alert-danger
                 %ul
@@ -16,8 +16,6 @@
                       %li Username is required
                     -elsif message == "Email can't be blank"
                       %li Email is required
-                    -elsif message == "Usertype can't be blank"
-                      %li Please indicate User Type
                     -elsif message == "Password can't be blank"
                       %li Password is required
                     -elsif message == "Email is invalid"
@@ -27,13 +25,15 @@
                     -else 
                       %li= message
                    
-                    
-                      
-                      
+                  
             %fieldset
             .form-group
-              %label Name
-              %input#user_name.form-control{name: "user[name]", placeholder: "Name", type: "text"}/
+              - if params[:usertype] == 'filmmaker'
+                %label Name
+                %input#user_name.form-control{name: "user[name]", placeholder: "Name", type: "text"}/
+              - elsif params[:usertype] == 'nonprofit'
+                %label Organization Name
+                %input#user_name.form-control{name: "user[name]", placeholder: "Organization Name", type: "text"}/
             .form-group
               %label Username
               %input#user_username.form-control{name: "user[username]", placeholder: "Username", type: "text"}/
@@ -46,15 +46,5 @@
             .form-group
               %label Password Confirmation
               %input#user_password.form-control{name: "user[password_confirmation]", placeholder: "Password Confirmation", type: "password", value: ""}/
-            %label Are You a Filmmaker or Nonprofit?
-            .checkbox
-              %label
-                %input{name: "user[usertype]", type: "checkbox", value: "filmmaker"}/
-                Filmmaker
-            .checkbox
-              %label
-                %input{name: "user[usertype]", type: "checkbox", value: "nonprofit"}/
-                Nonprofit
-
             %input.btn.btn-lg.btn-success.btn-block{type: "submit", value: "Create an account"}/
 

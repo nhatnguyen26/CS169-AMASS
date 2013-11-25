@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20131124111745) do
 
+
   create_table "filmmakers", :force => true do |t|
     t.text     "about"
     t.text     "summary"

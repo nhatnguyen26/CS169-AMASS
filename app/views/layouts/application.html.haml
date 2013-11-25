@@ -48,7 +48,17 @@
                 %li.drop-items{role: "menuitem", tabindex: "-1"}= link_to 'Logout', destroy_user_session_path, :method => 'delete'
           - else
             %div.btn#login= link_to 'Login', new_user_session_path,:method =>:get
-            %div.btn#login= link_to 'Sign Up', new_user_registration_path, :method =>:get
+            %div.btn#login{"data-target" => "#myModal", "data-toggle" => "modal"}= link_to 'Sign Up'
+
+    #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+            %h4#myModalLabel.modal-title Please select a type
+          .modal-body
+            %a.btn.btn-primary.btn-lg.btn-block{type: "button", href: new_user_registration_path(:usertype => 'filmmaker') } I'm a filmmaker
+            %a.btn.btn-primary.btn-lg.btn-block{type: "button", href: new_user_registration_path(:usertype => 'nonprofit') } I'm a non-profit organization
            
          
               
