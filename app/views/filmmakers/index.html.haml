@@ -1,0 +1,29 @@
+
+%h1#listing-title Filmmaker Listings
+#wrapper
+  #sidebar-wrapper  
+    %h3{align: "left"}= link_to 'All Filmmaker', filmmakers_path(:filter=>'all')
+
+    %h3{align: "left"}Specialties 
+    %h4{align: "left"}= link_to 'Crowdfunding Video', filmmakers_path(:filter=>'Specialty', :by => 'Crowdfunding Video')
+    %h4{align: "left"}= link_to 'Documentary', filmmakers_path(:filter=>'Specialty', :by =>'Documentary')
+    %h4{align: "left"}= link_to 'Event', filmmakers_path(:filter=>'Specialty', :by => 'Event')
+    %h4{align: "left"}= link_to 'Short Film', filmmakers_path(:filter=>'Specialty', :by => 'Short Film')
+    %h4{align: "left"}= link_to 'Nature', filmmakers_path(:filter=>'Specialty', :by =>'Nature')
+    %h4{align: "left"}= link_to 'Flash Animation', filmmakers_path(:filter=>'Specialty', :by => 'Flash Animation')
+    %h4{align: "left"}= link_to '3D Animation', filmmakers_path(:filter=>'Specialty', :by =>'3D Animation')
+    %h4{align: "left"}= link_to 'Stop Motion', filmmakers_path(:filter=>'Specialty', :by => 'Stop Motion')
+
+    %h3{align: "left"}Regions
+    %h4{align: "left"}= link_to 'Alameda', filmmakers_path(:filter=>'Region', :by => 'Alameda')
+    %h4{align: "left"}= link_to 'San Francisco', filmmakers_path(:filter=>'Region', :by => 'San Francisco')
+    %h4{align: "left"}= link_to 'San Mateo', filmmakers_path(:filter=>'Region', :by => 'San Mateo')
+    %h4{align: "left"}= link_to 'Santa Clara', filmmakers_path(:filter=>'Region', :by => 'Santa Clara')
+
+
+  #page-content-wrapper
+    - @filmmaker.each do |x|
+      %h2{align: "left"}= link_to x.user.name, filmmaker_path(x.id)
+      %h4= x.location
+      %h4= x.specialty
+%br
