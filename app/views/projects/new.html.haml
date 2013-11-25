@@ -51,14 +51,6 @@
                   .form-group
                     %label Deadline
                     .input-group
-                      %link{href: "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css", rel: "stylesheet"}/
-                      %script{src: "http://code.jquery.com/jquery-1.9.1.js"}
-                      %script{src: "http://code.jquery.com/ui/1.10.3/jquery-ui.js"}
-                      %link{href: "/resources/demos/style.css", rel: "stylesheet"}/
-                      :javascript
-                        $(function() {
-                        $( "#datepicker" ).datepicker({dateFormat: 'dd-mm-yy'});
-                        });
                       %span.input-group-addon DD-MM-YYYY
                       %input#datepicker.form-control{name: "project[deadline]", placeholder: "Deadline", type: "text"}
               .row
