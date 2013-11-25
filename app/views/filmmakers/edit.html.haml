@@ -1,20 +1,42 @@
-%h1 Edit Existing Profile
-
-= form_tag filmmaker_path(@filmmaker), :method => :put do
-  = label :filmmaker, :summary, 'Filmmaker Summary' 
-  %div  
-    = text_area :filmmaker, 'summary', :size=>"60x10"
-  = label :filmmaker, :about, 'About Me'
-  %div
-    = text_area :filmmaker, 'about', :size=>"60x10"
-  = label :filmmaker, :experience, 'Experience Summary'
-  %div
-    = text_area :filmmaker, 'experience', :size=>"60x10"
-  = label :filmmaker, :skills, 'Skills and Expertise'
-  %div 
-    = text_area :filmmaker, 'skills', :size=>"60x10"
-  = label :filmmaker, :contact, 'Contact Information'
-  %div
-    = text_area :filmmaker, 'contact', :size=>"60x10"
-  %div
-    = submit_tag 'Update Filmmaker Info'
+%div.col-md-8.col-md-offset-2#filmmaker-div
+  %div.row.header-block#pic-n-info
+    %div.col-md-3.col-sm-2.col-xs-2#image-div
+      =image_tag "lorem-ipsum.jpg", :id => "ourimage"
+    %div.col-md-6
+      %h1#name
+        = @filmmaker.user.name
+      %h4#email
+        = @filmmaker.user.email
+  
+  %div.row.header-block.profile-block
+    %h3.topic
+      %b Filmmaker Summary
+      %a{:id => 'summary', :class => 'edit-butt'}edit
+    %h4.one-margin.filmmaker-button
+      = best_in_place @filmmaker, :summary, inplace_params('textarea','summary')
+    %h3.topic
+      %b About Me
+      %a{:id => 'about', :class => 'edit-butt'}edit
+    %h4.one-margin.filmmaker-button
+      = best_in_place @filmmaker, :about, inplace_params('textarea','about')
+  
+  %div.row.header-block.profile-block
+    %h3.topic
+      %b Experience Summary
+      %a{:id => 'expSum', :class => 'edit-butt'}edit
+    %h4.one-margin.filmmaker-button
+      = best_in_place @filmmaker, :experience, inplace_params('textarea','expSum')
+    %h3.topic
+      %b Skills and Expertise
+      %a{:id => 'skills', :class => 'edit-butt'}edit
+    %h4.one-margin.filmmaker-button
+      = best_in_place @filmmaker, :skills, inplace_params('textarea','skills')
+    %h3.topic
+      %b Links to Work Samples
+      
+  %div.row.header-block.profile-block   
+    %h3.topic
+      %b Contact Information
+      %a{:id => 'contact', :class => 'edit-butt'}edit
+    %h4.one-margin.filmmaker-button
+      = best_in_place @filmmaker, :contact, inplace_params('textarea','contact')

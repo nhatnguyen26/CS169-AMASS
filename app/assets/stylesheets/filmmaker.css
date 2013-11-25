@@ -1,0 +1,78 @@
+#filmmaker-div {
+  background-color:#e74c3c;
+  border-radius: 10px;
+  padding-left:3%;
+  padding-right:3%;
+  margin-bottom:5%;
+  margin-top:2.5%;
+  padding-bottom:2%;
+  padding-top: 0.5%;
+}
+
+#user-info {
+  background-color:white;
+  border-radius: 10px;
+  padding-top:2.5%;
+  padding-bottom:5%;
+}
+
+#contact-div {
+  border-radius: 10px;
+  margin-top:2.5%;
+}
+
+.edit-butt {
+  font-size: 75%;
+  margin-left:1%;
+}
+
+.filmmaker-button input[type="submit"]{
+  background-color:#9b59b6;
+}
+
+.filmmaker-button input[type="button"]{
+  background-color:#9b59b6;
+}
+
+.topic {
+  border-bottom: 1px solid #bdc3c7;
+}
+
+.extra-space {
+  margin-top: 4%;
+}
+
+#edit-button {
+  background-color:#34495e;
+  color: #f7f7f9;
+  font-weight:bold;
+  
+}
+
+#pic-n-info {
+  padding-top:1.5%;
+  margin-bottom:3%;
+  padding-left:0;
+}
+
+.profile-block {
+  padding-left:2%;
+  padding-right:2%;
+}
+
+#name{
+  margin-bottom:0;
+  padding-top: 0;
+  text-align: left;
+  font-size:350%;
+}
+
+#email{
+  margin-bottom:0;
+  padding-top: 0.5%;
+  padding-bottom: 1%;
+  text-align: left;
+  font-size:100%;
+}
+
+

@@ -1,30 +1,41 @@
-%h1 User Profile
-%p
-  %b Name:
-  = @filmmaker.user.name
-%p
-  %b Email:
-  = @filmmaker.user.email
-%p
-  %b Filmmaker Summary:
-  = @filmmaker.summary
-%p
-  %b About Me:
-  = @filmmaker.about
-%p
-  %b Experience Summary:
-  = @filmmaker.experience
-%p
-  %b Skills and Expertise:
-  = @filmmaker.skills
-%p
-  %b Links to Work Samples:
-%p
-  %b Contact Information:
-  = @filmmaker.contact
-%p
-  %b Contact Form:
-%p
-  %b Client Testimonials:
--if current_user.id == @filmmaker.user.id
-  = link_to 'Edit', edit_filmmaker_path(@filmmaker)
+%div.col-md-8.col-md-offset-2#filmmaker-div
+  %div.row.header-block#pic-n-info
+    %div.col-md-3.col-sm-2.col-xs-2#image-div
+      =image_tag "lorem-ipsum.jpg", :id => "ourimage"
+    %div.col-md-6 
+      %h1#name
+        = @filmmaker.user.name
+      %h4#email
+        = @filmmaker.user.email
+    %div.col-md-1
+      -if logged_in_as_correct_user @filmmaker.user.id
+        = link_to 'Edit Profile', edit_filmmaker_path(@filmmaker),{:class => 'btn btn-large', :id => 'edit-button'}
+  
+  %div.row.header-block.profile-block
+    %h3.topic
+      %b Filmmaker Summary
+    %h4
+      = @filmmaker.summary
+  
+    %h3.topic.extra-space
+      %b About Me
+    %h4
+      = @filmmaker.about
+  
+  %div.row.header-block.profile-block
+    %h3.topic
+      %b Experience Summary:
+    %h4
+      = @filmmaker.experience
+    %h3.topic.extra-space
+      %b Skills and Expertise:
+    %h4
+      = @filmmaker.skills
+    %h3.topic.extra-space
+      %b Links to Work Samples:
+
+  %div.row.header-block.profile-block
+    %h3.topic
+      %b Contact Information:
+    %h4
+      = @filmmaker.contact
