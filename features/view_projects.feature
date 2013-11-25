@@ -13,7 +13,17 @@ Feature: View a project
         | Project D   | community	| Delaware	| org D        | blurb D        | goals for D            | stuffs for D        | 06-Nov-2013            | pending          | 1000      |
         | Project E   | education	| Florida	| org E        | blurb E           | goals for E              | stuffs for E               | 06-Nov-2013            | pending          | 1000      |
         | Project F   | community	| California	| org F        | blurb F             | goals for F               | stuffs for F              | 06-Nov-2013            | pending       | 1000      |
-        Given I am on the home page
+        
+	Given the following non-profits exist:
+        | name	 | username	| password    |      email       | usertype  |
+        | org A | org A 	| rst456789   | abc123@gmail.com | nonprofit |
+        | org B | org B   | asdf12345	      | orgB@gmail.com | nonprofit |
+        | org C | org C   | asdf12345	      | orgC@gmail.com | nonprofit |
+        | org D | org D   | asdf12345	      | orgD@gmail.com | nonprofit |
+        | org E | org E   | asdf12345	      | orgE@gmail.com | nonprofit |
+        | org F | org F   | asdf12345	      | orgF@gmail.com | nonprofit |
+
+	Given I am on the home page
         When I follow "Browse Projects"
         Then I should be on the projects page
     
