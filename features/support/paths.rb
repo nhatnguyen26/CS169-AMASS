@@ -71,6 +71,10 @@ module NavigationHelpers
       elsif user.nonprofit?
         '/nonprofits/' + id.to_s + '/edit'
       end
+    when /^the edit project page for "(.*)"$/
+      project = Project.find_by_name($1)
+      id = project.id
+      '/projects/' + id.to_s + '/edit'
     end
   end
 

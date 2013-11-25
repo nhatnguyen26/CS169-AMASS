@@ -13,6 +13,7 @@ Feature: Edit a project
     Given the following non-profits exist:
       | name	 | username	| password    |      email       | usertype  |
       | org A | org A 	| rst456789   | abc123@gmail.com | nonprofit |
+      | org B | org B   | asdf12345	      | org@gmail.com | nonprofit |
     Given I am logged in as "org A" with password "rst456789"
     Then I should be on the home page
     And I should see "Hi org A"
@@ -34,6 +35,7 @@ Feature: Edit a project
     And I should see "sample blurb"
     And I should see "Edit Project"
     When I follow "Edit Project"
+    Then I should be on the edit project page for "Project A"
     Then I should see "edit"
     When I follow "edit"
     And I should see "sample blurb"
@@ -45,13 +47,13 @@ Feature: Edit a project
   Scenario: Edit the project name as nonprofit
     Given I am on the my projects page
     When I follow "Project A"
-    Then I should be on the edit project page for "Project A"
+    Then I should be on the project page for "Project A"
     And I should see "Project A"
-    When I follow "edit_name"
-    And I fill in "name_input" with "Project D"
+    When I follow "Edit Project"
+    And I fill in "name" with "Project D"
     And I press "Save"
     Then I should see "Project D"
-    And I should not see "Project D"
+    And I should not see "Project A"
     
   Scenario: Cancel an edit to project mission as nonprofit
     Given I am on the edit project page for "Project A"
@@ -60,3 +62,12 @@ Feature: Edit a project
     And I press "Cancel"
     Then I should see "Sample Mission"
     And I should not see "this mission is cool"
+
+  Scenario: Cannot edit project if not correct nonprofit
+    Given I am on the project page for "Project C"
+    And I should not see "Edit Project"
+    
+  Scenario: Cannot access edit page if not correct nonprofit
+    When I am on the edit project page for "Project C"
+    Then I should be on the home page
+    And I should see "You are not authorized to edit this project"
