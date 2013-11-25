@@ -112,6 +112,10 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     @project.organization = current_user.name
     @project.status = "pending"
+    temp = params[:project]["deadline"]
+    t1,t2,t3 = /(\d+)\/(\d+)\/(\d+)/.match(temp).captures
+    temp = t3 + t1 + t2
+    @project.deadline = temp
     if @project.save
       current_user.profilable.projects << @project
       current_user.profilable.save!
