@@ -8,6 +8,9 @@ module ProjectsHelper
       return false
     end
     project_owner = User.find_by_name(org)
+    if project_owner == nil
+      return false
+    end
     current_user.id == project_owner.id
   end
 end
