@@ -5,15 +5,16 @@ Feature: Edit a project
   I want to edit the project page
 
   Background: Add projects to database
-    Given the following projects exist:
-      | name        | category		|location	| organization | blurb               | nonprofit_mission         | description               | deadline               | status        | budget    |
-      | Project A   | education	| Alabama	| org A        | sample blurb        | sample mission            | sample description        | 30-Oct-2013            | open          | 2000      |
-      | Project B   | community	| Alabama	| org A        | sample blurb        | sample mission            | sample description        | 30-Oct-2013            | open          | 2000      |
-      | Project C   | community	| Alabama	| org B        | sample blurb        | sample mission            | sample description        | 30-Oct-2013            | open          | 2000      |
     Given the following non-profits exist:
-      | name	 | username	| password    |      email       | usertype  |
-      | org A | org A 	| rst456789   | abc123@gmail.com | nonprofit |
-      | org B | org B   | asdf12345	      | org@gmail.com | nonprofit |
+      | name	| username	| password    	|      email       | usertype  |  id	|
+      | org A 	| org A 	| rst456789   	| abc123@gmail.com | nonprofit |        1	|
+      | org B 	| org B   	| asdf12345	| org@gmail.com    | nonprofit |	2	|
+    Given the following projects exist:
+      | name        | category	|location	| organization | blurb               | nonprofit_mission         | description               | deadline        | status        | budget | nonprofit_id |   
+      | Project A   | education	| Alabama	| org A        | sample blurb        | sample mission            | sample description        | 30-Oct-2013     | open          | 2000   |     1	       |   
+      | Project B   | community	| Alabama	| org A        | sample blurb        | sample mission            | sample description        | 30-Oct-2013     | open          | 2000   |     1        |
+      | Project C   | community	| Alabama	| org B        | sample blurb        | sample mission            | sample description        | 30-Oct-2013     | open          | 2000   |     2        |
+    
     Given I am logged in as "org A" with password "rst456789"
     Then I should be on the home page
     And I should see "Hi org A"
@@ -26,7 +27,7 @@ Feature: Edit a project
     And I should see "Project A"
     And I should see "Project B"
     And I should not see "Project C"
-    
+
   Scenario: View edit page as nonprofit
     Given I am on the my projects page
     When I follow "Project A"

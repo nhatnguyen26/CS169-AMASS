@@ -45,7 +45,5 @@ class FilmmakersController < ApplicationController
     	@filmmaker = Filmmaker.find params[:id]
     	@filmmaker.update_attributes!(params[:filmmaker])
 	respond_with @filmmaker
-    	flash[:notice] = "Your profile was successfully updated."
-    	redirect_to filmmaker_path(@filmmaker)
   	end
 end
