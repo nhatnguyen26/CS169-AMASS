@@ -18,10 +18,12 @@
   background-color:#f7f7f9;
 }
 
-#logo a {
-  font-size:250%;
-  font-weight: bold;
-  color: #f7f7f9;
+#logo {
+  max-width:30%;
+  margin-top:0;
+  margin-bottom:0;
+  margin-left:3%;
+  float:left;
 }
 
 .nav-items a
@@ -29,8 +31,13 @@
   color: #f7f7f9 !important;
 }
 
+.navbar {
+  padding-top:0;
+}
+
 #welcome-user{
  color: #f7f7f9 !important;
+  padding-top:30%;
 }
 
 .button_to {
@@ -41,9 +48,11 @@
   margin-left:5%
 }
 
+.navbar-nav {
+  padding-top: 5%;
+}
+
 #nav-div {
-  padding-top: 2%;
-  padding-bottom: 2%;
   margin-bottom:0;
 }
 

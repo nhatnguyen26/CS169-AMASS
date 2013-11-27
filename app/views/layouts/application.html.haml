@@ -16,10 +16,9 @@
 
   %body#blah
     %nav.navbar.navbar-inverse#nav-div
-
+      = link_to image_tag('Amass_logo.png', :id => 'logo'), root_path
       .navbar-header#navbar-items
         %ul.nav.navbar-nav
-          %li#logo= link_to 'AMASS Media', root_path
           %li.nav-items= link_to 'How It Works', root_path
           %li.nav-items= link_to 'Browse Projects', projects_path
           %li.nav-items= link_to 'Browse Filmmakers', filmmakers_path
