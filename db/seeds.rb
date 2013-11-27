@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-projects = [{:name => 'Project A', :location => 'Alameda', :category => 'education', :organization => 'org A', :blurb => 'sample blurb', :nonprofit_mission => 'sample mission', :description => 'sample description', :deadline => '30-Nov-2013', :status => 'open', :budget => '1'},
+projects = [{:name => 'Project A', :location => 'Alameda', :category => 'education', :organization => 'org A', :blurb => 'sample blurb', :nonprofit_mission => 'sample mission', :description => 'sample description', :deadline => '30-Nov-2013', :status => 'active', :budget => '1', :nonprofit_id => '1'},
       {:name => 'Project B', :location => 'San Francisco',:category => 'housing', :organization => 'org B', :blurb => 'new blurb', :nonprofit_mission => 'free mission', :description => 'to describe', :deadline => '31-Dec-2014', :status => 'open', :budget => '9'},
       {:name => 'Project C', :location => 'Santa Clara', :category => 'community', :organization => 'org C', :blurb => 'blurb C', :nonprofit_mission => 'goals for C', :description => 'stuffs for C', :deadline => '31-Jan-2014', :status => 'pending', :budget => '10'},
       {:name => 'Project D', :location => 'San Mateo', :category => 'community', :organization => 'org D', :blurb => 'blurb D', :nonprofit_mission => 'goals for D', :description => 'stuffs for D', :deadline => '28-Feb-2014', :status => 'pending', :budget => '99'},
@@ -20,15 +20,15 @@ end
 projects = Project.all
 i = 0
 days = 24 * 60 * 60
-projects = projects.each{|x| 
+projects = projects.each{|x|
               x.created_at = x.created_at - (i * days)
               i = i + 2
               x.save!}
 
 users = [{:name => 'user1', :username => 'user1', :email => 'user1@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'Filmmaker'},
-	 {:name => 'user2', :username => 'user2', :email => 'user2@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'Filmmaker'},
-	 {:name => 'user3', :username => 'user3', :email => 'user3@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'Filmmaker'},
-	 {:name => 'user4', :username => 'user4', :email => 'user4@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'Filmmaker'}]
+   {:name => 'user2', :username => 'user2', :email => 'user2@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'Filmmaker'},
+   {:name => 'user3', :username => 'user3', :email => 'user3@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'Filmmaker'},
+         {:name => 'user4', :username => 'user4', :email => 'user4@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'Filmmaker'}, {:name => 'user5', :username => 'user5', :email => 'user5@amass.com', :password => '12345678', :password_confirmation => '12345678', :usertype => 'Nonprofit'}, {:name => 'user6', :username => 'user6', :email => 'user6@amass.com', :password => '12345678', :password_confirmation => '12345678', :usertype => 'Nonprofit'}]
 
 users.each do |user|
   new_user = User.create!(user)
