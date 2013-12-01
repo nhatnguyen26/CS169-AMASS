@@ -1,9 +1,13 @@
 CS169Amass::Application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   authenticated :user do
 	root :to => 'welcome#index'
   end
   root :to => 'welcome#index'
   devise_for :users, skip: [:sessions, :registrations]
+  ActiveAdmin.routes(self)
   devise_scope :user do 
     # SessionController
     get    '/sign_in',  to: 'users/sessions#new',     as: :new_user_session

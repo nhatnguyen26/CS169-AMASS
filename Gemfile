@@ -2,6 +2,10 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.14'
 gem 'rails_12factor'
+
+gem 'activeadmin'
+gem "meta_search", '>= 1.1.0.pre'
+
 gem 'devise'
 gem 'impressionist'
 
