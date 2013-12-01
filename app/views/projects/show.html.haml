@@ -11,7 +11,7 @@
       %h4#blurb
         = @project.blurb
     %div.col-md-1
-      -if logged_in_as_project_owner(@project.organization)
+      -if logged_in_as_project_owner(@project)
         = link_to 'Edit Project', edit_project_path(@project), {:id => 'back-button', :class => 'btn btn-large'}
 
   %div.row#pic-n-info2

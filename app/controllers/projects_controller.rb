@@ -65,9 +65,8 @@ class ProjectsController < ApplicationController
 
   def edit
     temp = Project.find params[:id]
-    temp2 = User.find_by_name(temp.organization)
 
-    if current_user.id == temp2.id
+    if logged_in_as_project_owner temp
       @project = temp
       render
     else
@@ -101,7 +100,7 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
-  
+
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
@@ -115,10 +114,10 @@ class ProjectsController < ApplicationController
     @project.status = "pending"
     temp = params[:project]["deadline"]
     date = /(\d+)\/(\d+)\/(\d+)/.match(temp)
-	if not date.nil?
-		t1,t2,t3 = date.captures
-	    temp = t3 + t1 + t2
-	end
+  if not date.nil?
+    t1,t2,t3 = date.captures
+      temp = t3 + t1 + t2
+  end
     @project.deadline = temp
     if @project.save
       current_user.profilable.projects << @project
@@ -129,7 +128,7 @@ class ProjectsController < ApplicationController
       flash[:error] = "Something went wrong."
       redirect_to new_project_path
     end
-    
+
   end
 
 =begin
