@@ -1,0 +1,10 @@
+%h1 Inbox
+- @inbox.each do |box|
+  %b=box.topic
+  %p=box.body
+
+
+%h2 Sent
+- @sent.each do |sent|
+  %b=sent.topic
+  %p=sent.body
