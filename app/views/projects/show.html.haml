@@ -2,7 +2,10 @@
 
   %div.row.header-block#pic-n-info
     %div.col-md-3.col-sm-2.col-xs-2#image-div
-      =image_tag "lorem-ipsum.jpg", :id => "ourimage"
+      - if @project.image?
+        =image_tag @project.image.url 
+      - else
+        =image_tag "lorem-ipsum.jpg", :id => "ourimage"
     %div.col-md-6
       %h1#name1
         = @project.name

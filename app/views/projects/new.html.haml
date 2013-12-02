@@ -1,5 +1,5 @@
 %h1 
-= form_for @project do |f|
+= form_for @project , :html => {:multipart => true} do |f|
   .container
     .row
       .col-md-12
@@ -61,6 +61,11 @@
                         });
                       %span.input-group-addon MM/DD/YYYY
                       %input#datepicker.form-control{name: "project[deadline]", placeholder: "Deadline", type: "text"}
+              .row
+                .col-md-12
+                  .form-group
+                    %label Attachment
+                    %input#upload(type="file" name="project[image]")
               .row
                 .col-md-12
                   %input.btn.btn-success.btn-block{type: "submit", value: "Save"}

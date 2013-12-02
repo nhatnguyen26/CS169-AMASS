@@ -9,6 +9,8 @@ gem "meta_search", '>= 1.1.0.pre'
 gem 'devise'
 gem 'impressionist'
 
+gem 'paperclip'
+
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
