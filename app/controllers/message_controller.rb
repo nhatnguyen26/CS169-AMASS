@@ -8,7 +8,7 @@ class MessageController < ApplicationController
     recipient = User.find(params[:recipient_id])
     current_user.send_message(recipient, {:body => params[:body], :topic => params[:topic]})
     flash[:notice] = 'Your message to the Filmmaker is successful'
-    redirect_to root_path
+    redirect_to filmmaker_path recipient.profilable_id
   end
   
   def index

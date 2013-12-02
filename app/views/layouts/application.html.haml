@@ -36,6 +36,8 @@
                   - if current_user.nonprofit?
                     = link_to "Profile", nonprofit_path(current_user.profilable.id)
                 %li.drop-items{href: "#", role: "menutiem", tabindex: "-1"}
+                  = link_to "Mail box", message_index_path
+                %li.drop-items{href: "#", role: "menutiem", tabindex: "-1"}
                   - if current_user.nonprofit?
                     = link_to "Create a Project", new_project_path
                 - if current_user.nonprofit?
