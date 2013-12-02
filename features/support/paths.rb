@@ -99,9 +99,12 @@ module NavigationHelpers
     when /^the "(.*)" page?/
       project_path(Project.find_by_name($1))
     when /^the create project page?/
-      '/projects/new'
-    end 
-
+      '/projects/new' 
+    when /^the admin page$/
+      '/admin/login'
+    when /^the admin logout page$/
+      '/admin/logout'
+    end
   end
 end
 
