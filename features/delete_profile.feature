@@ -6,7 +6,7 @@ Feature: Delete account
   Background: filmmaker, non-profit, projects exist
     Given the following filmmakers exist:
       | name   | username | password |      email       | usertype  |
-      | Jackie | abc123   | rst45678 | abc123@gmail.com | filmmaker |
+      | abc123 | abc123   | rst45678 | abc123@gmail.com | filmmaker |
 
     Given the following non-profits exist:
       | name   | username | password |      email       | usertype  |
