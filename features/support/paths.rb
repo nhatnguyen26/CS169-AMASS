@@ -41,14 +41,14 @@ module NavigationHelpers
 
   def path_sign_in_out(page_name)
     case page_name
-	when /^the sign up page$/
-	  '/sign_up'
+  when /^the sign up page$/
+    '/sign_up'
     when /^the sign up page for filmmaker$/
       new_user_registration_path(:usertype=>"filmmaker")
-	when /^the sign up page for nonprofit$/
+  when /^the sign up page for nonprofit$/
       new_user_registration_path(:usertype=>"nonprofit")
     when /^the sign in page$/
-      '/sign_in' 
+      '/sign_in'
     end
   end
 
@@ -99,11 +99,13 @@ module NavigationHelpers
     when /^the "(.*)" page?/
       project_path(Project.find_by_name($1))
     when /^the create project page?/
-      '/projects/new' 
+      '/projects/new'
     when /^the admin page$/
       '/admin/login'
     when /^the admin logout page$/
       '/admin/logout'
+    when /^the How It Works page$/
+      howitworks_index_path
     end
   end
 end
