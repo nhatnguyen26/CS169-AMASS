@@ -1,4 +1,6 @@
 CS169Amass::Application.routes.draw do
+  get "learnmore/index"
+
   get "howitworks/index"
 
   devise_for :admin_users, ActiveAdmin::Devise.config
