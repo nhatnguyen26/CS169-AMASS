@@ -64,6 +64,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    session[:return_to] ||= request.referer
     temp = Project.find params[:id]
 
     if logged_in_as_project_owner temp

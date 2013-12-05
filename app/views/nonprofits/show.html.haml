@@ -1,16 +1,40 @@
-%h1 User Profile
-%p
-  %b Name:
-  = @nonprofit.user.name
-%p
-  %b Non-profit Summary:
-%p
-  %b About:
-%p
-  %b Listing Projects:
-%p
-  %b Contact Information:
-%p
-  %b Contact Form:
--if current_user.id == @nonprofit.user.id
-  = link_to 'Edit', edit_nonprofit_path(@nonprofit)
+%div.col-md-8.col-md-offset-2#nonprofit-div
+  %div.row.header-block#pic-n-info
+    %div.col-md-3.col-sm-2.col-xs-2#image-div
+      =image_tag "lorem-ipsum.jpg", :id => "ourimage"
+    %div.col-md-6 
+      %h1#name
+        name HARDCODED
+      %h4#categories
+        category HARDCODED
+      %h4#location
+        location HARDCODED
+      %h4
+        %b Active Projects:
+        1 HARDCODED
+      %h4
+        %b Completed Projects:
+        1 HARDCODED
+    %div.col-md-1
+      -if logged_in_as_correct_user @nonprofit.user.id
+        = link_to 'Edit Profile', edit_nonprofit_path(@nonprofit),{:class => 'btn btn-large', :id => 'edit-button'}
+  
+  %div.row.header-block.profile-block
+    %h3.topic
+      %b About
+    %h4
+      About HARDCODED
+  
+    %h3.topic.extra-space
+      %b Links
+    %h4
+      links HARDCODED
+  
+  %div.row.header-block.profile-block
+    %h3.topic
+      %b Active Projects
+    %h4
+     
+    %h3.topic.extra-space
+      %b Completed Projects
+    %h4
