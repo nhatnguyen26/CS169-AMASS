@@ -59,9 +59,10 @@
         = @project.deadline
       %div#join
         = button_to "Join This Project", project_path(@project.id), :class => "btn btn-lg", :id => "join-button", :method => 'get'
-        - if !current_user.profilable.favorite_projects.include?(@project)
-          = button_to "Add To Favorites", favorite_project_path, :class => "btn btn-lg", :id => "Add To Favorites", :method => 'put'
-        - else
-          = button_to "Remove From Favorites", remove_favorite_project_path, :class => "btn btn-lg", :id => "Remove From Favorites", :method => 'put'
+        - if user_signed_in?
+          - if !current_user.profilable.favorite_projects.include?(@project)
+            = button_to "Add To Favorites", favorite_project_path, :class => "btn btn-lg", :id => "Add To Favorites", :method => 'put'
+          - else
+            = button_to "Remove From Favorites", remove_favorite_project_path, :class => "btn btn-lg", :id => "Remove From Favorites", :method => 'put'
 
   = button_to "<< Back", projects_path, :class => "btn btn-md", :method => 'get', :id => "back-button"
