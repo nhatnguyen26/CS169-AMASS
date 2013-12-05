@@ -104,6 +104,8 @@ module NavigationHelpers
       '/admin/login'
     when /^the admin logout page$/
       '/admin/logout'
+    when /^the my favorite projects page?/
+      '/projects?myfavoriteprojects=true'
     end
   end
 end

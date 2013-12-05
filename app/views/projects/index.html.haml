@@ -3,8 +3,12 @@
 
 #wrapper
   #sidebar-wrapper  
+    - if user_signed_in?
+      - if current_user.filmmaker?
+        %h3{align: "left"}= link_to 'Favorite Projects', projects_path(:myfavoriteprojects => :true)
+      - if current_user.nonprofit?
+        %h3{align: "left"}= link_to 'My Projects', projects_path(:myprojects => :true)
     %h3{align: "left"}= link_to 'All Projects', projects_path(:filter=>'all')
-
     %h3{align: "left"}Type  
     %h4{align: "left"}= link_to 'Community', projects_path(:filter=>'Type', :by => 'Community')
     %h4{align: "left"}= link_to 'Education', projects_path(:filter=>'Type', :by =>'Education')
