@@ -8,7 +8,7 @@
       %h4#email
         = @filmmaker.user.email
     %div.col-md-1
-      -if logged_in_as_correct_user @filmmaker.user.id
+      -if owner_of_profile(@filmmaker)
         = link_to 'Edit Profile', edit_filmmaker_path(@filmmaker),{:class => 'btn btn-large', :id => 'edit-button'}
   
   %div.row.header-block.profile-block

@@ -7,16 +7,20 @@ class NonprofitsController < ApplicationController
 
   def edit
     if user_signed_in?
-      if logged_in_as_correct_user(@nonprofit.id)
-        @nonprofit = Nonprofit.find params[:id]
+      temp = Nonprofit.find params[:id]
+      if owner_of_profile(temp)
+        @nonprofit = temp
         render
+        return
       else
         flash[:error] = "You are not authorized to edit this profile"
         redirect_to root_path
+        return
       end
-    else
-      flash[:error] = "You must log in first."
     end
+    flash[:error] = "You must log in first."
+    redirect_to root_path
+    return
   end
 
     def update

@@ -31,16 +31,32 @@ class FilmmakersController < ApplicationController
   end
 
   def edit
-            temp = Filmmaker.find params[:id]
-            if current_user.id == temp.user.id
-          @filmmaker = temp
-                render
-            else
-                flash[:error] = "Illegal Command"
-                redirect_to root_path
-            end
-      @filmmaker = Filmmaker.find params[:id]
+    if user_signed_in?
+      temp = Filmmaker.find params[:id]
+      if owner_of_profile(temp)
+        @filmmaker = temp
+        render
+        return
+      else
+        flash[:error] = "You are not authorized to edit this profile"
+        redirect_to root_path
+        return
+      end
+    end
+    flash[:error] = "You must log in first."
+    redirect_to root_path
+    return
+
   end
+    #if current_user.id == temp.user.id
+    #  @filmmaker = temp
+    #  render
+    #else
+    #  flash[:error] = "Illegal Command"
+    #  redirect_to root_path
+    #end
+    #@filmmaker = Filmmaker.find params[:id]
+
 
     def update
       @filmmaker = Filmmaker.find params[:id]
