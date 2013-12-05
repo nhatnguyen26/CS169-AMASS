@@ -40,3 +40,5 @@
       %a{:id => 'contact', :class => 'edit-butt'}edit
     %h4.one-margin.filmmaker-button
       = best_in_place @filmmaker, :contact, inplace_params('textarea','contact')
+
+  = button_to "<< Back", filmmaker_path, :class => "btn btn-md", :method => 'get', :id => "back-button"
