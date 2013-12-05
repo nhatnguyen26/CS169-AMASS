@@ -27,7 +27,7 @@ Feature: View Learn More page
     Then I should be on the Learn More page
 
   Scenario: non-profit can view the Learn More page
-   Given I am logged in as "org1" with password "rst45678"
+   Given I am logged in as "org1" with password "12345678"
    Then I should see "Learn More"
    When I follow "Learn More"
    Then I should be on the Learn More page

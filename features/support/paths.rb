@@ -106,6 +106,8 @@ module NavigationHelpers
       '/admin/logout'
     when /^the How It Works page$/
       howitworks_index_path
+    when /^the Learn More page$/
+      learnmore_index_path
     end
   end
 end
