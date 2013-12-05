@@ -2,7 +2,7 @@
 
 
 %div.row
-  %div.col-md-11.col-md-offset-1#hiwouter
+  %div.col-md-11#hiwouter
     %h1 How It Works
     %div.row
       %div.col-md-11.hiwdiv#hiwstatement
@@ -13,7 +13,7 @@
         %h2.hiwdivtitle Nonprofits
         %h4.div-step 
           1. Create a profile for your nonprofit
-          =link_to 'here.', "#{get_correct_link('nonprofit')}"
+          =link_to 'here.', "#{get_correct_link('nonprofit')}", :id => "hiw_nonprofit"
         %h4.div-step 
           2. Create a project posting with a description about your video project.
         %h4.div-step 3. Wait for interested filmmakers to contact you OR Immediately browse filmmaker profiles and connect with them.
@@ -23,7 +23,7 @@
         %h2.hiwdivtitle Filmmakers
         %h4.div-step 
           1. Create a professional profile 
-          =link_to 'here.', "#{get_correct_link('filmmaker')}"
+          =link_to 'here.', "#{get_correct_link('filmmaker')}", :id => "hiw_filmmaker"
         %h4.div-step 2. Search through nonprofit video projects and find one that interests you.
         %h4.div-step 3. Contact the nonprofit group and briefly introduce themselves. (The nonprofit will be able to view your professional profile.)
         %h4.div-step 4. If you are selected, the nonprofit will contact you with further instructions.
