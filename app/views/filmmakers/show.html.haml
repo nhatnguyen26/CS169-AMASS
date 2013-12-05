@@ -40,7 +40,7 @@
     %h4
       = @filmmaker.contact
 
-- if current_user.id != @filmmaker.user.id
+- if user_signed_in? && current_user.id != @filmmaker.user.id
   %p
     %b Contact Form:
     = form_tag({controller: "message", action: "create"}, method: :post) do
