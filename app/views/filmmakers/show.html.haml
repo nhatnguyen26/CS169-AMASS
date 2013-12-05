@@ -40,11 +40,13 @@
     %h4
       = @filmmaker.contact
 
-- if user_signed_in? && current_user.id != @filmmaker.user.id
-  %p
-    %b Contact Form:
-    = form_tag({controller: "message", action: "create"}, method: :post) do
-      = hidden_field_tag :recipient_id, @filmmaker.user.id
-      = text_field_tag :topic
-      = text_area_tag :body
-      = submit_tag 'Send email'
+  - if user_signed_in? && current_user.id != @filmmaker.user.id
+    %div.row.header-block.profile-block
+      %h3.topic
+        %b Contact This Filmmaker
+      %h4
+        = form_tag({controller: "message", action: "create"}, method: :post) do
+          = hidden_field_tag :recipient_id, @filmmaker.user.id
+          = text_field_tag :topic
+          = text_area_tag :body
+          = submit_tag 'Send email'
