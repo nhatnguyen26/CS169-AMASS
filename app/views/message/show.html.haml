@@ -1,5 +1,5 @@
 
-%h1#listing-title #{params[:box_type].capitalize}
+
 #wrapper
   #sidebar-wrapper  
     %h3{align: "left"}Folder 
@@ -7,10 +7,7 @@
     %h4{align: "left"}= link_to 'Sentbox', message_index_path(:box_type=>'sent')
 
   #page-content-wrapper
-    - @messages.each do |x|
-      - if !x.open?
-        %b= link_to x.topic, message_path(x.id)
-      - else
-        %p= link_to x.topic, message_path(x.id)
-      %p= x.body
+    %h2 #{@sender}
+    %h3 #{@message.topic}
+    %p #{@message.body}
 %br

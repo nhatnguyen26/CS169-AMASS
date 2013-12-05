@@ -1,3 +1,3 @@
 class CustomMessage < ActsAsMessageable::Message
-  attr_accessible :body, :topic
+  attr_protected
 end
