@@ -3,6 +3,8 @@ class MessageController < ApplicationController
     # display form
   end
 
+  def apply
+  end
   # POST /message/create
   def create
     recipient = User.find(params[:recipient_id])
