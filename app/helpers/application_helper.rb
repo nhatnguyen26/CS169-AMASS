@@ -3,6 +3,10 @@ module ApplicationHelper
     {:type => type, :ok_button => 'Save', :ok_button_class => 'btn', :cancel_button => 'Cancel', :cancel_button_class => 'btn', :activator => '#'+stractive}
   end
 
+  def select_inplace_params
+	{:type => :select, :ok_button => 'Save', :ok_button_class => 'btn', :cancel_button => 'Cancel', :cancel_button_class => 'btn', :collection => [["Pending", "Pending"], ["In progress", "In progress"], ["Completed", "Completed"]], :activator => '#status'}
+  end
+
   def owner_of_profile(profile)
     if user_signed_in? && current_user.id == profile.user.id
       return true
