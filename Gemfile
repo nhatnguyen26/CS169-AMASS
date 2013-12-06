@@ -23,7 +23,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
-
+  gem 'webrat'
 end
 
 group :test do

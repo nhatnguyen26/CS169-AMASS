@@ -29,6 +29,22 @@ describe ProjectsController do
   # in order to pass any filters (e.g. authentication) defined in
   # ProjectsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  before(:each) do
+    @valid_attributes = {
+      :name => 'Project A', 
+      :location => 'Alameda', 
+      :category => 'education', 
+      :organization => 'org A', 
+      :blurb => 'sample blurb', 
+      :nonprofit_mission => 'sample mission', 
+      :description => 'sample description', 
+      :deadline => '30-Nov-2013', 
+      :status => 'open', 
+      :budget => '1'
+    }
+    @valid_session = controller.stub!(:current_user).and_return(false)
+  end
 =begin
   describe "GET index" do
     it "assigns all projects as @projects" do
@@ -40,19 +56,19 @@ describe ProjectsController do
 =end
   describe "GET show" do
     it "assigns the requested project as @project" do
-      project = Project.create! valid_attributes
+      project = Project.create! @valid_attributes
       get :show, {:id => project.to_param}, valid_session
       assigns(:project).should eq(project)
     end
   end
-=begin
+
   describe "GET new" do
     it "assigns a new project as @project" do
-      get :new, {}, valid_session
+      get :new, {}, @valid_session
       assigns(:project).should be_a_new(Project)
     end
   end
-
+=begin
   describe "GET edit" do
     it "assigns the requested project as @project" do
       project = Project.create! valid_attributes

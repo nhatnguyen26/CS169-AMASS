@@ -1,20 +1,23 @@
 require 'spec_helper'
 
-describe "projects/new" do
+describe "projects/new", :type => :controller do
   before(:each) do
     assign(:project, stub_model(Project,
-      :name => "MyString",
-      :organization => "MyString",
-      :blurb => "MyText",
-      :nonprofit_mission => "MyText",
-      :description => "MyText",
-      :status => "MyString",
-      :budget => 1
+      :name => 'Project A', 
+      :location => 'Alameda', 
+      :category => 'education', 
+      :organization => 'org A', 
+      :blurb => 'sample blurb', 
+      :nonprofit_mission => 'sample mission', 
+      :description => 'sample description', 
+      :deadline => '30-Nov-2013', 
+      :status => 'open', 
+      :budget => '1'
     ).as_new_record)
   end
 
   it "renders new project form" do
-    render
+    #render
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form[action=?][method=?]", projects_path, "post" do
