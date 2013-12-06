@@ -4,17 +4,17 @@
       =image_tag "lorem-ipsum.jpg", :id => "ourimage"
     %div.col-md-6 
       %h1#name
-        name HARDCODED
+        = @nonprofit.user.name
       %h4#categories
         category HARDCODED
       %h4#location
         location HARDCODED
       %h4
         %b Active Projects:
-        1 HARDCODED
+        = @nonprofit.projects.select {|proj| proj.status != 'Completed'}.count
       %h4
         %b Completed Projects:
-        1 HARDCODED
+        = @nonprofit.projects.select {|proj| proj.status == 'Completed'}.count
     %div.col-md-1
       -if logged_in_as_correct_user @nonprofit.user.id
         = link_to 'Edit Profile', edit_nonprofit_path(@nonprofit),{:class => 'btn btn-large', :id => 'edit-button'}
@@ -23,12 +23,11 @@
     %h3.topic
       %b About
     %h4
-      About HARDCODED
+      = @nonprofit.about
   
     %h3.topic.extra-space
       %b Links
     %h4
-      links HARDCODED
   
   %div.row.header-block.profile-block
     %h3.topic

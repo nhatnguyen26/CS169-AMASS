@@ -4,7 +4,7 @@
       =image_tag "lorem-ipsum.jpg", :id => "ourimage"
     %div.col-md-6 
       %h1#name
-        name HARDCODED
+        = @nonprofit.user.name
       %h4#categories
         category HARDCODED
         %a edit
@@ -13,23 +13,23 @@
         %a edit
       %h4
         %b Active Projects:
-        1 HARDCODED
+        = @nonprofit.projects.select {|proj| proj.status != 'Completed'}.count
       %h4
         %b Completed Projects:
-        1 HARDCODED
+        = @nonprofit.projects.select {|proj| proj.status == 'Completed'}.count
   
   %div.row.header-block.profile-block
     %h3.topic
       %b About
-      %a{:id => 'nonprofit-about'}edit
+      %a{:id => 'about'}edit
     %h4
-      about HARDCODED
+      = best_in_place @nonprofit, :about, inplace_params('textarea','about')
   
     %h3.topic.extra-space
       %b Links
       %a{:id => 'links'}edit
     %h4
-      links HARDCODED
+      
   
   %div.row.header-block.profile-block
     %h3.topic

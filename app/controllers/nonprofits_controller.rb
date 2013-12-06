@@ -27,6 +27,6 @@ class NonprofitsController < ApplicationController
       @nonprofit = Nonprofit.find params[:id]
       @nonprofit.update_attributes!(params[:nonprofit])
       flash[:notice] = "Your profile was successfully updated."
-      redirect_to nonprofit_path(@nonprofit)
+      respond_with @nonprofit
     end
 end
