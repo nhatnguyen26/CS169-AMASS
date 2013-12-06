@@ -1,10 +1,29 @@
 class MessageController < ApplicationController
+  before_filter :signed_in_as_user
+  def signed_in_as_user
+    if !user_signed_in?
+      flash[:error] = 'Please sign in'
+      redirect_to root_path
+    end
+  end
   def new
     # display form
   end
 
   def apply
+    project_to_apply = Project.find(params[:id])
+    non_profit = project_to_apply.nonprofit
+    if !current_user.filmmaker?
+      flash[:error] = 'Only filmmaker can join a project'
+      redirect_to projects_path
+    else
+      recipient = User.find(non_profit.user.id)
+      current_user.send_message(recipient, {:body => 'I want to join your project', :topic => "Application to join #{project_to_apply.name}"})
+      flash[:notice] = 'You have applied to the project'
+      redirect_to project_path(project_to_apply.id)
+    end
   end
+  
   # POST /message/create
   def create
     recipient = User.find(params[:recipient_id])

@@ -22,7 +22,11 @@ CS169Amass::Application.routes.draw do
   resources :projects #, only: [:show,:index,:create]
   resources :filmmakers
   resources :nonprofits
-  resources :message
+  resources :message do
+    member do
+      post 'apply'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

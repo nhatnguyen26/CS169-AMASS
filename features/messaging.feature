@@ -51,5 +51,10 @@ Scenario: check inbox messages
 	When I follow "Inbox"
 	Then I should see "Test5"
 
+Scenario: apply for project
+        Given I am logged in as "user1" with password "123456789"
+        When I go to the projects page
+        
+
 
 	

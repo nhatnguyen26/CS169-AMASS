@@ -1,9 +1,0 @@
-= form_for :message, :url => {:controller => 'message', :action => 'create'} do |f|
-  = hidden_field_tag :recipient_id, 200
-  = label_tag :topic, "Subject"
-  = text_field_tag :topic, "Apply for"
-  %br
-  = label_tag :body, "Message"
-  = text_area_tag :body
-  %br
-  = submit_tag "Send"
