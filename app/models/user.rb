@@ -5,6 +5,12 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable, 
 		 :authentication_keys => [:username]
 
+  acts_as_messageable :table_name => "messages", 
+                      :required   => :body,                
+                      :class_name => "CustomMessage",
+                      :dependent  => :destroy,
+                      :group_messages => false
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :username, :name, :usertype, :password, 
 				  :password_confirmation, :remember_me
