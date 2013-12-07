@@ -25,10 +25,10 @@ projects = projects.each{|x|
               i = i + 2
               x.save!}
 
-users = [{:name => 'user1', :username => 'user1', :email => 'user1@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'Filmmaker'},
-	 {:name => 'user2', :username => 'user2', :email => 'user2@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'Filmmaker'},
-	 {:name => 'user3', :username => 'user3', :email => 'user3@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'Filmmaker'},
-	 {:name => 'user4', :username => 'user4', :email => 'user4@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'Filmmaker'}]
+users = [{:name => 'user1', :username => 'user1', :email => 'user1@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'filmmaker'},
+	 {:name => 'user2', :username => 'user2', :email => 'user2@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'filmmaker'},
+	 {:name => 'user3', :username => 'user3', :email => 'user3@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'filmmaker'},
+	 {:name => 'user4', :username => 'user4', :email => 'user4@amass.com', :password => '12345668', :password_confirmation => '12345668', :usertype => 'filmmaker'}]
 
 users.each do |user|
   new_user = User.create!(user)
