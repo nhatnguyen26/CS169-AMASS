@@ -12,6 +12,7 @@
     = stylesheet_link_tag 'editproject'
     = stylesheet_link_tag 'newproject'
     = stylesheet_link_tag 'filmmaker'
+    = stylesheet_link_tag 'message'
     = csrf_meta_tags
 
   %body#blah
@@ -35,6 +36,8 @@
                     = link_to "Profile", filmmaker_path(current_user.profilable.id)
                   - if current_user.nonprofit?
                     = link_to "Profile", nonprofit_path(current_user.profilable.id)
+                %li.drop-items{href: "#", role: "menutiem", tabindex: "-1"}
+                  = link_to "My Messages", message_index_path
                 %li.drop-items{href: "#", role: "menutiem", tabindex: "-1"}
                   - if current_user.nonprofit?
                     = link_to "Create a Project", new_project_path

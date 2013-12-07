@@ -54,6 +54,7 @@ end
 gem 'haml'
 gem 'jquery-ui-rails'
 gem 'best_in_place'
+gem 'acts-as-messageable'
 
 # Use unicorn as the web server
 # gem 'unicorn'

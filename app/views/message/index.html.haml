@@ -1,0 +1,19 @@
+%div.col-md-8.col-md-offset-2#mess-outer-div
+  %div.row#mess-content-div
+    %div.col-md-2.info-block#folders-block
+      %h2#mess-folder-title Folders
+      %h4.mess-folder
+        = link_to 'Inbox', message_index_path(:box_type=>'inbox')
+      %h4.mess-folder
+        = link_to 'Sentbox', message_index_path(:box_type=>'sent')
+    %div.col-md-9.info-block#messages-block
+      %h2 #{params[:box_type].capitalize}
+      - @messages.each do |x|
+        - if !x.open?
+          %h4#unread
+            = link_to get_proper_name(x, params[:box_type])+ " : " + x.topic, message_path(x.id)
+        - else
+          %h4
+            = link_to get_proper_name(x, params[:box_type])+ " : " + x.topic, message_path(x.id)
+      
+      

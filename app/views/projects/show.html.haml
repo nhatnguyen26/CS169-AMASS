@@ -58,4 +58,7 @@
       %h2.info-detail
         = @project.deadline
       %div#join
-        = button_to "Join This Project", project_path(@project.id), :class => "btn btn-lg", :id => "join-button", :method => 'get'
+        = button_to "Join This Project", apply_message_path, :class => "btn btn-lg", :id => "join-button", :method => 'post'
+
+  = button_to "<< Back", projects_path, :class => "btn btn-md", :method => 'get', :id => "back-button"
+
