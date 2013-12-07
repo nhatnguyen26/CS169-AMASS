@@ -40,7 +40,7 @@
               - if thumbnail_exist?(project.id)
                 %img{src:"assets/projects/#{project.id}/thumb.jpg"}
               - else
-                %img{src:"assets/balloon.jpg"}
+                %img{src:"../assets/balloon.jpg"}
             %div.caption
               %h2= project.category
               %h3{align: "center"}= link_to project.name, project_path(project.id)
