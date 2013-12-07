@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def select_inplace_params
-	{:type => :select, :ok_button => 'Save', :ok_button_class => 'btn', :cancel_button => 'Cancel', :cancel_button_class => 'btn', :collection => [["Pending", "Pending"], ["In progress", "In progress"], ["Completed", "Completed"]], :activator => '#status'}
+	{:type => :select, :ok_button => 'Save', :ok_button_class => 'btn', :cancel_button => 'Cancel', :cancel_button_class => 'btn', :collection => [["Open", "Open"], ["Pending", "Pending"], ["Completed", "Completed"]], :activator => '#status'}
   end
 
   def owner_of_profile(profile)
