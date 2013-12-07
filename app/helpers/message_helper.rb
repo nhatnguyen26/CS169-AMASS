@@ -6,18 +6,17 @@ module MessageHelper
     else
       id = message.received_messageable_id
     end
-    user = User.find(id)
-    if user != nil
-      return user.username
+    if User.exists?(id)
+      return User.find(id).username
     else
       return "user no longer active"
     end
   end
 
   def get_to_username(message)
-    user = User.find(message.received_messageable_id)
-    if user != nil
-      return user.username
+    id = message.received_messageable_id
+    if User.exists?(id)
+      return User.find(id).username
     end
     return "user no longer active"
   end
@@ -25,15 +24,19 @@ module MessageHelper
 
   def get_profile(message, type)
     if type == "sender"
-      user = User.find(message.sent_messageable_id)
+      id = message.sent_messageable_id
     else
-      user = User.find(message.received_messageable_id)
+      id = message.received_messageable_id
     end
-    if user.filmmaker? && user != nil
+    if User.exists?(id)
+      user = User.find(id)
+    else
+      return "user no longer active"
+    end
+    if user.filmmaker?
       return filmmaker_path(user.profilable.id)
     else
       return nonprofit_path(user.profilable.id)
     end
-    return "user no longer active"
   end
 end
