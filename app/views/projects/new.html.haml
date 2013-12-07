@@ -14,16 +14,16 @@
                 .col-md-12
                   .form-group
                     %label Title
-                    %input.form-control{name: "project[name]", placeholder: "Title", type: "text"}/
+                    %input#project_name.form-control{name: "project[name]", placeholder: "Title", type: "text"}/
                   .form-group
                     %label Blurb
-                    %textarea.form-control{name: "project[blurb]", placeholder: "Blurb", rows: "1", type: "text"}
+                    %textarea#project_blurb.form-control{name: "project[blurb]", placeholder: "Blurb", rows: "1", type: "text"}
                   .form-group
                     %label Description
-                    %textarea.form-control{name: "project[description]", placeholder: "Description",  rows: "5", type: "text"}
+                    %textarea#project_description.form-control{name: "project[description]", placeholder: "Description",  rows: "5", type: "text"}
                   .form-group
                     %label Mission
-                    %textarea.form-control{name: "project[nonprofit_mission]", placeholder: "Mission", rows: "5", type: "text"}
+                    %textarea#project_mission.form-control{name: "project[nonprofit_mission]", placeholder: "Mission", rows: "5", type: "text"}
               .row
                 .col-md-6
                   .form-group
@@ -46,7 +46,7 @@
                     %label Budget
                     .input-group
                       %span.input-group-addon $
-                      %input.form-control{name: "project[budget]", placeholder: "Budget", type: "text"}
+                      %input#project_budget.form-control{name: "project[budget]", placeholder: "Budget", type: "text"}
                 .col-md-6
                   .form-group
                     %label Deadline
