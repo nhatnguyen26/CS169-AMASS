@@ -10,5 +10,8 @@
       %h2 #{@message.topic}
       %h4 
         From:
-        = link_to @sender, "#{get_profile(@message)}"
+        = link_to @sender, "#{get_profile(@message, "sender")}"
+      %h4
+        To:
+        = link_to get_to_username(@message), "#{get_profile(@message, "receiver")}" 
       %h5 #{@message.body}

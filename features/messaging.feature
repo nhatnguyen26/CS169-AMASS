@@ -14,10 +14,10 @@ Background:
         | org B  | org B   	| asdf12345  	| org@gmail.com    | nonprofit |  2	  |
 
 	Given the following projects exist:
-      	| name        | category     |location        | organization | blurb               | nonprofit_mission         | description               | deadline        | status        | budget | nonprofit_id |   
-      	| Project A   | education    | Alabama        | org A        | sample blurb        | sample mission            | sample description        | 30-Oct-2013     | open          | 2000   |     1        |   
-      	| Project B   | community    | Alabama        | org A        | sample blurb        | sample mission            | sample description        | 30-Oct-2013     | open          | 2000   |     1        |
-      	| Project C   | community    | Alabama        | org B        | sample blurb        | sample mission            | sample description        | 30-Oct-2013     | open          | 2000   |     2        |
+      	| name       | category   |location  | organization | blurb         | nonprofit_mission  | description          | deadline     | status | budget | nonprofit_id |   
+      	| Project A  | education  | Alabama  | org A        | sample blurb  | sample mission     | sample description   | 30-Oct-2013  | open   | 2000   |     1        |   
+      	| Project B  | community  | Alabama  | org A        | sample blurb  | sample mission     | sample description   | 30-Oct-2013  | open   | 2000   |     1        |
+      	| Project C  | community  | Alabama  | org B        | sample blurb  | sample mission     | sample description   | 30-Oct-2013  | open   | 2000   |     2        |
 
 Scenario: view Mailbox
 	Given I am logged in as "user1" with password "123456789"
@@ -47,6 +47,7 @@ Scenario: check sent messages
 	Then I should see "Sentbox"
 	When I follow "Sentbox"
 	Then I should see "Test"
+	And I should see "user2"
 
 Scenario: check inbox messages
 	Given I am logged in as "user2" with password "123456789"
@@ -55,6 +56,8 @@ Scenario: check inbox messages
 	Then I should see "Inbox"
 	When I follow "Inbox"
 	Then I should see "Test5"
+	And I should see "user1"
+
 
 Scenario: apply for project
         Given I am logged in as "user1" with password "123456789"
@@ -78,5 +81,32 @@ Scenario: nonprofit receive application
 	Then I should see "Application to join Project A"
         
 
+Scenario: view inbox message, go to sender's profile
+	Given I am logged in as "user2" with password "123456789"
+	And "user1" sent a messages to "user2" with topic "Test5" and body "Hello"
+	When I follow "My Messages"
+	And I follow "Inbox"
+	Then I should see "Test5"
+	And I should see "user1"
+	When I follow "Test5"
+	Then I should see "Hello"
+	And I should see "From: user1"
+	And I should see "To: user2"
+	When I follow "user1"
+	Then I should be on the profile page of "user1"
 
+Scenario: view sent message, go to receiver's profile
+	Given I am logged in as "user2" with password "123456789"
+	And "user2" sent a messages to "user1" with topic "Test5" and body "Hello"
+	When I follow "My Messages"
+	And I follow "Sentbox"
+	Then I should see "Test5"
+	And I should see "user1"
+	When I follow "Test5"
+	Then I should see "Hello"
+	And I should see "From: user2"
+	And I should see "To: user1"
+	When I follow "user1"
+	Then I should be on the profile page of "user1"
+	
 	
