@@ -42,6 +42,15 @@ Feature: Profile page for filmmakers
         And I am on the profile page of "abc123"
         When I follow "Edit"
         Then I should be on the edit page of "abc123"
+    
+    Scenario: Canot access edit page if not logged in
+        When I am on the edit page of "abc123"
+	Then I should see "You must log in first."
+
+    Scenario: Cannot access edit page if wrong user
+    	Given I am logged in as "abc123" with password "rst45678"
+	When I am on the edit page of "xyz789"
+	Then I should see "You are not authorized to edit this profile"
 
 
 
