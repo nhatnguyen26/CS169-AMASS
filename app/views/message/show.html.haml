@@ -1,13 +1,14 @@
-
-
-#wrapper
-  #sidebar-wrapper  
-    %h3{align: "left"}Folder 
-    %h4{align: "left"}= link_to 'Inbox', message_index_path(:box_type=>'inbox')
-    %h4{align: "left"}= link_to 'Sentbox', message_index_path(:box_type=>'sent')
-
-  #page-content-wrapper
-    %h2 #{@sender}
-    %h3 #{@message.topic}
-    %p #{@message.body}
-%br
+%div.col-md-8.col-md-offset-2#mess-outer-div
+  %div.row#mess-content-div
+    %div.col-md-2.info-block#folders-block
+      %h2#mess-folder-title Folders
+      %h4.mess-folder
+        = link_to 'Inbox', message_index_path(:box_type=>'inbox')
+      %h4.mess-folder
+        = link_to 'Sentbox', message_index_path(:box_type=>'sent')
+    %div.col-md-9.info-block#messages-block
+      %h2 #{@message.topic}
+      %h4 
+        From:
+        = link_to @sender, "#{get_profile(@message)}"
+      %h5 #{@message.body}

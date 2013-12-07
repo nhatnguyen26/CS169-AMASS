@@ -1,4 +1,3 @@
-  
 %div.col-md-8.col-md-offset-2#mess-outer-div
   %div.row#mess-content-div
     %div.col-md-2.info-block#folders-block
@@ -11,10 +10,10 @@
       %h2 #{params[:box_type].capitalize}
       - @messages.each do |x|
         - if !x.open?
-          %h4
-            = link_to x.topic, message_path(x.id)
+          %h4#unread
+            = link_to get_sender_name(x)+ " : " + x.topic, message_path(x.id)
         - else
           %h4
-            = link_to x.topic, message_path(x.id)
+            = link_to get_sender_name(x)+ " : " + x.topic, message_path(x.id)
       
       
