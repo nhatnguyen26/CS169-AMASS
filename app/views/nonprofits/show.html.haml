@@ -11,10 +11,10 @@
         location HARDCODED
       %h4
         %b Active Projects:
-        = @nonprofit.projects.select {|proj| proj.status != 'Completed'}.count
+        = @active_projects.count
       %h4
         %b Completed Projects:
-        = @nonprofit.projects.select {|proj| proj.status == 'Completed'}.count
+        = @completed_projects.count
     %div.col-md-1
       -if logged_in_as_correct_user @nonprofit.user.id
         = link_to 'Edit Profile', edit_nonprofit_path(@nonprofit),{:class => 'btn btn-large', :id => 'edit-button'}
@@ -33,7 +33,36 @@
     %h3.topic
       %b Active Projects
     %h4
-     
+      - @active_projects.each do |project|
+        %div.col-sm-4.col-md-3.col-lg-3#project
+          %div.thumbnail
+            %a{href: "#{project_path(project.id)}"}
+              - if thumbnail_exist?(project.id)
+                %img{src:"assets/projects/#{project.id}/thumb.jpg"}
+              - else
+                %img{src:"assets/balloon.jpg"}
+            %div.caption
+              %h2= project.category
+              %h3{align: "center"}= link_to project.name, project_path(project.id)
+              %h4= project.organization
+              %p= project.description
+              %p= "Budget: $#{project.budget}"
+
+  %div.row.header-block.profile-block 
     %h3.topic.extra-space
       %b Completed Projects
     %h4
+      - @completed_projects.each do |project|
+        %div.col-sm-4.col-md-3.col-lg-3#project
+          %div.thumbnail
+            %a{href: "#{project_path(project.id)}"}
+              - if thumbnail_exist?(project.id)
+                %img{src:"assets/projects/#{project.id}/thumb.jpg"}
+              - else
+                %img{src:"assets/balloon.jpg"}
+            %div.caption
+              %h2= project.category
+              %h3{align: "center"}= link_to project.name, project_path(project.id)
+              %h4= project.organization
+              %p= project.description
+              %p= "Budget: $#{project.budget}"
