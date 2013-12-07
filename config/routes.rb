@@ -3,25 +3,28 @@ CS169Amass::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   authenticated :user do
-	root :to => 'welcome#index'
+  root :to => 'welcome#index'
   end
   root :to => 'welcome#index'
   devise_for :users, skip: [:sessions, :registrations]
   ActiveAdmin.routes(self)
-  devise_scope :user do 
+  devise_scope :user do
     # SessionController
     get    '/sign_in',  to: 'users/sessions#new',     as: :new_user_session
     post   '/sign_in',  to: 'users/sessions#create',  as: :user_session
     delete '/sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
 
-	# RegistrationController
+  # RegistrationController
     get    '/sign_up',      to: 'users/registrations#new',    as: :new_user_registration
     post   '/sign_up',      to: 'users/registrations#create', as: :user_registration
 
   end
+  delete 'projects/:id/delete' => 'projects#destroy', :as => :delete_project
   resources :projects #, only: [:show,:index,:create]
+
   resources :filmmakers
   resources :nonprofits
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
