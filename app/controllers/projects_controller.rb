@@ -102,11 +102,6 @@ class ProjectsController < ApplicationController
   end
 
 
-  # GET /projects/1/edit
-  def edit
-    @project = Project.find(params[:id])
-  end
-
   # POST /projects
   # POST /projects.json
   def create
@@ -131,6 +126,20 @@ class ProjectsController < ApplicationController
     end
 
   end
+
+
+  def logged_in_as_project_owner(project)
+    if current_user == nil || current_user.profilable_type == "Filmmaker"
+      return false
+    end
+    project_owner = User.find_by_name(project.organization)
+    if project_owner == nil
+      return false
+    end
+    project.nonprofit_id == current_user.profilable_id
+  end
+
+
 
 =begin
   # PUT /projects/1

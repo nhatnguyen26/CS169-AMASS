@@ -11,7 +11,7 @@ module ProjectsHelper
     if project_owner == nil
       return false
     end
-    project.nonprofit_id == current_user.profilable.id
+    project.nonprofit_id == current_user.profilable_id
   end
 
 

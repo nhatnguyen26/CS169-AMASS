@@ -52,7 +52,10 @@ Feature: Edit a project
     Given I am on the project page for "Project C"
     And I should not see "Edit Project"
     
-#  Scenario: Cannot access edit page if not correct nonprofit
-#    When I am on the edit project page for "Project C"
-#    Then I should be on the home page
-#    And I should see "You are not authorized to edit this project"
+  Scenario: Cannot access edit page if not logged in
+    When I am on the edit project page for "Project C"
+    Then I should see "You are not authorized to edit this project"
+
+  Scenario: Cannot access edit page if not correct nonprofit
+    Given I am on the edit project page for "Project C"
+    Then I should see "You are not authorized to edit this project"
