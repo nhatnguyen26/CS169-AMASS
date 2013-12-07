@@ -28,7 +28,7 @@ Feature: Delete account
     Then I should be on the "Project 10" page
     When I follow "Logout"
     Then I should be on the home page
-    and I should not see "Hi org1"
+    And I should not see "Hi org1"
 
   Scenario: non-logged in user cannot delete account
     Given I am on the home page
