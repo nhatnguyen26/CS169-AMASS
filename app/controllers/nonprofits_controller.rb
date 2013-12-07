@@ -35,7 +35,6 @@ class NonprofitsController < ApplicationController
     def update
       @nonprofit = Nonprofit.find params[:id]
       @nonprofit.update_attributes!(params[:nonprofit])
-      flash[:notice] = "Your profile was successfully updated."
       respond_with @nonprofit
     end
 end
