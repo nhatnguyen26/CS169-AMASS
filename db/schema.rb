@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131202055322) do
+ActiveRecord::Schema.define(:version => 20131208040750) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(:version => 20131202055322) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "favorites", :force => true do |t|
+    t.integer "filmmaker_id"
+    t.integer "favorable_id"
+    t.string  "favorable_type"
+  end
+
   create_table "filmmakers", :force => true do |t|
     t.text     "about"
     t.text     "summary"
@@ -56,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20131202055322) do
     t.datetime "updated_at", :null => false
     t.string   "location"
     t.string   "specialty"
+    t.string   "links"
   end
 
   create_table "impressions", :force => true do |t|

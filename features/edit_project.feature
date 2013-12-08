@@ -53,9 +53,20 @@ Feature: Edit a project
     And I should not see "Edit Project"
     
   Scenario: Cannot access edit page if not logged in
+    Given I am on the home page
+    And I follow "Logout"
     When I am on the edit project page for "Project C"
     Then I should see "You are not authorized to edit this project"
 
   Scenario: Cannot access edit page if not correct nonprofit
     Given I am on the edit project page for "Project C"
     Then I should see "You are not authorized to edit this project"
+
+  @javascript
+  Scenario: Should be able to delete own project
+    Given I am on the edit project page for "Project A"
+    When I press "Delete Project"
+    Then I should be on the projects page
+    And I should not see "Project A"
+    And I should see "Your project has been deleted."
+    

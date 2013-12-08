@@ -33,12 +33,8 @@
       = best_in_place @filmmaker, :skills, inplace_params('textarea','skills')
     %h3.topic
       %b Links to Work Samples
-      
-  %div.row.header-block.profile-block   
-    %h3.topic
-      %b Contact Information
-      %a{:id => 'contact', :class => 'edit-butt'}edit
+      %a{:id => 'links', :class => 'edit-butt'}edit
     %h4.one-margin.filmmaker-button
-      = best_in_place @filmmaker, :contact, inplace_params('textarea','contact')
+      = best_in_place @filmmaker, :links, inplace_params('textarea', 'links')
 
   = button_to "<< Back", filmmaker_path, :class => "btn btn-md", :method => 'get', :id => "back-button"

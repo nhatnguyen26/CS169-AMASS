@@ -29,8 +29,8 @@ class ProjectsController < ApplicationController
         @projects = current_user.profilable.favorite_projects
       end
     end
-    
-     
+
+
     filter = params[:filter]
     by = params[:by]
 
@@ -147,6 +147,16 @@ class ProjectsController < ApplicationController
 
   end
 
+  def destroy
+    @project = Project.find(params[:id])
+    if logged_in_as_project_owner(@project)
+      @project.destroy
+      flash[:notice] = "Your project has been deleted."
+    else
+      flash[:notice] = "You are not authorized to delete this project."
+    end
+    redirect_to projects_path
+  end
 
   def logged_in_as_project_owner(project)
     if current_user == nil || current_user.profilable_type == "Filmmaker"
