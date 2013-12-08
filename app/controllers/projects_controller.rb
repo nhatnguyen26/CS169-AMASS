@@ -127,7 +127,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.organization = current_user.name
-    @project.status = "pending"
+    @project.status = "Open"
     temp = params[:project]["deadline"]
     date = /(\d+)\/(\d+)\/(\d+)/.match(temp)
   if not date.nil?

@@ -45,7 +45,7 @@
         Status
       %a{:id => 'status'}edit
       %h2.info-detail
-        = best_in_place @project, :status, inplace_params('input','status')
+        = best_in_place @project, :status, select_inplace_params
       %h5.info-title
         Budget
       %a{:id => 'budget'}edit
