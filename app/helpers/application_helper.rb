@@ -3,6 +3,10 @@ module ApplicationHelper
     {:type => type, :ok_button => 'Save', :ok_button_class => 'btn', :cancel_button => 'Cancel', :cancel_button_class => 'btn', :activator => '#'+stractive}
   end
 
+  def select_inplace_params
+	{:type => :select, :ok_button => 'Save', :ok_button_class => 'btn', :cancel_button => 'Cancel', :cancel_button_class => 'btn', :collection => [["Open", "Open"], ["Pending", "Pending"], ["Completed", "Completed"]], :activator => '#status'}
+  end
+
   def owner_of_profile(profile)
     if user_signed_in? && current_user.id == profile.user.id
       return true
@@ -18,4 +22,7 @@ module ApplicationHelper
     return false
   end
 
+  def url_with_protocol(url)
+    /^http/.match(url) ? url : "http://#{url}"
+  end
 end

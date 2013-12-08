@@ -4,17 +4,21 @@
       =image_tag "lorem-ipsum.jpg", :id => "ourimage"
     %div.col-md-6 
       %h1#name
-        name HARDCODED
+        = @nonprofit.user.name
       %h4#categories
-        category HARDCODED
+        - if not @nonprofit.categories.nil? 
+          - @nonprofit.categories.split(',').each do |category| 
+            %span.label.label-success= category.strip
+            
+          %span
       %h4#location
-        location HARDCODED
+        = @nonprofit.location
       %h4
         %b Active Projects:
-        1 HARDCODED
+        = @active_projects.count
       %h4
         %b Completed Projects:
-        1 HARDCODED
+        = @completed_projects.count
     %div.col-md-1
       -if logged_in_as_correct_user @nonprofit.user.id
         = link_to 'Edit Profile', edit_nonprofit_path(@nonprofit),{:class => 'btn btn-large', :id => 'edit-button'}
@@ -23,18 +27,67 @@
     %h3.topic
       %b About
     %h4
-      About HARDCODED
+      = @nonprofit.about
   
-    %h3.topic.extra-space
+    %h3.topic
       %b Links
     %h4
-      links HARDCODED
+      - if not @nonprofit.links.nil?
+        - @nonprofit.links.split(',').each do |link|
+          %div= link_to link.strip, url_with_protocol(link.strip)
   
   %div.row.header-block.profile-block
     %h3.topic
       %b Active Projects
     %h4
-     
+      - @active_projects.each do |project|
+        %div.col-sm-4.col-md-3.col-lg-3#project
+          %div.thumbnail
+            %a{href: "#{project_path(project.id)}"}
+              - if thumbnail_exist?(project.id)
+                %img{src:"../assets/projects/#{project.id}/thumb.jpg"}
+              - else
+                %img{src:"../assets/balloon.jpg"}
+            %div.caption
+              %h2= project.category
+              %h3{align: "center"}= link_to project.name, project_path(project.id)
+              %h4= project.organization
+              %p= project.description
+              %p= "Budget: $#{project.budget}"
+
+  %div.row.header-block.profile-block 
     %h3.topic.extra-space
       %b Completed Projects
     %h4
+      - @completed_projects.each do |project|
+        %div.col-sm-4.col-md-3.col-lg-3#project
+          %div.thumbnail
+            %a{href: "#{project_path(project.id)}"}
+              - if thumbnail_exist?(project.id)
+                %img{src:"../assets/projects/#{project.id}/thumb.jpg"}
+              - else
+                %img{src:"../assets/balloon.jpg"}
+            %div.caption
+              %h2= project.category
+              %h3{align: "center"}= link_to project.name, project_path(project.id)
+              %h4= project.organization
+              %p= project.description
+              %p= "Budget: $#{project.budget}"
+
+- if user_signed_in? && current_user.id != @nonprofit.user.id
+  %div.row.header-block.profile-block
+    %h3.topic
+      %b Contact Form
+    %h4
+      = form_tag({controller: "message", action: "create"}, method: :post) do
+        = hidden_field_tag :recipient_id, @nonprofit.user.id
+        %div.row
+        %h4 subject
+        %div.row
+        = text_field_tag :topic, nil
+        %div.row
+        %h4 body
+        %div.row
+        = text_area_tag :body, nil, :size => "35x7"
+        %div.row
+        = submit_tag 'Send email', class:"filmsend-but"
