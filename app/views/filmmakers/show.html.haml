@@ -34,12 +34,6 @@
     %h3.topic.extra-space
       %b Links to Work Samples:
 
-  %div.row.header-block.profile-block
-    %h3.topic
-      %b Contact Information:
-    %h4
-      = @filmmaker.contact
-
   - if user_signed_in? && current_user.id != @filmmaker.user.id
     %div.row.header-block.profile-block
       %h3.topic
