@@ -38,8 +38,8 @@
 }
 
 #welcome-user{
- color: #f7f7f9 !important;
-  padding-top:30%;
+  color: #f7f7f9 !important;
+  padding-top:16.5%;
 }
 
 .button_to {
@@ -47,7 +47,8 @@
 }
 
 #navbar-items {
-  margin-left:5%
+  margin-left:5%;
+  margin-top:0.5%;
 }
 
 .navbar-nav {
@@ -78,7 +79,7 @@
 #login {
   position:relative;
   display:inline-block;
-  margin-top:7%;
+  margin-top:25%;
   background-color: #1abc9c;
 
 }
