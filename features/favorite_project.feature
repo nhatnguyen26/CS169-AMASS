@@ -25,9 +25,11 @@ Background: Add projects to database
 
 	Given the following filmmakers exist:
         | name   | username | password |      email       | usertype  |
-        | Jackie | abc123   | rst45678   | abc123@gmail.com | filmmaker |
+        | Jackie | abc123   | rst45678   | abc1234@gmail.com | filmmaker |
 
 Scenario: View a project's content
+       Given I am logged in as "abc123" with password "rst45678"
+       Given I am on the projects page	
        When I follow "Project F"
        Then I should be on the "Project F" page
        And I should see "Project F"
@@ -42,10 +44,26 @@ Scenario: View a project's content
        And I should see "11/06/2013"
 
 Scenario: Favorite a project
+        Given I am logged in as "abc123" with password "rst45678"
+        Given I am on the projects page 
 	When I follow "Project F"
 	Then I should be on the "Project F" page
-	Then I should see "Favorite"
-	When I press "Favorite"
+	When I press "Add To Favorites"
+	Then I should be on the projects page
+	Then I should see "Project F"
+
+Scenario: Unfavorite a project
+	Given I am logged in as "abc123" with password "rst45678"
+        Given I am on the projects page
+        When I follow "Project F"
 	Then I should be on the "Project F" page
-	Then I should see "Favorited"
+	When I press "Add To Favorites"
+	Then I should be on the projects page
+	Then I should see "Project F" 
+	When I follow "Project F"
+	Then I should be on the "Project F" page
+	When I press "Remove From Favorites"
+	Then I should be on the projects page
+	When I go to the my favorite projects page
+	Then I should not see "Project F"	
 

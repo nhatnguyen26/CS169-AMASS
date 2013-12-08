@@ -44,6 +44,9 @@
                 - if current_user.nonprofit?
                   %li.drop-items{href:"#", role: "menuitem", tabindex:"-1"}
                     = link_to "My Projects", projects_path(:myprojects => :true)
+                - if current_user.filmmaker?
+                  %li.drop-items{href:"#", role: "menuitem", tabindex:"-1"}
+                    = link_to "My Favorite Projects", projects_path(:myfavoriteprojects => :true)
                 %li
                   %a.drop-items{href: "#", role: "menuitem", tabindex: "-1"}     Settings
                 %li.divider{role: "presentation"}

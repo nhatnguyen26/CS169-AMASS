@@ -2,15 +2,35 @@ class ProjectsController < ApplicationController
   require 'time'
   respond_to :html, :json
   impressionist actions: [:show]
+
+  def favorite
+    @project = Project.find params[:id]
+    current_user.profilable.favorite_projects << @project
+    flash[:notice] = "You favorited #{@project.name}"
+    redirect_to projects_path(:myfavoriteprojects => :true)
+  end
+
+  def remove_favorite
+    @project = Project.find params[:id]
+    current_user.profilable.favorite_projects.delete @project
+    flash[:notice] = "You unfavorited #{@project.name}"
+    redirect_to projects_path(:myfavoriteprojects => :true)
+  end
+
   # GET /projects
   # GET /projects.json
   def index
     @projects = Project.all
-    if params[:myprojects] == "true"
+    if user_signed_in?
+      if params[:myprojects] == "true"
       #@projects = Project.find(:all, :conditions => ["organization IN (?)", current_user.username])
-      @projects = current_user.profilable.projects
+        @projects = current_user.profilable.projects
+      elsif params[:myfavoriteprojects] == "true"
+        @projects = current_user.profilable.favorite_projects
+      end
     end
-
+    
+     
     filter = params[:filter]
     by = params[:by]
 
