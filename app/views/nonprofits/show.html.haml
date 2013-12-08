@@ -6,9 +6,13 @@
       %h1#name
         = @nonprofit.user.name
       %h4#categories
-        category HARDCODED
+        - if not @nonprofit.categories.nil? 
+          - @nonprofit.categories.split(',').each do |category| 
+            %span.label.label-success= category.strip
+            
+          %span
       %h4#location
-        location HARDCODED
+        = @nonprofit.location
       %h4
         %b Active Projects:
         = @active_projects.count
@@ -25,9 +29,12 @@
     %h4
       = @nonprofit.about
   
-    %h3.topic.extra-space
+    %h3.topic
       %b Links
     %h4
+      - if not @nonprofit.links.nil?
+        - @nonprofit.links.split(',').each do |link|
+          %div= link_to link.strip, url_with_protocol(link.strip)
   
   %div.row.header-block.profile-block
     %h3.topic
@@ -38,7 +45,7 @@
           %div.thumbnail
             %a{href: "#{project_path(project.id)}"}
               - if thumbnail_exist?(project.id)
-                %img{src:"assets/projects/#{project.id}/thumb.jpg"}
+                %img{src:"../assets/projects/#{project.id}/thumb.jpg"}
               - else
                 %img{src:"../assets/balloon.jpg"}
             %div.caption
@@ -57,7 +64,7 @@
           %div.thumbnail
             %a{href: "#{project_path(project.id)}"}
               - if thumbnail_exist?(project.id)
-                %img{src:"assets/projects/#{project.id}/thumb.jpg"}
+                %img{src:"../assets/projects/#{project.id}/thumb.jpg"}
               - else
                 %img{src:"../assets/balloon.jpg"}
             %div.caption
@@ -66,3 +73,21 @@
               %h4= project.organization
               %p= project.description
               %p= "Budget: $#{project.budget}"
+
+- if user_signed_in? && current_user.id != @nonprofit.user.id
+  %div.row.header-block.profile-block
+    %h3.topic
+      %b Contact Form
+    %h4
+      = form_tag({controller: "message", action: "create"}, method: :post) do
+        = hidden_field_tag :recipient_id, @nonprofit.user.id
+        %div.row
+        %h4 subject
+        %div.row
+        = text_field_tag :topic, nil
+        %div.row
+        %h4 body
+        %div.row
+        = text_area_tag :body, nil, :size => "35x7"
+        %div.row
+        = submit_tag 'Send email', class:"filmsend-but"

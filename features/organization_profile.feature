@@ -13,17 +13,6 @@ Feature: Profile page for non-profits
         | Organization1 | org1     | 12345678   | org1@example.com | nonprofit |
         | Organization2 | org2     | 45678923   | org2@example.com | nonprofit |
 
-    Scenario: Organizations can view their profiles
-        Given I am logged in as "org1" with password "12345678"
-        And I follow "Profile"
-        Then I should be on the profile page of "org1"
-        And I should see "Organization1"
-        And I should see "Edit"
-        And I should see "Non-profit Summary"
-        And I should see "About"
-        And I should see "Contact Information"
-        And I should see "Contact Form"
-        And I should see "Listing Projects"
 
     Scenario: Filmmakers can't edit non-profit's profile
         Given I am logged in as "abc123" with password "rst45678"
@@ -41,3 +30,22 @@ Feature: Profile page for non-profits
         When I follow "Edit"
         Then I should be on the edit page of "org1"
 
+    Scenario: non-owner cannot edit another profile
+    	Given I am logged in as "abc123" with password "rst45678"
+    	Given I am on the edit page of "org1"
+	Then I should see "You are not authorized to edit this profile"
+
+    Scenario: non-logged in cannot edit profile
+    	Given I am on the edit page of "org1"
+	Then I should see "You must log in first"
+
+    Scenario: Organizations can view their profiles
+        Given I am logged in as "org1" with password "12345678"
+        And I follow "Profile"
+        Then I should be on the profile page of "org1"
+        And I should see "Organization1"
+        And I should see "Edit Profile"
+        And I should see "About"
+        And I should see "Completed Projects"
+	And I should see "Active Projects"
+        And I should see "Links"
