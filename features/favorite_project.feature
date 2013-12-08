@@ -49,8 +49,7 @@ Scenario: Favorite a project
 	When I follow "Project F"
 	Then I should be on the "Project F" page
 	When I press "Add To Favorites"
-	Then I should be on the projects page
-	Then I should see "Project F"
+	Then I should be on the "Project F" page
 
 Scenario: Unfavorite a project
 	Given I am logged in as "abc123" with password "rst45678"
@@ -58,12 +57,13 @@ Scenario: Unfavorite a project
         When I follow "Project F"
 	Then I should be on the "Project F" page
 	When I press "Add To Favorites"
-	Then I should be on the projects page
+	Then I should be on the "Project F" page
+        When I go to the projects page
 	Then I should see "Project F" 
 	When I follow "Project F"
 	Then I should be on the "Project F" page
 	When I press "Remove From Favorites"
-	Then I should be on the projects page
+	Then I should be on the "Project F" page
 	When I go to the my favorite projects page
 	Then I should not see "Project F"	
 

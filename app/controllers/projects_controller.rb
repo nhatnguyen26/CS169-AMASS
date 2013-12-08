@@ -7,14 +7,14 @@ class ProjectsController < ApplicationController
     @project = Project.find params[:id]
     current_user.profilable.favorite_projects << @project
     flash[:notice] = "You favorited #{@project.name}"
-    redirect_to projects_path(:myfavoriteprojects => :true)
+    redirect_to project_path(@project.id)
   end
 
   def remove_favorite
     @project = Project.find params[:id]
     current_user.profilable.favorite_projects.delete @project
     flash[:notice] = "You unfavorited #{@project.name}"
-    redirect_to projects_path(:myfavoriteprojects => :true)
+    redirect_to project_path(@project.id)
   end
 
   # GET /projects
