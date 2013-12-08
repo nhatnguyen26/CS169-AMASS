@@ -12,7 +12,8 @@
       %a{:id => 'blurb'}edit
       %h4.one-margin
         = best_in_place @project, :blurb, inplace_params('textarea','blurb')
-
+    %div.col-md-1
+      =button_to "Delete Project", project_path(:myprojects => :true), :class => "btn btn-lg", :method => 'delete', :id => "join-button", :confirm => "Are you sure?"
   %div.row#pic-n-info2
 
     %div.col-md-7.info-block#left-block
