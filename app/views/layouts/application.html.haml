@@ -46,8 +46,8 @@
                 - if current_user.filmmaker?
                   %li.drop-items{href:"#", role: "menuitem", tabindex:"-1"}
                     = link_to "My Favorite Projects", projects_path(:myfavoriteprojects => :true)
-                %li
-                  %a.drop-items{href: "#", role: "menuitem", tabindex: "-1"}     Settings
+                %li.drop-items{href: "#", role: "menuitem", tabindex: "-1"}
+                  = link_to "Settings", settings_index_path
                 %li.divider{role: "presentation"}
                 %li.drop-items{role: "menuitem", tabindex: "-1"}= link_to 'Logout', destroy_user_session_path, :method => 'delete'
           - else
