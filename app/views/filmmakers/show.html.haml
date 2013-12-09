@@ -37,7 +37,7 @@
   - if user_signed_in? && current_user.id != @filmmaker.user.id
     %div.row.header-block.profile-block
       %h3.topic
-        %b Contact This Filmmaker
+        %b Contact Form
       %h4
         = form_tag({controller: "message", action: "create"}, method: :post) do
           = hidden_field_tag :recipient_id, @filmmaker.user.id

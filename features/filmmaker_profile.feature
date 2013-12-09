@@ -23,9 +23,19 @@ Feature: Profile page for filmmakers
         And I should see "Experience Summary"
         And I should see "Skills and Expertise"
         And I should see "Links to Work Samples"
-        And I should see "Contact Information"
-	And I should see "Edit Profile"
+		And I should see "Edit Profile"
         
+	Scenario: Filmmakers can view other filmmakers' profiles with contact form
+		Given I am logged in as "xyz789" with password "ghi24689"
+        And I am on the profile page of "abc123"
+        And I should see "Jackie"
+        And I should see "Filmmaker Summary"
+        And I should see "About Me"
+        And I should see "Experience Summary"
+        And I should see "Skills and Expertise"
+        And I should see "Links to Work Samples"
+		And I should not see "Edit Profile"
+		And I should see "Contact Form"
 
     Scenario: Filmmakers can't edit other filmmakers' profiles
         Given I am logged in as "xyz789" with password "ghi24689"
