@@ -110,6 +110,8 @@ module NavigationHelpers
       '/projects?myfavoriteprojects=true'
     when /^the Learn More page$/
       learnmore_index_path
+    when /^the message page$/
+      message_index_path
     end
   end
 end
