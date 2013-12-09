@@ -23,12 +23,13 @@ CS169Amass::Application.routes.draw do
 	# RegistrationController
     get    '/sign_up',      to: 'users/registrations#new',    as: :new_user_registration
     post   '/sign_up',      to: 'users/registrations#create', as: :user_registration
-
+	
   end
   resources :projects do #, only: [:show,:index,:create]
     put :favorite, :on => :member
     put :remove_favorite, :on => :member
   end
+  put 'settings/update_password'
   resources :filmmakers
   resources :nonprofits
   resources :message do

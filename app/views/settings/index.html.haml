@@ -12,13 +12,10 @@
       = current_user.email
   %div.row
     %span
-      = link_to 'Update Contact Information', "#", {:class => 'btn btn-large', :id => 'edit-button'}
+      = link_to 'Update Info', '#', {:class => 'btn btn-large', :id => 'edit-button', "data-target" => "#pwModal", "data-toggle" => "modal"}
     %span
-      = link_to 'Change Password', "#", {:class => 'btn btn-large', :id => 'edit-button'}
-    %span
-      = link_to 'Delete My Account', '#', {:class => 'btn btn-large', :id => 'edit-button', "data-target" => "#passwordModal", "data-toggle" => "modal"}
-
-    #passwordModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+      = link_to 'Delete My Account', '#', {:class => 'btn btn-large', :id => 'edit-button', "data-target" => "#deleteModal", "data-toggle" => "modal"}
+    #deleteModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
       .modal-dialog
         .modal-content
           .modal-header
@@ -29,3 +26,27 @@
               %input.form-control{id: "passcode", placeholder: "Password", type: "password", name: "passcode"}
               %br
               %input.btn-lg.btn-block{type: "submit", value: "Delete"}
+
+    #pwModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+            %h4#myModalLabel.modal-title Update Info
+          .modal-body
+            = form_for(@user, :url => { :action => "update_password" } ) do |f|
+              .field
+                = f.label :current_password, "Current Password"
+                %br/
+                = f.password_field :current_password, :autocomplete => "off"
+              .field
+                = f.label :password, "New Password"
+                %br/
+                = f.password_field :password, :autocomplete => "off"
+              .field
+                = f.label :password_confirmation
+                %br/
+                = f.password_field :password_confirmation           
+              .action_container
+                %br/
+                = f.submit
