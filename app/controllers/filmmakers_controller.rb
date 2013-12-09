@@ -54,4 +54,17 @@ class FilmmakersController < ApplicationController
       @filmmaker.update_attributes!(params[:filmmaker])
  	  respond_with @filmmaker
     end
+
+	def destroy
+		@filmmaker = Filmmaker.find params[:id]
+		if @filmmaker.user.valid_password? params[:passcode]
+			@filmmaker.user.destroy
+			@filmmaker.destroy
+			flash[:notice] = "Your account has been deleted" 
+			redirect_to root_path
+		else
+			flash[:alert] = "You have entered wrong password"
+			redirect_to settings_index_path
+		end
+	end
 end

@@ -16,4 +16,16 @@
     %span
       = link_to 'Change Password', "#", {:class => 'btn btn-large', :id => 'edit-button'}
     %span
-      = link_to 'Delete Account', "#", {:class => 'btn btn-large', :id => 'edit-button'}
+      = link_to 'Delete Account', '#', {:class => 'btn btn-large', :id => 'edit-button', "data-target" => "#passwordModal", "data-toggle" => "modal"}
+
+    #passwordModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+            %h4#myModalLabel.modal-title Please enter your password
+          .modal-body
+            = form_for(@resource, :html => { :method => :delete } ) do |f| 
+              %input.form-control{placeholder: "Password", type: "password", name: "passcode"}
+              %br
+              %input.btn-lg.btn-block{type: "submit", value: "Delete Account"}
