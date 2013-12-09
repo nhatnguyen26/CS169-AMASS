@@ -11,29 +11,22 @@
   %div.col-md-6.col-sm-6#feat Featured Projects
 
 %div.row#index-project-div
-  %div.col-sm-4.col-md-3
-    %div.thumbnail
-      =image_tag "balloon.jpg"
-      %div.caption  
-        %h2 Project Documentary
-        %p Habitat for Humanity, Oakland
-  %div.col-sm-4.col-md-3
-    %div.thumbnail
-      =image_tag "balloon.jpg"
-      %div.caption  
-        %h2 Project Documentary
-        %p Habitat for Humanity, Oakland
-  %div.col-sm-4.col-md-3
-    %div.thumbnail
-      =image_tag "balloon.jpg"
-      %div.caption  
-        %h2 Project Documentary
-        %p Habitat for Humanity, Oakland
-  %div.col-sm-4.col-md-3
-    %div.thumbnail
-      =image_tag "balloon.jpg"
-      %div.caption  
-        %h2 Project Documentary
-        %p Habitat for Humanity, Oakland
+  - @projects = Project.select{|x| x.featured.downcase == 'true'}
+  - @projects.each do |project|
+    %div.col-sm-4.col-md-3.col-lg-3#project
+      %div.thumbnail
+        %a{href: "#{project_path(project.id)}"}
+          - if thumbnail_exist?(project.id)
+            %img{src:"assets/projects/#{project.id}/thumb.jpg"}
+          - else
+            %img{src:"assets/balloon.jpg"}
+        %div.caption
+          %h2= project.category
+          %h3{align: "center"}= link_to project.name, project_path(project.id)
+          %h4= project.organization
+          %p= project.description
+          %p= "Budget: $#{project.budget}"
+
+%br     
 
      

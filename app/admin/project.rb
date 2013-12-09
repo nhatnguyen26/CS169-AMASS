@@ -7,6 +7,7 @@ ActiveAdmin.register Project do
     column :category
     column :location
     column :status
+    column :featured
     column :budget, :sortable => :budget do |proj|
       number_to_currency proj.budget
     end

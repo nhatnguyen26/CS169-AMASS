@@ -127,12 +127,12 @@ ActiveRecord::Schema.define(:version => 20131208230700) do
     t.date     "deadline"
     t.string   "status"
     t.integer  "budget"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "category"
     t.string   "location"
     t.integer  "nonprofit_id"
-    t.boolean  "featured"
+    t.string   "featured",          :default => "false"
   end
 
   create_table "users", :force => true do |t|
