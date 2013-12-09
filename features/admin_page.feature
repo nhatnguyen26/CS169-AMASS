@@ -144,5 +144,25 @@ Feature: Sign in to AMASS admin page
     Then I should see "abc123"
     And I should see "xyz789"
 
+  Scenario: As an admin user, I want to delete a project
+    Given I am logged in with email "admin1@amass.com" and password "12345678"
+    And I should see "Dashboard"
+    And I follow "Projects"
+    And I follow "Project A"
+    Then I follow "Delete Project"
+    Then I should not see "Project A"
+    And I should see "Project B"
+    And I should see "Project C"
+    And I should see "Project D"
+    And I should see "Project E"
+    And I should see "Project F"
 
-
+  Scenario: As an admin user, I want to delete a user
+    Given I am logged in with email "admin1@amass.com" and password "12345678"
+    And I should see "Dashboard"
+    And I follow "Users"
+    And I follow "Tom"
+    Then I follow "Delete User"
+    Then I should see "abc123"
+    And I should not see "Tom"
+    And I should not see "xyz789"
