@@ -6,14 +6,14 @@ Feature: join a project
 
 Background: 
      Given the following projects exist:
-        | name        | category    |location	 | organization | blurb               | nonprofit_mission         | description               | deadline               | status        | budget    |
-        | Project A   | education	| Alabama	 | org A        | sample blurb        | sample mission            | sample description        | 30-Oct-2013            | open          | 2000      |
-        | Project B   | housing		| California | org B        | new blurb           | free mission              | to describe               | 20-Nov-2013            | open          | 5000      |
+        | name        | category    |location	 | organization | blurb               | nonprofit_mission         | description               | deadline               | status        | budget    |nonprofit_id|
+        | Project A   | education   | Alabama	 | org A        | sample blurb        | sample mission            | sample description        | 30-Oct-2013            | open          | 2000      |1		|
+        | Project B   | housing	    | California | org B        | new blurb           | free mission              | to describe               | 20-Nov-2013            | open          | 5000      |2		|
 
 	Given the following filmmakers exist:
     	| name  | username	| password    |      email      | usertype  | 
     	| user1 | user1 	| 123456789   | user1@amass.com | filmmaker |
-		| user2 | user2 	| 123456789   | user2@amass.com | filmmaker |
+	| user2 | user2 	| 123456789   | user2@amass.com | filmmaker |
 
 	Given the following non-profits exist:
         | name	 | username	| password    	|      email       | usertype  |  id  |
@@ -22,15 +22,15 @@ Background:
 
 Scenario: view project page 
 	Given I am logged in as "user1" with password "123456789"
-	When I am the project page for "Project A"
-	Then I should see "Join This Project"
+	When I am on the project page for "Project A"
+	Then I should see "Join This Project" button
 
 Scenario: join project
 	Given I am logged in as "user1" with password "123456789"
-	When I am the project page for "Project A"
+	When I am on the project page for "Project A"
 	And I press "Join This Project"
 	Then I should be on the project page for "Project A"
-	And I should see "You have successfully applied for this project."
+	And I should see "You have successfully applied for this project"
 	And I should not see "Join This Project"
 	And I should see "Applied"
 
@@ -66,5 +66,7 @@ Scenario: more than one application
 	Then I should see "Inbox (2)"
 	When I "accept" the application of "user1" for "Project A"
 	Then the status for "Project A" should be "pending"
+
+
 
 	

@@ -68,13 +68,13 @@ Scenario: apply for project
 	Then I should see "Join This Project" button
 	When I press "Join This Project"
 	Then I should be on the project page for "Project A"
-        And I should see "You have applied to the project"
+        And I should see "You have successfully applied for this project"
 	When I follow "My Messages"
 	When I follow "Sentbox"
 	Then I should see "Application to join Project A"
 
 Scenario: nonprofit receive application
-	Given "user1" apply for "Project A"
+	Given "user1" applied for "Project A"
 	Given I am logged in as "org A" with password "rst456789"
 	When I follow "My Messages"
 	When I follow "Inbox"

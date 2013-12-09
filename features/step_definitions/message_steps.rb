@@ -8,7 +8,7 @@ Then /^I should see "([^"]*)" button/ do |name|
   find_button(name).should_not be_nil
 end
 
-Given(/^"(.*?)" apply for "(.*?)"$/) do |filmmaker, project|
+Given(/^"(.*?)" applied for "(.*?)"$/) do |filmmaker, project|
   s = User.find_by_username(filmmaker)
   p = Project.find_by_name(project)
   n = Nonprofit.find(p.nonprofit_id)

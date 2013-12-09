@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   acts_as_messageable :table_name => "messages", 
                       :required   => :body,                
                       :class_name => "CustomMessage",
-                      :dependent  => :destroy,
+                      :dependent  => :nullify,
                       :group_messages => false
 
   # Setup accessible (or protected) attributes for your model

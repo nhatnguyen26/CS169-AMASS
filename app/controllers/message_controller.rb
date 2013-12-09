@@ -19,7 +19,7 @@ class MessageController < ApplicationController
     else
       recipient = User.find(non_profit.user.id)
       current_user.send_message(recipient, {:body => 'I want to join your project', :topic => "Application to join #{project_to_apply.name}"})
-      flash[:notice] = 'You have applied to the project'
+      flash[:notice] = 'You have successfully applied for this project'
       redirect_to project_path(project_to_apply.id)
     end
   end
