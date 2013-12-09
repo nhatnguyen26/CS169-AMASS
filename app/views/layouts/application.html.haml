@@ -36,7 +36,10 @@
                   - if current_user.nonprofit?
                     = link_to "Profile", nonprofit_path(current_user.profilable.id)
                 %li.drop-items{href: "#", role: "menutiem", tabindex: "-1"}
-                  = link_to "My Messages", message_index_path
+                  - if num_unread == 0
+                    = link_to "My Messages", message_index_path
+                  - else
+                    = link_to "My Messages (#{num_unread})", message_index_path, :id => 'unread'
                 %li.drop-items{href: "#", role: "menutiem", tabindex: "-1"}
                   - if current_user.nonprofit?
                     = link_to "Create a Project", new_project_path

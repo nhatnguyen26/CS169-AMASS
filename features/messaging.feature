@@ -28,6 +28,7 @@ Scenario: view Mailbox
 	When I follow "My Messages"
 	Then I should see "Inbox"
 	And I should see "Sentbox"
+	And I should see "Trash"
 
 Scenario: send message to a filmmaker
 	Given I am logged in as "user1" with password "123456789"
@@ -41,7 +42,7 @@ Scenario: send message to a filmmaker
 
 Scenario: check sent messages
 	Given I am logged in as "user1" with password "123456789"
-	And "user1" sent a messages to "user2" with topic "Test" and body "Hello"
+	And "user1" sent a message to "user2" with topic "Test" and body "Hello"
 	Then I should see "My Messages"
 	When I follow "My Messages"
 	Then I should see "Sentbox"
@@ -50,14 +51,13 @@ Scenario: check sent messages
 	And I should see "user2"
 
 Scenario: check inbox messages
-	Given I am logged in as "user2" with password "123456789"
-	And "user1" sent a messages to "user2" with topic "Test5" and body "Hello"
-	When I follow "My Messages"
+	Given "user1" sent a message to "user2" with topic "Test5" and body "Hello"
+        Given I am logged in as "user2" with password "123456789"
+	When I follow "My Messages (1)"
 	Then I should see "Inbox"
 	When I follow "Inbox"
 	Then I should see "Test5"
 	And I should see "user1"
-
 
 Scenario: apply for project
         Given I am logged in as "user1" with password "123456789"
@@ -76,14 +76,13 @@ Scenario: apply for project
 Scenario: nonprofit receive application
 	Given "user1" applied for "Project A"
 	Given I am logged in as "org A" with password "rst456789"
-	When I follow "My Messages"
+	When I follow "My Messages (1)"
 	When I follow "Inbox"
 	Then I should see "Application to join Project A"
         
-
 Scenario: view inbox message, go to sender's profile
 	Given I am logged in as "user2" with password "123456789"
-	And "user1" sent a messages to "user2" with topic "Test5" and body "Hello"
+	And "user1" sent a message to "user2" with topic "Test5" and body "Hello"
 	When I follow "My Messages"
 	And I follow "Inbox"
 	Then I should see "Test5"
@@ -97,7 +96,7 @@ Scenario: view inbox message, go to sender's profile
 
 Scenario: view sent message, go to receiver's profile
 	Given I am logged in as "user2" with password "123456789"
-	And "user2" sent a messages to "user1" with topic "Test5" and body "Hello"
+	And "user2" sent a message to "user1" with topic "Test5" and body "Hello"
 	When I follow "My Messages"
 	And I follow "Sentbox"
 	Then I should see "Test5"
@@ -111,7 +110,7 @@ Scenario: view sent message, go to receiver's profile
 
 Scenario: user can put message to trash
 	Given I am logged in as "user2" with password "123456789"
-	And "user2" sent a messages to "user1" with topic "Test5" and body "Hello"
+	And "user2" sent a message to "user1" with topic "Test5" and body "Hello"
 	When I follow "My Messages"
 	And I follow "Sentbox"
 	Then I should see "Test5"

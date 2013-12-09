@@ -39,4 +39,10 @@ module MessageHelper
       return nonprofit_path(user.profilable.id)
     end
   end
+
+  def num_unread
+    count = 0
+    current_user.received_messages.each{ |m| count+=1 unless m.opened?}
+    return count
+  end
 end
