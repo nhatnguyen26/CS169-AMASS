@@ -32,6 +32,7 @@ CS169Amass::Application.routes.draw do
   resources :message do
     member do
       post 'apply'
+      post 'trash'
     end
   end
 

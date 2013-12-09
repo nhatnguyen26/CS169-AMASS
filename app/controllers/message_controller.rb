@@ -33,18 +33,38 @@ class MessageController < ApplicationController
   end
   
   def index
-    params[:box_type] ||= 'inbox'
+    session[:box_type] = params[:box_type] || 'inbox'
+    if (params[:box_type].nil?)
+      redirect_to message_index_path(:box_type => session[:box_type])
+    end
     if params[:box_type].eql?('inbox')
       @messages = current_user.received_messages
     elsif params[:box_type].eql?('sent')
       @messages = current_user.sent_messages
+    elsif params[:box_type].eql?('trash')
+      @messages = current_user.deleted_messages
     end
   end
 
   def show
-    @message = current_user.messages.find(params[:id])
+    @message = find_message_from_proper_place(session[:box_type],params[:id])
     @message.open
     @message.save!
     @sender = User.find_by_id(@message.sent_messageable_id).name
   end
+
+  def trash
+    message_to_trash = find_message_from_proper_place(session[:box_type],params[:id])
+    current_user.delete_message(message_to_trash)
+    redirect_to message_index_path(:box_type => session[:box_type])
+  end
+
+  def find_message_from_proper_place(location,id)
+    if (location.eql?('trash'))
+      return current_user.deleted_messages.find(id)
+    else
+      return current_user.messages.find(id)
+    end
+  end
+
 end

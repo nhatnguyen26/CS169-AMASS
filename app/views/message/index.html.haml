@@ -6,6 +6,8 @@
         = link_to 'Inbox', message_index_path(:box_type=>'inbox')
       %h4.mess-folder
         = link_to 'Sentbox', message_index_path(:box_type=>'sent')
+      %h4.mess-folder
+        = link_to 'Trash', message_index_path(:box_type=>'trash')
     %div.col-md-9.info-block#messages-block
       %h2 #{params[:box_type].capitalize}
       - @messages.each do |x|
