@@ -7,7 +7,7 @@
       %h1#name1
         = @project.name
       %h3#organization
-        = link_to @project.organization, project_path(@project.id)
+        = link_to @project.organization, nonprofit_path(@project.nonprofit_id)
       %h4#blurb
         = @project.blurb
     %div.col-md-1

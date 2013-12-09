@@ -74,20 +74,20 @@
               %p= project.description
               %p= "Budget: $#{project.budget}"
 
-- if user_signed_in? && current_user.id != @nonprofit.user.id
-  %div.row.header-block.profile-block
-    %h3.topic
-      %b Contact Form
-    %h4
-      = form_tag({controller: "message", action: "create"}, method: :post) do
-        = hidden_field_tag :recipient_id, @nonprofit.user.id
-        %div.row
-        %h4 subject
-        %div.row
-        = text_field_tag :topic, nil
-        %div.row
-        %h4 body
-        %div.row
-        = text_area_tag :body, nil, :size => "35x7"
-        %div.row
-        = submit_tag 'Send email', class:"filmsend-but"
+  - if user_signed_in? && current_user.id != @nonprofit.user.id
+    %div.row.header-block.profile-block
+      %h3.topic
+        %b Contact Form
+      %h4
+        = form_tag({controller: "message", action: "create"}, method: :post) do
+          = hidden_field_tag :recipient_id, @nonprofit.user.id
+          %div.row
+          %h4 subject
+          %div.row
+          = text_field_tag :topic, nil
+          %div.row
+          %h4 body
+          %div.row
+          = text_area_tag :body, nil, :size => "35x7"
+          %div.row
+          = submit_tag 'Send email', class:"filmsend-but"
