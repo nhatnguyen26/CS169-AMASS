@@ -11,9 +11,9 @@ Feature: Edit a project
       | org B 	| org B   	| asdf12345	| org@gmail.com    | nonprofit |	2	|
     Given the following projects exist:
       | name        | category	|location	| organization | blurb               | nonprofit_mission         | description               | deadline        | status        | budget | nonprofit_id |   
-      | Project A   | education	| Alabama	| org A        | sample blurb        | sample mission            | sample description        | 30-Oct-2013     | open          | 2000   |     1	       |   
-      | Project B   | community	| Alabama	| org A        | sample blurb        | sample mission            | sample description        | 30-Oct-2013     | open          | 2000   |     1        |
-      | Project C   | community	| Alabama	| org B        | sample blurb        | sample mission            | sample description        | 30-Oct-2013     | open          | 2000   |     2        |
+      | Project A   | education	| Alabama	| org A        | sample blurb        | sample mission            | sample description        | 30-Oct-2013     | Open          | 2000   |     1	       |   
+      | Project B   | community	| Alabama	| org A        | sample blurb        | sample mission            | sample description        | 30-Oct-2013     | Open          | 2000   |     1        |
+      | Project C   | community	| Alabama	| org B        | sample blurb        | sample mission            | sample description        | 30-Oct-2013     | Open          | 2000   |     2        |
     
     Given I am logged in as "org A" with password "rst456789"
     Then I should be on the home page
@@ -45,7 +45,7 @@ Feature: Edit a project
     And I should see "sample blurb"
     And I should see "sample mission"
     And I should see "sample description"
-    And I should see "open"
+    And I should see "Open"
     And I should see "2000"
 
   Scenario: Cannot edit project if not correct nonprofit
