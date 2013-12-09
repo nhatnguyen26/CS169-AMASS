@@ -35,7 +35,7 @@ Feature: Profile page for filmmakers
         And I should see "Skills and Expertise"
         And I should see "Links to Work Samples"
 		And I should not see "Edit Profile"
-		And I should see "Contact Form"
+		And I should see "Contact This Filmmaker"
 
     Scenario: Filmmakers can't edit other filmmakers' profiles
         Given I am logged in as "xyz789" with password "ghi24689"
