@@ -108,5 +108,18 @@ Scenario: view sent message, go to receiver's profile
 	And I should see "To: user1"
 	When I follow "user1"
 	Then I should be on the profile page of "user1"
-	
+
+Scenario: user can put message to trash
+	Given I am logged in as "user2" with password "123456789"
+	And "user2" sent a messages to "user1" with topic "Test5" and body "Hello"
+	When I follow "My Messages"
+	And I follow "Sentbox"
+	Then I should see "Test5"
+	When I follow "Test5"
+	Then I should see "Delete" button
+	When I press "Delete"
+	Then I should be on the message page
+	Then I should not see "Test5"
+	When I follow "Trash"
+	Then I should see "Test5"
 	
