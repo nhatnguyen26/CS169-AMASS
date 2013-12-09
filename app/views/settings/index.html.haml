@@ -1,0 +1,19 @@
+
+%div.col-md-8.col-md-offset-2
+  %div.row
+    %h1
+      Settings
+  %div.row
+    %h3 
+      Name:
+      = current_user.name
+    %h3
+      Email:
+      = current_user.email
+  %div.row
+    %span
+      = link_to 'Update Contact Information', "#", {:class => 'btn btn-large', :id => 'edit-button'}
+    %span
+      = link_to 'Change Password', "#", {:class => 'btn btn-large', :id => 'edit-button'}
+    %span
+      = link_to 'Delete Account', "#", {:class => 'btn btn-large', :id => 'edit-button'}
