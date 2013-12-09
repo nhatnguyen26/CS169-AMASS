@@ -14,7 +14,8 @@ Feature: Delete account
     
     Given I am logged in as "org1" with password "12345678"
     Then I should see "Hi org1"
-    When I follow "Create A Project"
+    When I follow "Hi org1"
+	And I follow "Create a Project"
     Then I should be on the create project page
     And I fill in "Title" with "Project 10"
     And I fill in "Blurb" with "Blurb Impossible"
@@ -32,7 +33,7 @@ Feature: Delete account
 
   Scenario: non-logged in user cannot delete account
     Given I am on the home page
-    Then I should not see "Login"
+    Then I should see "Login"
     And I should see "Sign Up"
     And I should not see "Settings"
 
@@ -43,19 +44,12 @@ Feature: Delete account
     And I should see "Settings"
     When I follow "Settings"
     Then I should be on the settings page
-    And I should see "Delete my account"
-    When I follow "Delete my account"
-    Then I should be on the delete confirmation page
-    When I fill in "Username" with "abc123"
-    And I fill in "Password" with "abc12345"
-    And I follow "Delete"
-    Then I should be on the delete confirmation page
-    And I should see "incorrect username/password combination"
-    When I fill in "Username" with "rst234"
-    And I fill in "Password" with "rst45678"
-    And I follow "Delete"
-    Then I should be on the delete confirmation page
-    And I should see "incorrect username/password combination"
+    And I should see "Delete My Account"
+    When I follow "Delete My Account"
+    Then I fill in "passcode" with "abc12345"
+    And I press "Delete"
+    Then I should be on the settings page
+	And I should see "You have entered wrong password"
     When I follow "Browse Filmmakers"
     Then I should be on the filmmakers page
     And I should see "abc123"
@@ -67,12 +61,12 @@ Feature: Delete account
     And I should see "Settings"
     When I follow "Settings"
     Then I should be on the settings page
-    And I should see "Delete my account"
-    When I follow "Delete my account"
-    Then I should be on the delete confirmation page
-    And I fill in "Password" with "rst45678"
-    And I follow "Delete"
+    And I should see "Delete My Account"
+    When I follow "Delete My Account"
+    And I fill in "passcode" with "rst45678"
+    And I press "Delete"
     Then I should be on the home page
+	And I should see "Your account has been deleted"
     And I should not see "Hi abc123"
     When I follow "Browse Filmmakers"
     Then I should be on the filmmakers page
@@ -84,19 +78,12 @@ Feature: Delete account
     Then I should see "Hi org1"
     And I should see "Settings"
     When I follow "Settings"
-    Then I should be on the settings page    And I should see "Delete my account"
-    When I follow "Delete my account"
-    Then I should be on the delete confirmation page
-    When I fill in "Username" with "org2"
-    And I fill in "Password" with "12345678"
-    And I follow "Delete"
-    Then I should be on the delete confirmation page
-    And I should see "incorrect username/password combination"
-    When I fill in "Username" with "org1"
-    And I fill in "Password" with "rst45678"
-    And I follow "Delete"
-    Then I should be on the delete confirmation page
-    And I should see "incorrect username/password combination"
+    Then I should be on the settings page    
+	And I should see "Delete My Account"
+    When I follow "Delete My Account"
+    And I fill in "passcode" with "12345679"
+    And I press "Delete"
+	Then I should see "You have entered wrong password"
     When I follow "Browse Projects"
     Then I should see "Project 10"
 
@@ -107,13 +94,12 @@ Feature: Delete account
     And I should see "Settings"
     When I follow "Settings"
     Then I should be on the settings page
-    And I should see "Delete my account"
-    When I follow "Delete my account"
-    Then I should be on the delete confirmation page
-    When I fill in "Username" with "org1"
-    And I fill in "Password" with "12345678"
-    And I follow "Delete"
+    And I should see "Delete My Account"
+    When I follow "Delete My Account"
+    And I fill in "passcode" with "12345678"
+    And I press "Delete"
     Then I should be on the home page
+	And I should see "Your account has been deleted"
     And I should not see "Hi org1"
     When I follow "Browse Projects"
     Then I should be on the projects page
