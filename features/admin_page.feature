@@ -126,8 +126,23 @@ Feature: Sign in to AMASS admin page
     And I should not see "Project E"
     And I should not see "Project F"
 
+  Scenario: As an admin user, I want to see all projects created
+    Given I am logged in with email "admin1@amass.com" and password "12345678"
+    And I should see "Dashboard"
+    And I follow "Projects"
+    Then I should see "Project A"
+    And I should see "Project B"
+    And I should see "Project C"
+    And I should see "Project D"
+    And I should see "Project E"
+    And I should see "Project F"
 
-
+  Scenario: As an admin user, I want to see all users created
+    Given I am logged in with email "admin1@amass.com" and password "12345678"
+    And I should see "Dashboard"
+    And I follow "Users"
+    Then I should see "abc123"
+    And I should see "xyz789"
 
 
 
