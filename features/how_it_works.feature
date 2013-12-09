@@ -23,12 +23,12 @@ Feature: View the How It Works page
   Scenario: non-logged in user gets directed to sign up when trying to edit nonprofit profile
     Given I am on the How It Works page
     When I follow "hiw_nonprofit"
-    Then I should be on the sign up page
+    Then I should be on the sign in page
 
   Scenario: non-logged in user get directed to sign up when trying to edit filmmaker profile
     Given I am on the How It Works page
     When I follow "hiw_filmmaker"
-    Then I should be on the sign up page
+    Then I should be on the sign in page
 
   Scenario: logged in filmmaker gets directed to profile edit page
     Given I am logged in as "abc123" with password "rst45678"
