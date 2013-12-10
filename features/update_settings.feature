@@ -22,25 +22,12 @@ Feature: Update account settings
     And I should see "Email: oldemail@gmail.com"
     And I should see "Update Contact Information"
     When I follow "Update Contact Information"
-    Then I should be on the update settings page
-    When I fill in "Current Username" with "abc123"
-    And I fill in "Current Password" with "wrongpassword"
-    And I fill in "Name" with "newname"
-    And I fill in "Email" with "newemail@gmail.com"
-    And I fill in "Confirm Email" with "newemail@gmail.com"
-    And I follow "Update Settings"
-    Then I should be on the update settings page
-    And I should see "incorrect username/password combination"
-    When I fill in "Current Username" with "abc1234"
-    And I fill in "Current Password" with "rst45678"
-    And I fill in "Name" with "newname"
-    And I fill in "Email" with "newemail@gmail.com"
-    And I fill in "Confirm Email" with "newemail@gmail.com"
-    And I follow "Update Settings"
-    Then I should be on the udpate settings page
-    And I should see "incorrect username/password combination"
-    And I follow "Settings"
+    And I fill in "password" with "wrongpassword"
+    And I fill in "name" with "newname"
+    And I fill in "email" with "newemail@gmail.com"
+    And I press "Update Info"
     Then I should be on the settings page
+    And I should see "Wrong password"
     And I should see "Name: oldname"
     And I should see "Email: oldemail@gmail.com"
   
@@ -53,15 +40,12 @@ Feature: Update account settings
     And I should see "Email: oldemail@gmail.com"
     And I should see "Update Contact Information"
     When I follow "Update Contact Information"
-    Then I should be on the update settings page
-    When I fill in "Current Username" with "abc123"
-    And I fill in "Current Password" with "rst45678"
-    And I fill in "Name" with "newname"
-    And I fill in "Email" with "newemail@gmail.com"
-    And I fill in "Confirm Email" with "newemail@gmail.com"
-    And I follow "Update Settings"
-    Then I should be on the update settings page
-    And I should be on the settings page
+    And I fill in "password" with "rst45678"
+    And I fill in "name" with "newname"
+    And I fill in "email" with "newemail@gmail.com"
+    And I press "Update Info"
+    Then I should be on the settings page
+	And I should see "Successfully updated"
     And I should see "Name: newname"
     And I should see "Email: newemail@gmail.com"
     And I should see "Hi newname"

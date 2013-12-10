@@ -14,64 +14,66 @@ Feature: Change password
 
   Scenario: non-logged in user cannot change password
     Given I am on the home page
-    Then I should not see "Login"
+    Then I should see "Login"
     And I should see "Sign Up"
     And I should not see "Settings"
 
-  Scenario: filmmaker cannot change password with incorrect username/password combination
+  Scenario: filmmaker cannot change password with incorrect current password
     Given I am logged in as "abc123" with password "rst45678"
     Then I should see "Hi abc123"
     When I follow "Settings"
     Then I should be on the settings page
     And I should see "Change Password"
     When I follow "Change Password"
-    Then I should be on the password confirmation page
-    When I fill in "Current Username" with "abc123"
-    And I fill in "Current Password" with "wrongpassword"
-    And I fill in "New Password" with "asdfqwer"
-    And I fill in "Confirm New Password" with "asdfqwer"
-    And I follow "Change Password"
-    Then I should be on the password confirmation page
-    And I should see "incorrect username/password combination"
-    When I fill in "Username" with "wrongusername"
-    And I fill in "Password" with "rst45678"
-    And I fill in "New Password" with "asdfqwer"
-    And I fill in "Confirm New Password" with "asdfqwer"
-    And I follow "Change Password"
-    Then I should be on the password confirmation page
-    And I should see "incorrect username/password combination"
-    And I follow "Logout"
-    Then I should not see "Hi abc123"
-    Given I am logged in as "abc123" with password "rst45678"
-    Then I should see "Hi abc123"
+    And I fill in "current_password" with "wrongpassword"
+    And I fill in "new_password" with "asdfqwer"
+    And I fill in "confirm_password" with "asdfqwer"
+    And I press "Update"
+    Then I should see "Wrong password or invalid password combination"
+	And I should be on the settings page
 
-  Scenario: nonprofit cannot change password with incorrect username/password combination
+	Scenario: filmmaker cannot change password with invalid password combination
+    Given I am logged in as "abc123" with password "rst45678"
+    Then I should see "Hi abc123"
+    When I follow "Settings"
+    Then I should be on the settings page
+    And I should see "Change Password"
+    When I follow "Change Password"
+    And I fill in "current_password" with "rst45678"
+    And I fill in "new_password" with "asdfqwer"
+    And I fill in "confirm_password" with "asdfqwef"
+    And I press "Update"
+    Then I should see "Wrong password or invalid password combination"
+	And I should be on the settings page
+
+  Scenario: nonprofit cannot change password with incorrect current password
     Given I am logged in as "org1" with password "12345678"
     Then I should see "Hi org1"
     When I follow "Settings"
     Then I should be on the settings page
     And I should see "Change Password"
     When I follow "Change Password"
-    Then I should be on the password confirmation page
-    When I fill in "Current Username" with "org1"
-    And I fill in "Current Password" with "wrongpassword"
-    And I fill in "New Password" with "asdfqwer"
-    And I fill in "Confirm New Password" with "asdfqwer"
-    And I follow "Change Password"
-    Then I should be on the password confirmation page
-    And I should see "incorrect username/password combination"
-    When I fill in "Username" with "wrongusername"
-    And I fill in "Password" with "12345678"
-    And I fill in "New Password" with "asdfqwer"
-    And I fill in "Confirm New Password" with "asdfqwer"
-    And I follow "Change Password"
-    Then I should be on the password confirmation page
-    And I should see "incorrect username/password combination"
-    And I follow "Logout"
-    Then I should not see "Hi org1"
+    And I fill in "current_password" with "wrongpassword"
+    And I fill in "new_password" with "asdfqwer"
+    And I fill in "confirm_password" with "asdfqwer"
+    And I press "Update"
+	Then I should see "Wrong password or invalid password combination"
+	And I should be on the settings page
+
+	Scenario: nonprofit cannot change password with invalid password combination
     Given I am logged in as "org1" with password "12345678"
     Then I should see "Hi org1"
-   
+    When I follow "Settings"
+    Then I should be on the settings page
+    And I should see "Change Password"
+    When I follow "Change Password"
+    And I fill in "current_password" with "12345678"
+    And I fill in "new_password" with "asdfqwer"
+    And I fill in "confirm_password" with "asdfqwef"
+    And I press "Update"
+	Then I should see "Wrong password or invalid password combination"
+	And I should be on the settings page
+
   Scenario: filmmaker can change password with correct username/password combination
     Given I am logged in as "abc123" with password "rst45678"
     Then I should see "Hi abc123"
@@ -79,14 +81,12 @@ Feature: Change password
     Then I should be on the settings page
     And I should see "Change Password"
     When I follow "Change Password"
-    Then I should be on the password confirmation page
-    When I fill in "Current Username" with "abc123"
-    And I fill in "Current Password" with "rst45678"
-    And I fill in "New Password" with "asdfqwer"
-    And I fill in "Confirm New Password" with "asdfqwer"
-    And I follow "Change Password"
-    Then I should be on the home page
-    And I should see "Password successfully changed"
+    And I fill in "current_password" with "rst45678"
+    And I fill in "new_password" with "asdfqwer"
+    And I fill in "confirm_password" with "asdfqwer"
+    And I press "Update"
+    Then I should be on the settings page
+    And I should see "You have successfully changed your password"
     When I follow "Logout"
     Then I should not see "Hi abc123"
     Given I am logged in as "abc123" with password "asdfqwer"
@@ -100,43 +100,15 @@ Feature: Change password
     Then I should be on the settings page
     And I should see "Change Password"
     When I follow "Change Password"
-    Then I should be on the password confirmation page
-    When I fill in "Current Username" with "org1"
-    And I fill in "Current Password" with "12345678"
-    And I fill in "New Password" with "asdfqwer"
-    And I fill in "Confirm New Password" with "asdfqwer"
-    And I follow "Change Password"
-    Then I should be on the home page
-    And I should see "Password successfully changed"
+    And I fill in "current_password" with "12345678"
+    And I fill in "new_password" with "asdfqwer"
+    And I fill in "confirm_password" with "asdfqwer"
+    And I press "Update"
+    Then I should be on the settings page
+    And I should see "You have successfully changed your password"
     When I follow "Logout"
     Then I should not see "Hi org1"
     Given I am logged in as "org1" with password "asdfqwer"
     Then I should be on the home page
     And I should see "Hi org1"
 
-  Scenario: nonprofit cannot change password to an invalid password
-    Given I am logged in as "org1" with password "12345678"
-    Then I should see "Hi org1"
-    When I follow "Settings"
-    Then I should be on the settings page
-    And I should see "Change Password"
-    When I follow "Change Password"
-    Then I should be on the password confirmation page
-    When I fill in "Current Username" with "org1"
-    And I fill in "Current Password" with "12345678"
-    And I fill in "New Password" with "short"
-    And I fill in "Confirm New Password" with "short"
-    And I follow "Change Password"
-    Then I should be on the password confirmation page
-    And I should see "password must be at least 8 characters"
-    When I fill in "Username" with "org1"
-    And I fill in "Password" with "12345678"
-    And I fill in "New Password" with "asdfqwer"
-    And I fill in "Confirm New Password" with "doesntmatch"
-    And I follow "Change Password"
-    Then I should be on the password confirmation page
-    And I should see "Password doesn't match confirmation"
-    And I follow "Logout"
-    Then I should not see "Hi org1"
-    Given I am logged in as "org1" with password "12345678"
-    Then I should see "Hi org1"

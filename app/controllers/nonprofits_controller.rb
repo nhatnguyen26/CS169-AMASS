@@ -37,4 +37,17 @@ class NonprofitsController < ApplicationController
       @nonprofit.update_attributes!(params[:nonprofit])
       respond_with @nonprofit
     end
+
+	def destroy
+		@nonprofit = Nonprofit.find params[:id]
+		if @nonprofit.user.valid_password? params[:passcode]
+			@nonprofit.user.destroy
+			@nonprofit.destroy
+			flash[:notice] = "Your account has been deleted."
+			redirect_to root_path
+		else
+			flash[:alert] = "You have entered wrong password"
+			redirect_to settings_index_path
+		end
+	end
 end

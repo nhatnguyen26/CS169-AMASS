@@ -1,0 +1,71 @@
+
+%div.col-md-8.col-md-offset-2
+  %div.row
+    %h1
+      Settings
+  %div.row
+    %h3 
+      Name:
+      = current_user.name
+    %h3
+      Email:
+      = current_user.email
+  %div.row
+    %span
+      = link_to 'Update Contact Information', '#', {:class => 'btn btn-large', :id => 'edit-button', "data-target" => "#infoModal", "data-toggle" => "modal", "data-refresh" => "true"}
+    %span
+      = link_to 'Change Password', '#', {:class => 'btn btn-large', :id => 'edit-button', "data-target" => "#pwModal", "data-toggle" => "modal", "data-refresh" => "true"}
+    %span
+      = link_to 'Delete My Account', '#', {:class => 'btn btn-large', :id => 'edit-button', "data-target" => "#deleteModal", "data-toggle" => "modal", "data-refresh" => "true"}
+    
+    #deleteModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+            %h4#myModalLabel.modal-title Please enter your password
+          .modal-body
+            = form_for(@resource, :html => { :method => :delete } ) do |f| 
+              %input.form-control{id: "passcode", placeholder: "Password", type: "password", name: "passcode"}
+              %br
+              %input.btn-lg.btn-block{type: "submit", value: "Delete"}
+
+    #pwModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+            %h4#myModalLabel.modal-title Change Password
+          .modal-body
+            = form_for(@user, :url => { :action => "update_password" } ) do |f|
+              %fieldset
+              .form-group
+                %label Current Password
+                %input.form-control{id: "current_password", name: "user[current_password]", type: "password", value: ""}/
+              .form-group
+                %label New Password
+                %input.form-control{id: "new_password", name: "user[password]", type: "password", value: ""}/
+              .form-group
+                %label Password Confirmation
+                %input.form-control{id: "confirm_password", name: "user[password_confirmation]", type: "password", value: ""}/
+              %input.btn-lg.btn-block{type: "submit", value: "Update"}/
+
+    #infoModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+            %h4#myModalLabel.modal-title Change Password
+          .modal-body
+            = form_for(@user, :url => { :action => "update_info" } ) do |f|
+              %fieldset
+              .form-group
+                %label Password
+                %input.form-control{id: "password", name: "user[current_password]", placeholder: "Password", type: "password", value: ""}/
+              .form-group
+                %label Name
+                %input.form-control{id: "name", name: "user[name]", placeholder: current_user.name, type: "text", value: current_user.name}/
+              .form-group
+                %label Email
+                %input.form-control{id: "email", name: "user[email]", placeholder: current_user.email, type: "text", value: current_user.email}/
+              %input.btn-lg.btn-block{type: "submit", value: "Update Info"}/

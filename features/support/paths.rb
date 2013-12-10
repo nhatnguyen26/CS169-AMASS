@@ -112,7 +112,9 @@ module NavigationHelpers
       learnmore_index_path
     when /^the message page$/
       message_index_path
-    end
+	when /^the settings page$/
+	  settings_index_path
+	end
   end
 end
 
