@@ -8,5 +8,13 @@ module FilmMakersHelper
 #    return false
 #  end
 
+  def get_active_projects(nonprofit)
+    return nonprofit.projects.select {|proj| proj.status != 'Completed'}
+  end
+
+  def get_completed_projects(nonprofit)
+    return nonprofit.projects.select {|proj| proj.status == 'Completed'}
+  end
+
 end
 
