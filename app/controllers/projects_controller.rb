@@ -30,13 +30,7 @@ class ProjectsController < ApplicationController
     filter = params[:filter]
     by = params[:by]
 
-    if filter == 'all' or filter == 'New Posts'
-      @projects = filter_projects(filter)
-    elsif filter == 'Type' or filter == 'Region'
-      @projects = filter_projects_by(filter, by)
-    elsif filter == 'Budget' or filter == 'Popular'
-      @projects = filter_projects_by2(filter, by)
-    end
+    @projects = project_filter(filter, by)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -54,30 +48,6 @@ class ProjectsController < ApplicationController
       end
     end
     return @projects
-  end
-
-  def filter_projects(filter)
-    if filter == 'all'
-      return Project.all
-    else
-      return Project.select{|x| x.created_at + 604800 >= Time.now}
-    end
-  end
-
-  def filter_projects_by(filter, by)
-    if filter == 'Type'
-      return Project.select{|x| x.category.to_s.downcase == by.downcase}
-    else
-      return Project.select{|x| x.location.to_s.downcase == by.downcase}
-    end
-  end
-
-  def filter_projects_by2(filter, by)
-    if filter ==  'Budget'
-      return Project.select{|x| x.budget.to_i.to_s.length == by.length}
-    else
-      return Project.select{|x| x.impressionist_count >= 1}
-    end
   end
 
   # GET /projects/1
