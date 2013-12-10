@@ -19,29 +19,29 @@
   %div.row.header-block.profile-block
     %h3.topic
       %b Filmmaker Summary
-      %a{:id => 'summary', :class => 'edit-butt'}edit
+      %a{:id => 'summary', :class => 'edit-butt link-hover'}edit
     %h4.one-margin.filmmaker-button
       = best_in_place @filmmaker, :summary, inplace_params('textarea','summary')
     %h3.topic
       %b About Me
-      %a{:id => 'about', :class => 'edit-butt'}edit
+      %a{:id => 'about', :class => 'edit-butt link-hover'}edit
     %h4.one-margin.filmmaker-button
       = best_in_place @filmmaker, :about, inplace_params('textarea','about')
   
   %div.row.header-block.profile-block
     %h3.topic
       %b Experience Summary
-      %a{:id => 'expSum', :class => 'edit-butt'}edit
+      %a{:id => 'expSum', :class => 'edit-butt link-hover'}edit
     %h4.one-margin.filmmaker-button
       = best_in_place @filmmaker, :experience, inplace_params('textarea','expSum')
     %h3.topic
       %b Skills and Expertise
-      %a{:id => 'skills', :class => 'edit-butt'}edit
+      %a{:id => 'skills', :class => 'edit-butt link-hover'}edit
     %h4.one-margin.filmmaker-button
       = best_in_place @filmmaker, :skills, inplace_params('textarea','skills')
     %h3.topic
       %b Links to Work Samples
-      %a{:id => 'links', :class => 'edit-butt'}edit
+      %a{:id => 'links', :class => 'edit-butt link-hover'}edit
     %h4.one-margin.filmmaker-button
       = best_in_place @filmmaker, :links, inplace_params('textarea', 'links')
 

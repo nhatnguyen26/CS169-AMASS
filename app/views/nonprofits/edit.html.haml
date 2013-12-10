@@ -21,26 +21,30 @@
   %div.row.header-block.profile-block
     %h3.topic
       %b About
-      %a{:id => 'nonprofit_about'}edit
+      %a{:id => 'nonprofit_about', :class => 'link-hover'}edit
     %h4
       = best_in_place @nonprofit, :about, inplace_params('textarea','nonprofit_about')
   
     %h3.topic.extra-space
       %b Links
-      %a{:id => 'links'}edit
+      %a{:id => 'links', :class => 'link-hover'}edit
     %h4
       = best_in_place @nonprofit, :links, inplace_params('textarea', 'links')
   
   %div.row.header-block.profile-block
     %h3.topic
       %b Active Projects
-      %a{:id => 'activeprojects'}edit
     %h4
-      
+      - get_active_projects(@nonprofit).each do |project|
+        =link_to project.name, project_path(project.id)
+        %br
+    %h4
      
     %h3.topic.extra-space
       %b Completed Projects
-      %a{:id => 'completedprojects'}edit
     %h4
+      - get_completed_projects(@nonprofit).each do |project|
+        =link_to project.name, project_path(project.id)
+        %br
 
   = button_to "<< Back", nonprofit_path, :class => "btn btn-md", :method => 'get', :id => "back-button"
