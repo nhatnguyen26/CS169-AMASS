@@ -108,12 +108,15 @@ class ProjectsController < ApplicationController
     @project.status = "Open"
     temp = params[:project]["deadline"]
     date = /(\d+)\/(\d+)\/(\d+)/.match(temp)
-  if not date.nil?
-    t1,t2,t3 = date.captures
-      temp = t3 + t1 + t2
+    if not date.nil?
+      t1,t2,t3 = date.captures
+      @project.deadline = t3 + t1 + t2
+    end
+    save_project(@project.save)
   end
-    @project.deadline = temp
-    if @project.save
+
+  def save_project(success)
+    if success
       current_user.profilable.projects << @project
       current_user.profilable.save!
       flash[:notice] = "Project was successfully created."
@@ -122,7 +125,6 @@ class ProjectsController < ApplicationController
       flash[:error] = "Something went wrong."
       redirect_to new_project_path
     end
-
   end
 
   def destroy
