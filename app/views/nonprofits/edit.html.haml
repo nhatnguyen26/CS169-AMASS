@@ -35,7 +35,7 @@
     %h3.topic
       %b Active Projects
     %h4
-      - get_active_projects(@nonprofit).each do |project|
+      - get_active_projects(@resource).each do |project|
         =link_to project.name, project_path(project.id)
         %br
     %h4
@@ -43,7 +43,7 @@
     %h3.topic.extra-space
       %b Completed Projects
     %h4
-      - get_completed_projects(@nonprofit).each do |project|
+      - get_completed_projects(@resource).each do |project|
         =link_to project.name, project_path(project.id)
         %br
 

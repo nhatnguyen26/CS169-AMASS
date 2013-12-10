@@ -68,7 +68,7 @@ module ApplicationHelper
 		end
 	end
 
-	def set_resource
+	def get_resource
 		if current_user.filmmaker?
 	      Filmmaker.find params[:id]
 	  	elsif current_user.nonprofit?
