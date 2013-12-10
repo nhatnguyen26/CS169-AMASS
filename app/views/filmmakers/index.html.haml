@@ -21,9 +21,12 @@
     %h4{align: "left"}= link_to 'Santa Clara', filmmakers_path(:filter=>'Region', :by => 'Santa Clara')
 
 
-  #page-content-wrapper
+  #filmmaker-index-div
     - @filmmaker.each do |x|
       %h2{align: "left"}= link_to x.user.name, filmmaker_path(x.id)
       %h4= x.location
-      %h4= x.specialty
+      %h4.topic#filmmaker-specialties-div
+        - if not x.specialty.nil?
+          - x.specialty.split(',').each do |specialty|
+            %span.label.label-success= specialty.strip
 %br
