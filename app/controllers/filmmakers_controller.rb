@@ -2,28 +2,28 @@ class FilmmakersController < ApplicationController
   include ApplicationHelper
   respond_to :html, :json
   def index
-    @filmmaker = Filmmaker.all
+    filter = params[:filter]
+    by = params[:by]
 
-      filter = params[:filter]
+    @filmmaker = filter_filmmakers(filter,by)
 
-   @filmmaker = filter_filmmakers(filter)
-
-   respond_to do |format|
-     format.html # index.html.erb
-     format.json { render json: @filmmaker }
-   end
+    respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @filmmaker }
+        end
   end
 
-  def filter_filmmakers(filter)
-    if filter == 'all'
-      @filmmaker = Filmmaker.all
-    elsif filter == 'Specialty'
+  def filter_filmmakers(filter, by)
+    if filter == 'Specialty'
       @filmmaker = Filmmaker.select{|x| x.specialty.to_s.include?(by)}
     elsif filter == 'Region'
       @filmmaker = Filmmaker.select{|x| x.location.to_s.include?(by)}
+    else
+      @filmmaker = Filmmaker.all
     end
     return @filmmaker
   end
+
 
   def show
     @filmmaker = Filmmaker.find(params[:id])
