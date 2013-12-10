@@ -32,41 +32,9 @@ Scenario: join project
 	Then I should be on the project page for "Project A"
 	And I should see "You have successfully applied for this project"
 	And I should not see "Join This Project"
-	And I should see "Applied"
 
 Scenario: non-profit can see the notifications
 	Given "user1" applied for "Project A"
 	And I am logged in as "org A" with password "rst456789"
 	And I am on the home page
-	Then I should see "Inbox (1)"
-	When I follow "Inbox (1)"
-	Then I should see an unread message from "user1"
-	When I follow this message
-	Then I should see "Accept"
-	And I should see "Reject"
-
-Scenario: non-profit can accept the application
-	Given "user1" applied for "Project A"
-	And I am logged in as "org A" with password "rst456789"
-	When I "accept" the application of "user1" for "Project A"
-	Then I should see "Notification has been sent to "user1"
-	And the status for "Project A" should be "pending"
-
-Scenario: non-profit can reject the application
-	Given "user1" applied for "Project A"
-	And I am logged in as "org A" with password "rst456789"
-	When I "reject" the application of "user1" for "Project A"
-	Then I should see "Notification has been sent to "user1"
-	And the status for "Project A" should be "open"
-
-Scenario: more than one application
-	Given "user1" and "user2" applied for "Project A"
-	And I am logged in as "org A" with password "rst456789"
-	And I am on the home page 
-	Then I should see "Inbox (2)"
-	When I "accept" the application of "user1" for "Project A"
-	Then the status for "Project A" should be "pending"
-
-
-
-	
+	When I follow "My Messages"
