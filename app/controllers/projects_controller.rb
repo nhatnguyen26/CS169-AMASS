@@ -5,16 +5,22 @@ class ProjectsController < ApplicationController
   impressionist actions: [:show]
 
   def favorite
-    @project = Project.find params[:id]
-    current_user.profilable.favorite_projects << @project
-    flash[:notice] = "You favorited #{@project.name}"
-    redirect_to project_path(@project.id)
+    apply_favorite(false)
   end
 
   def remove_favorite
-    @project = Project.find params[:id]
-    current_user.profilable.favorite_projects.delete @project
-    flash[:notice] = "You unfavorited #{@project.name}"
+    apply_favorite(true)
+  end
+
+  def apply_favorite(remove)
+  	@project = Project.find params[:id]
+	if remove
+	    current_user.profilable.favorite_projects.delete @project
+    	flash[:notice] = "You unfavorited #{@project.name}"
+	else
+		current_user.profilable.favorite_projects << @project
+    	flash[:notice] = "You favorited #{@project.name}"
+	end
     redirect_to project_path(@project.id)
   end
 
