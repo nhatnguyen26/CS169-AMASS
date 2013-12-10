@@ -7,6 +7,14 @@
         = @filmmaker.user.name
       %h4#email
         = @filmmaker.user.email
+      %h4#location
+        Location: 
+        = best_in_place @filmmaker, :location, inplace_params('input', 'location')
+        %a{:id => 'location'}edit
+      %h4#specialties
+        Specialties: 
+        = best_in_place @filmmaker, :specialty, inplace_params('input', 'specialty')
+        %a{:id => 'specialty'}edit
   
   %div.row.header-block.profile-block
     %h3.topic

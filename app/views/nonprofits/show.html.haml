@@ -6,12 +6,14 @@
       %h1#name
         = @nonprofit.user.name
       %h4#categories
+        Categories: 
         - if not @nonprofit.categories.nil? 
           - @nonprofit.categories.split(',').each do |category| 
             %span.label.label-success= category.strip
             
           %span
       %h4#location
+        Location: 
         = @nonprofit.location
       %h4
         %b Active Projects:
