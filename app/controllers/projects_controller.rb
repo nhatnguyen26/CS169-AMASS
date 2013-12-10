@@ -21,15 +21,10 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-    if user_signed_in?
-      if params[:myprojects] == "true"
-      #@projects = Project.find(:all, :conditions => ["organization IN (?)", current_user.username])
-        @projects = current_user.profilable.projects
-      elsif params[:myfavoriteprojects] == "true"
-        @projects = current_user.profilable.favorite_projects
-      end
-    end
+    
+    check_user = user_signed_in?
 
+    @projects = check_user_sign_in(check_user)
 
     filter = params[:filter]
     by = params[:by]
@@ -46,6 +41,18 @@ class ProjectsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @projects }
     end
+  end
+
+  def check_user_sign_in(check_user)
+    if check_user
+      if params[:myprojects] == "true"
+      #@projects = Project.find(:all, :conditions => ["organization IN (?)", current_user.username])
+        @projects = current_user.profilable.projects
+      elsif params[:myfavoriteprojects] == "true"
+        @projects = current_user.profilable.favorite_projects
+      end
+    end
+    return @projects
   end
 
   def filter_projects(filter)
