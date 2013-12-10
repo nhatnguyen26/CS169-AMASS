@@ -69,6 +69,11 @@
   border-radius:5px;
 }
 
+#favorite-button{
+  border-radius:10px;
+  color: #f7f7f9;
+}
+
 #pic-n-info {
   padding-top:1.5%;
   margin-bottom:3%;
