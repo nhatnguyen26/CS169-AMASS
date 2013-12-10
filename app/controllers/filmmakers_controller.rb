@@ -33,42 +33,4 @@ class FilmmakersController < ApplicationController
           format.json { render json: @filmmaker }
         end
   end
-
-  def edit
-    if user_signed_in?
-      temp = Filmmaker.find params[:id]
-      if owner_of_profile(temp)
-        @filmmaker = temp
-        render
-        return
-      else
-        flash[:error] = "You are not authorized to edit this profile"
-        redirect_to root_path
-        return
-      end
-    end
-    flash[:error] = "You must log in first."
-    redirect_to root_path
-    return
-
-  end
-
-    def update
-      @filmmaker = Filmmaker.find params[:id]
-      @filmmaker.update_attributes!(params[:filmmaker])
- 	  respond_with @filmmaker
-    end
-
-	def destroy
-		@filmmaker = Filmmaker.find params[:id]
-		if @filmmaker.user.valid_password? params[:passcode]
-			@filmmaker.user.destroy
-			@filmmaker.destroy
-			flash[:notice] = "Your account has been deleted" 
-			redirect_to root_path
-		else
-			flash[:alert] = "You have entered wrong password"
-			redirect_to settings_index_path
-		end
-	end
 end
