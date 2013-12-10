@@ -1,5 +1,15 @@
 module MessageHelper
 
+  def check_box_type(box_type)
+    if box_type.eql?('inbox')
+      @messages = current_user.received_messages
+    elsif box_type.eql?('sent')
+      @messages = current_user.sent_messages
+    elsif box_type.eql?('trash')
+      @messages = current_user.deleted_messages
+    end
+  end
+
   def get_proper_name(message, box_type)
     if box_type == "inbox"
       id = message.sent_messageable_id

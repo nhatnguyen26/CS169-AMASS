@@ -1,4 +1,6 @@
 class MessageController < ApplicationController
+  include MessageHelper
+
   before_filter :signed_in_as_user
   def signed_in_as_user
     if !user_signed_in?
@@ -34,16 +36,13 @@ class MessageController < ApplicationController
   
   def index
     session[:box_type] = params[:box_type] || 'inbox'
-    if (params[:box_type].nil?)
+    box_type = params[:box_type]
+
+    if (box_type.nil?)
       redirect_to message_index_path(:box_type => session[:box_type])
     end
-    if params[:box_type].eql?('inbox')
-      @messages = current_user.received_messages
-    elsif params[:box_type].eql?('sent')
-      @messages = current_user.sent_messages
-    elsif params[:box_type].eql?('trash')
-      @messages = current_user.deleted_messages
-    end
+
+    @messages = check_box_type(box_type)
   end
 
   def show
