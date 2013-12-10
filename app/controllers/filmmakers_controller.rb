@@ -5,8 +5,16 @@ class FilmmakersController < ApplicationController
     @filmmaker = Filmmaker.all
 
       filter = params[:filter]
-        by = params[:by]
 
+   @filmmaker = filter_filmmakers(filter)
+
+   respond_to do |format|
+     format.html # index.html.erb
+     format.json { render json: @filmmaker }
+   end
+  end
+
+  def filter_filmmakers(filter)
     if filter == 'all'
       @filmmaker = Filmmaker.all
     elsif filter == 'Specialty'
@@ -14,11 +22,7 @@ class FilmmakersController < ApplicationController
     elsif filter == 'Region'
       @filmmaker = Filmmaker.select{|x| x.location.to_s.include?(by)}
     end
-
-    respond_to do |format|
-          format.html # index.html.erb
-          format.json { render json: @filmmaker }
-        end
+    return @filmmaker
   end
 
   def show
