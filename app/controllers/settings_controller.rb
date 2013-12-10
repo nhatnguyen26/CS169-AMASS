@@ -21,4 +21,16 @@ class SettingsController < ApplicationController
 			redirect_to settings_index_path
 		end
 	end
+
+	def update_info
+		@user = User.find(current_user.id)
+		if @user.update_with_password(params[:user])
+			sign_in @user, :bypass => true
+			flash[:notice] = 'Successfully updated'
+			redirect_to settings_index_path
+		else
+			flash[:alert] = 'Wrong password'
+			redirect_to settings_index_path
+		end
+	end
 end
