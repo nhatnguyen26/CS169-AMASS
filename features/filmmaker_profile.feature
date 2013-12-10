@@ -59,8 +59,8 @@ Feature: Profile page for filmmakers
 
     Scenario: Cannot access edit page if wrong user
     	Given I am logged in as "abc123" with password "rst45678"
-	When I am on the edit page of "xyz789"
-	Then I should see "You are not authorized to edit this profile"
+		When I am on the edit page of "xyz789"
+		Then I should see "You are not authorized to edit this profile"
 
 
 

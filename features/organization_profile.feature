@@ -32,12 +32,12 @@ Feature: Profile page for non-profits
 
     Scenario: non-owner cannot edit another profile
     	Given I am logged in as "abc123" with password "rst45678"
-    	Given I am on the edit page of "org1"
-	Then I should see "You are not authorized to edit this profile"
+    	When I am on the edit page of "org1"
+		Then I should see "You are not authorized to edit this profile"
 
     Scenario: non-logged in cannot edit profile
     	Given I am on the edit page of "org1"
-	Then I should see "You must log in first"
+		Then I should see "You must log in first"
 
     Scenario: Organizations can view their profiles
         Given I am logged in as "org1" with password "12345678"
