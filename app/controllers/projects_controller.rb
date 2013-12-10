@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  include ProjectsHelper
   require 'time'
   respond_to :html, :json
   impressionist actions: [:show]
@@ -164,7 +165,7 @@ class ProjectsController < ApplicationController
     end
     redirect_to projects_path
   end
-
+=begin
   def logged_in_as_project_owner(project)
     if current_user == nil || current_user.profilable_type == "Filmmaker"
       return false
@@ -175,6 +176,7 @@ class ProjectsController < ApplicationController
     end
     project.nonprofit_id == current_user.profilable_id
   end
+=end
 
 
 
