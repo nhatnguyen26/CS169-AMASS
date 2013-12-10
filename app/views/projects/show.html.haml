@@ -66,7 +66,7 @@
           - if !current_user.profilable.favorite_projects.include?(@project)
             = button_to "Add To Favorites", favorite_project_path, :class => "btn btn-lg", :id => "favorite-button", :method => 'put'
           - else
-            = button_to "Remove From Favorites", remove_favorite_project_path, :class => "btn btn-lg", :id => "Remove From Favorites", :method => 'put'
+            = button_to "Remove From Favorites", remove_favorite_project_path, :class => "btn btn-lg", :id => "favorite-button", :method => 'put'
 
   = button_to "<< Back", projects_path, :class => "btn btn-md", :method => 'get', :id => "back-button"
 
