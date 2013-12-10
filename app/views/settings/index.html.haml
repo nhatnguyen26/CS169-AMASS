@@ -55,7 +55,7 @@
         .modal-content
           .modal-header
             %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
-            %h4#myModalLabel.modal-title Change Password
+            %h4#myModalLabel.modal-title Update Info
           .modal-body
             = form_for(@user, :url => { :action => "update" } ) do |f|
               %fieldset
