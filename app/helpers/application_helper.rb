@@ -50,21 +50,13 @@ module ApplicationHelper
   end
 
     def update
-	  if current_user.filmmaker?
-	      @resource = Filmmaker.find params[:id]
-	  elsif current_user.nonprofit?
-		  @resource = Nonprofit.find params[:id]
-	  end
+	  @resource = get_resource
       @resource.update_attributes!(params[:filmmaker])
  	  respond_with @resource
     end
 
 	def destroy
-		if current_user.filmmaker?
-	      @resource = Filmmaker.find params[:id]
-	    elsif current_user.nonprofit?
-		  @resource = Nonprofit.find params[:id]
-		end
+		@resource = get_resource
 		if @resource.user.valid_password? params[:passcode]
 			@resource.user.destroy
 			@resource.destroy
@@ -74,6 +66,14 @@ module ApplicationHelper
 			flash[:alert] = "You have entered wrong password"
 			redirect_to settings_index_path
 		end
+	end
+
+	def set_resource
+		if current_user.filmmaker?
+	      Filmmaker.find params[:id]
+	  	elsif current_user.nonprofit?
+		  Nonprofit.find params[:id]
+	  	end
 	end
 
 end
