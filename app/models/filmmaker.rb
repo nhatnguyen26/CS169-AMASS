@@ -1,5 +1,5 @@
 class Filmmaker < ActiveRecord::Base
-  attr_accessible :about, :summary, :experience, :skills, :contact, :location, :specialty
+  attr_accessible :about, :summary, :experience, :skills, :contact, :location, :specialty, :links
   has_one :user, :as => :profilable, :autosave => true
   has_many :favorites
   has_many :favorite_projects, :through => :favorites, :source => :favorable, :source_type => "Project"
