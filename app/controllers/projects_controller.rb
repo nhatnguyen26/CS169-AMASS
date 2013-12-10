@@ -76,11 +76,10 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find params[:id]
-    if (params[:project]["deadline"])
-      temp = params[:project]["deadline"]
-      t1,t2,t3 = /(\d+)\/(\d+)\/(\d+)/.match(temp).captures
-      temp = t3 + t1 + t2
-      params[:project]["deadline"] = temp
+    get_input = params[:project]["deadline"]
+    if (get_input)
+      t1,t2,t3 = /(\d+)\/(\d+)\/(\d+)/.match(get_input).captures
+      params[:project]["deadline"]  = t3 + t1 + t2
     end
     @project.update_attributes!(params[:project])
     respond_with @project
