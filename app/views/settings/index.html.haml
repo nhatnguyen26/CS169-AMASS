@@ -37,7 +37,7 @@
             %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
             %h4#myModalLabel.modal-title Change Password
           .modal-body
-            = form_for(@user, :url => { :action => "update_password" } ) do |f|
+            = form_for(@user, :url => { :action => "update" } ) do |f|
               %fieldset
               .form-group
                 %label Current Password
@@ -57,7 +57,7 @@
             %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
             %h4#myModalLabel.modal-title Change Password
           .modal-body
-            = form_for(@user, :url => { :action => "update_info" } ) do |f|
+            = form_for(@user, :url => { :action => "update" } ) do |f|
               %fieldset
               .form-group
                 %label Password

@@ -29,8 +29,7 @@ CS169Amass::Application.routes.draw do
     put :favorite, :on => :member
     put :remove_favorite, :on => :member
   end
-  put 'settings/update_password'
-  put 'settings/update_info'
+  put 'settings/update'
   resources :filmmakers
   resources :nonprofits
   resources :message do

@@ -27,7 +27,7 @@ Feature: Update account settings
     And I fill in "email" with "newemail@gmail.com"
     And I press "Update Info"
     Then I should be on the settings page
-    And I should see "Wrong password"
+    And I should see "Invalid password"
     And I should see "Name: oldname"
     And I should see "Email: oldemail@gmail.com"
   

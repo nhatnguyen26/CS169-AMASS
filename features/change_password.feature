@@ -29,7 +29,7 @@ Feature: Change password
     And I fill in "new_password" with "asdfqwer"
     And I fill in "confirm_password" with "asdfqwer"
     And I press "Update"
-    Then I should see "Wrong password or invalid password combination"
+    Then I should see "Invalid password"
 	And I should be on the settings page
 
 	Scenario: filmmaker cannot change password with invalid password combination
@@ -43,7 +43,7 @@ Feature: Change password
     And I fill in "new_password" with "asdfqwer"
     And I fill in "confirm_password" with "asdfqwef"
     And I press "Update"
-    Then I should see "Wrong password or invalid password combination"
+    Then I should see "Invalid password"
 	And I should be on the settings page
 
   Scenario: nonprofit cannot change password with incorrect current password
@@ -57,7 +57,7 @@ Feature: Change password
     And I fill in "new_password" with "asdfqwer"
     And I fill in "confirm_password" with "asdfqwer"
     And I press "Update"
-	Then I should see "Wrong password or invalid password combination"
+	Then I should see "Invalid password"
 	And I should be on the settings page
 
 	Scenario: nonprofit cannot change password with invalid password combination
@@ -71,7 +71,7 @@ Feature: Change password
     And I fill in "new_password" with "asdfqwer"
     And I fill in "confirm_password" with "asdfqwef"
     And I press "Update"
-	Then I should see "Wrong password or invalid password combination"
+	Then I should see "Invalid password"
 	And I should be on the settings page
 
   Scenario: filmmaker can change password with correct username/password combination
@@ -86,7 +86,7 @@ Feature: Change password
     And I fill in "confirm_password" with "asdfqwer"
     And I press "Update"
     Then I should be on the settings page
-    And I should see "You have successfully changed your password"
+    And I should see "Successfully updated"
     When I follow "Logout"
     Then I should not see "Hi abc123"
     Given I am logged in as "abc123" with password "asdfqwer"
@@ -105,7 +105,7 @@ Feature: Change password
     And I fill in "confirm_password" with "asdfqwer"
     And I press "Update"
     Then I should be on the settings page
-    And I should see "You have successfully changed your password"
+    And I should see "Successfully updated"
     When I follow "Logout"
     Then I should not see "Hi org1"
     Given I am logged in as "org1" with password "asdfqwer"
