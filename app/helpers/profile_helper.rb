@@ -1,22 +1,9 @@
-module ApplicationHelper
-  def inplace_params(type,stractive)
-    {:type => type, :ok_button => 'Save', :ok_button_class => 'btn', :cancel_button => 'Cancel', :cancel_button_class => 'btn', :activator => '#'+stractive}
-  end
-
-  def select_inplace_params
-	{:type => :select, :ok_button => 'Save', :ok_button_class => 'btn', :cancel_button => 'Cancel', :cancel_button_class => 'btn', :collection => [["Open", "Open"], ["Pending", "Pending"], ["Completed", "Completed"]], :activator => '#status'}
-  end
-
-
-  def logged_in_as_correct_user(profile_id)
-    if user_signed_in?
-      return current_user.id == profile_id
+module ProfileHelper
+  def owner_of_profile(profile)
+    if user_signed_in? && current_user.id == profile.user.id
+      return true
     end
     return false
-  end
-
-  def url_with_protocol(url)
-    /^http/.match(url) ? url : "http://#{url}"
   end
 
   def edit
@@ -44,7 +31,11 @@ module ApplicationHelper
 
     def update
 	  @resource = get_resource
-      @resource.update_attributes!(params[:filmmaker])
+          if current_user.filmmaker?
+            @resource.update_attributes!(params[:filmmaker])
+          elsif current_user.nonprofit?
+            @resource.update_attributes!(params[:nonprofit])
+          end
  	  respond_with @resource
     end
 

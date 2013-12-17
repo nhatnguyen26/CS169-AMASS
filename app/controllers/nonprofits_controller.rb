@@ -1,5 +1,5 @@
 class NonprofitsController < ApplicationController
-  include ApplicationHelper
+  include ProfileHelper
   respond_to :html, :json
   def show
     @nonprofit = Nonprofit.find(params[:id])

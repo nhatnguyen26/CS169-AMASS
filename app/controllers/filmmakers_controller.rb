@@ -1,5 +1,5 @@
 class FilmmakersController < ApplicationController
-  include ApplicationHelper
+  include ProfileHelper
   respond_to :html, :json
   def index
     filter = params[:filter]

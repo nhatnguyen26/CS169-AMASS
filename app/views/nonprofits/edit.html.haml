@@ -6,9 +6,11 @@
       %h1#name
         = @resource.user.name
       %h4#categories
+        Categories:
         = best_in_place @resource, :categories, inplace_params('input', 'categories')
         %a edit
       %h4#location
+        Location:
         = best_in_place @resource, :location, inplace_params('input', 'location')
         %a{:id => 'location'}edit
       %h4
